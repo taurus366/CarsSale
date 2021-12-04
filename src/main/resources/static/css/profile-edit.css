@@ -1,0 +1,32 @@
+.profile-edit-container {
+    width: 70%;
+    margin: 3% auto 3% auto;
+    background-color: rgba(107, 107, 107, 0.56);
+}
+
+.profile-edit-form {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.submit-btn {
+    margin: 100px 0 10px 0;
+}
+
+.submit-btn-article input {
+    /*padding: 7px;*/
+    font-size: 17px;
+}
+
+.user-img {
+    /*width: 100%;*/
+}
+
+.user-img-article {
+    width: 70%;
+}
+
+.user-img-article img {
+    width: 100%;
+}

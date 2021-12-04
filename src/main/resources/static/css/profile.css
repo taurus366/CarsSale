@@ -1,0 +1,28 @@
+.profile-container {
+    background-color: rgba(98, 98, 98, 0.66);
+    width: 70%;
+    margin: 3% auto auto auto;
+    justify-content: space-evenly;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.profile-information-column h2 {
+    margin: 0;
+    color: white;
+}
+
+.profile-information-column label {
+   font-size: 20px;
+    font-weight: 600;
+}
+
+.profile-img-article {
+    width: 100%;
+}
+
+.profile-img-article img {
+    width: 100%;
+}
+

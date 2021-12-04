@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <th:block th:replace="fragments/navbar :: head"></th:block>
+    <title>Login</title>
+</head>
+
+<body>
+<header>
+
+    <section th:replace="fragments/navbar :: header" class="header-section">
+
+        <article class="article-car">
+            <a href="#">
+                <img class="article-car-image"
+                     src="../static/images/2021_mercedes_benz_s_class_angularfront-removebg-preview.png" alt="picturte">
+
+            </a>
+        </article>
+        <nav class="header-nav">
+            <ul class="header-nav-ul index">
+                <li>
+                    <a class="drop-btn index" href="#"><i class="fas fa-angle-down"></i> Admin </a>
+                    <ul class="dropdown-menu" style="display: none;">
+                        <li><a href="#home" class="a-btn">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="btn-link index"><i class="fas fa-bullhorn"></i> Create Offer</a></li>
+                <li><a href="#" class="btn-link index"><i class="fas fa-car-alt"></i> All Cars</a></li>
+                <li><a href="#" class="btn-link index"><i class="fas fa-id-card"></i> Register</a></li>
+                <li><a href="#" class="btn-link index"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+    </section>
+
+</header>
+<main>
+    <div class="login-container">
+
+        <form th:action="@{/users/login}" method="post" class="login-form">
+
+            <h1 class="login-form-title">LOGIN FORM</h1>
+
+            <section class="login-form-section">
+
+                <article class="login-form-column email">
+                    <label for="email">Email</label>
+                    <br>
+                    <input th:value="${email}" type="text" name="email" id="email">
+                </article>
+
+                <article class="login-form-column password">
+                    <label for="password">Password</label>
+                    <br>
+                    <input type="password" name="password" id="password">
+                </article>
+
+
+            </section>
+            <input type="submit" class="submit-btn btn" value="Login">
+
+        </form>
+
+
+    </div>
+</main>
+<script th:replace="fragments/navbar :: script-index"></script>
+
+</body>
+
+</html>

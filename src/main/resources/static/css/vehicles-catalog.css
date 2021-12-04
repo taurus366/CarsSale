@@ -1,0 +1,69 @@
+.catalog-container {
+    /*display: flex;*/
+    justify-content: center;
+    max-width: 99%;
+    margin: 6% auto auto auto;
+    /*border: solid 1px rgba(59, 59, 59, 0.64);*/
+    /*background-color: rgba(59, 59, 59, 0.64);*/
+    /*padding-bottom: 2%;*/
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.vehicle-catalog-card {
+    width: 25%;
+}
+
+.vehicle-card-pic {
+    max-width: 50%;
+    object-fit: cover;
+}
+
+.vehicle-card-pic > img {
+    width: 100%;
+    height: 130px;
+}
+
+.vehicle-card-information {
+    color: #f1f1f1;
+    float: left;
+    margin: 0 0 0 10px;
+}
+
+.vehicle-catalog-card {
+    /*border: green 2px solid;*/
+    margin: 5px;
+    background-color: rgba(150, 148, 148, 0.47);
+}
+
+.vehicle-used-status {
+    margin: 0;
+    /*width: 50%;*/
+}
+
+.vehicle-title {
+    margin: 5px 0 0 0;
+}
+
+.vehicle-price {
+    margin: 5px 0 0 0;
+}
+
+.vehicle-info {
+    /*margin: 0 0 0 5px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.vehicle-kilometers {
+    margin: 5px 0 0 0;
+}
+.vehicle-from {
+    margin: 0;
+}
+
+.vehicle-card-pic {
+
+    float: left;
+}

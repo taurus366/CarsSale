@@ -1,0 +1,147 @@
+.create-offer-container {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    max-width: 80%;
+    margin: 6% auto auto auto;
+    /*border: solid 1px rgba(59, 59, 59, 0.64);*/
+    background-color: rgba(59, 59, 59, 0.64);
+    padding-bottom: 2%;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    /* padding: 10
+px
+ 0 0 0; */
+    align-items: center;
+    flex-direction: row;
+}
+
+/*.row:first-child {*/
+/*    padding-top: 1%;*/
+/*    !*display: block;*!*/
+/*    justify-content: start;*/
+/*    margin-left: 3%;*/
+/*    max-width: 20%;*/
+/*}*/
+
+
+.ico-img {
+    color: black;
+    background-color: black;
+}
+
+.vehicle-icon {
+    font-size: 40px;
+    margin-left: 10px;
+}
+
+.create-offer-form-section-row-column {
+    display: flex;
+}
+
+.extras-article-ul {
+    /*display: flex;*/
+    flex-wrap: wrap;
+    display: none;
+    max-width: 100%;
+}
+
+.extras-ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.column label {
+    color: white;
+}
+
+.extras-ul > li {
+    display: flex;
+    justify-content: space-around;
+}
+
+.create-btn {
+    font-size: 18px;
+}
+
+.extras-btn {
+    color: white;
+    list-style: none;
+    text-decoration: none;
+    font-size: 18px;
+    border-bottom: whitesmoke 1px solid;
+}
+
+select {
+    width: 150px;
+    margin: 0 5px 0 5px;
+}
+
+#mileage {
+    max-width: 150px;
+    margin-right: 5px;
+}
+
+#cubature {
+    margin-left: 5px;
+    max-width: 147px;
+}
+
+#modification {
+    max-width: 146px;
+}
+
+#power {
+    max-width: 145px;
+    margin-left: 5px;
+}
+
+#emissionClass , #vehicleModel{
+    margin-left: 1px;
+}
+
+#price {
+    max-width: 148px;
+}
+#priceType {
+    margin-left: 1px;
+}
+
+.create-submit-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+/*.extras-article {*/
+/*    margin-top: 7%;*/
+/*}*/
+
+
+.extras-section-btn {
+    display: flex;
+    justify-content: center;
+    /*border: aqua 5px solid;*/
+    margin-top: 2%;
+    font-size: 18px;
+}
+
+/*.extras-section {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
+
+.vehicle-category {
+    display: flex;
+    justify-content: center;
+    padding-top: 1%
+}
+
+.fa-clipboard-check {
+    color: whitesmoke;
+    font-size: 25px;
+}

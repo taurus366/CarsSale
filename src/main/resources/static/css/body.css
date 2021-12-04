@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* SHARE WITH OTHER PAGES !______________________________________________ */
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Work Sans', sans-serif;
+}
+
+html {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    background-image: url('/images/backroundImage.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    /* background-color: #464646; */
+}
+
+
+/* SHARE WITH OTHER PAGES !______________________________________________ */
+
+
+/* HEADER ____________________________NAV____________________________________ */
+
+.header-nav-ul.index>li {
+    color: white;
+    list-style: none;
+    margin: 4px;
+    font-size: 25px;
+    padding: 0 8px 0 0;
+}
+
+.header-nav-ul.index {
+    display: flex;
+    justify-content: space-around;
+    /* padding: 20px; */
+}
+
+.header-section {
+    display: flex;
+    align-items: center;
+    background-color: #46464685;
+    flex-flow: row wrap;
+    /* flex: 1 100%; */
+}
+
+.header-nav {
+    width: 90%;
+}
+
+.header-nav-ul>li>a {
+    color: rgb(180, 179, 179);
+    text-decoration: none;
+}
+
+.header-nav-ul>li>a:hover {
+    color: rgb(255, 255, 255);
+}
+
+.header-nav-ul>li>a:active {
+    color: rgb(102, 92, 92);
+}
+
+
+/* active Link for clicked button in nav */
+
+.header-nav-ul>li>a.active {
+    color: white;
+}
+
+
+/* HEADER ______________________________NAV__________________________________ */
+
+
+/* CAR IMAGE______________________________________________________________ */
+
+.article-car {
+    width: 10%;
+}
+
+.article-car-image {
+    width: 100%;
+}
+
+
+/* CAR IMAGE______________________________________________________________ */
+
+
+/* DROP DOWN MENU_________________________________________________________ */
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 130px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-menu a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 17px;
+}
+
+.dropdown-menu,
+.dropdown-menu,
+.dropdown-menu>li {
+    padding: 0;
+    background-color: rgba(70, 70, 70, 0.2);
+}
+
+.dropdown-menu a:hover {
+    background-color: rgb(75, 74, 74);
+}
+
+.dropdown-menu a {
+    color: white;
+}
+
+
+/* DROP DOWN MENU_________________________________________________________ */
+
+
+/* MEDIA QUERIES*/
+
+@media (min-width: 1459px) and (max-width: 1688px) {}
+
+@media (min-width: 1689px) {}
+
+@media (min-width: 980px) and (max-width: 1458px) {
+    .header-nav-ul.index>li {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 979px) {
+    /* .header-nav-ul.index {
+        display: block;
+    } */
+    .header-nav-ul.index>li {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 699px) {
+    /* .header-nav-ul.index {
+        display: block;
+    } */
+    .header-nav-ul.index>li {
+        font-size: 10px;
+        font-weight: 700;
+    }
+    .article-car-image {
+        width: 80px;
+    }
+}
+
+@media (min-width: 360px) and (max-width: 499px) {
+    /* .header-nav-ul.index {
+        display: block;
+    } */
+    .header-nav-ul.index>li {
+        font-size: 10px;
+        font-weight: 900;
+    }
+    .article-car-image {
+        width: 70px;
+    }
+}
+
+
+/* MEDIA QUERIES*/

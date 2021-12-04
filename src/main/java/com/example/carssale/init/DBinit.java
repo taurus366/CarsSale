@@ -49,7 +49,7 @@ public class DBinit implements CommandLineRunner {
         initCarCategories();
         initFuelType();
 
-//        initUsers();
+        initUsers();
 
     }
 
@@ -60,7 +60,8 @@ public class DBinit implements CommandLineRunner {
         if (userRepository.findAll().isEmpty()) {
             UserEntity user = new UserEntity();
             user.setFirstName("test")
-                    .setEmail("tausadas@abv.bg")
+                    .setEmail("alizinal@abv.bg")
+                    .setPassword("12345")
                     .setModified(Instant.now())
                     .setCreated(Instant.now());
 

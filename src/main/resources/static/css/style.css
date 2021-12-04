@@ -1,0 +1,17 @@
+@import url('./body.css');
+@import url('./register.css');
+@import url('./login.css');
+@import url('./create-offer.css');
+@import url('./vehicles-catalog.css');
+@import url('./vehicle-info.css');
+@import url('./vehicle-edit-info.css');
+@import url('./profile.css');
+@import url('./profile-edit.css');
+
+
+.btn {
+    border-radius: 20%;
+    background-color: rgb(128, 127, 127);
+    padding: 5px 15px 5px 15px;
+    color: white;
+}

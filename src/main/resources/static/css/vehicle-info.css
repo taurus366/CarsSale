@@ -1,0 +1,128 @@
+.vehicle-info-container {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    max-width: 99%;
+    margin: 1% auto 1% auto;
+    /*border: solid 1px rgba(59, 59, 59, 0.64);*/
+    /*background-color: rgba(59, 59, 59, 0.64);*/
+    /*padding-bottom: 2%;*/
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+
+}
+
+.vehicle-info-container-section {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    max-width: 70%;
+    margin: auto;
+    /*border: rgba(87, 87, 87, 0.69) 2px solid;*/
+    border-radius: 10px;
+    background-color: rgba(166, 162, 162, 0.2);
+}
+
+.vehicle-info-information-section {
+    /*float: left;*/
+    width: 100%;
+    /*border: 2px black solid;*/
+
+}
+
+.vehicle-img {
+    max-width: 100%;
+    /*float: right;*/
+    /*border-top-right-radius: 10px;*/
+}
+
+.vehicle-img > img {
+    width: 750px;
+    height: 500px;
+    border-top-right-radius: 10px;
+}
+
+.change-pictures-btn {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.change-pictures-btn-a {
+    text-decoration: none;
+    color: white;
+    /*border: 1px black solid;*/
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.active {
+    color: dimgrey;
+    /*color: red;*/
+}
+
+.vehicle-info-information-section-article {
+    font-size: 20px;
+    font-weight: 700;
+    color: #83d371;
+    margin: 0 0 0 100px;
+}
+
+.vehicle-info-information-section > article {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.vehicle-info-admin {
+    margin: 20px 20px;
+    text-align: center;
+
+}
+
+.admin-delete-btn {
+    font-size: 22px;
+    text-decoration: none;
+    color: white;
+    background-color: red;
+    /*border: 1px black solid;*/
+    border-radius: 6px;
+    padding: 7px;
+    vertical-align: bottom;
+}
+
+.admin-delete-btn:hover {
+    background-color: #9a1919;
+}
+
+.user-btn {
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    font-weight: 700;
+    /*border: 1px grey solid;*/
+    padding: 3px 15px;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.user-btn:hover {
+    background-color: #363535;
+}
+
+.user-self-ad-delete {
+    margin-top: 10px;
+}
+
+.views {
+    position: relative;
+    bottom: -3%;
+    left: 64%;
+    width: 50%;
+}
+
+.views-label {
+    font-size: 20px;
+}
+.views-number {
+    color: #f1f1f1;
+    font-size: 25px;
+}

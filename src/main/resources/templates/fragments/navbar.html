@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+    <th:block th:fragment="head">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="shortcut icon" href="/images/Itzikgur-My-Seven-Travel-BMV.ico" type="image/x-icon">
+    </th:block>
+</head>
+<body>
+
+<header th:fragment="header">
+
+    <section class="header-section">
+
+        <article class="article-car">
+            <a href="#">
+                <img class="article-car-image" src="/images/2021_mercedes_benz_s_class_angularfront-removebg-preview.png" alt="picturte">
+            </a>
+        </article>
+        <nav class="header-nav">
+            <ul class="header-nav-ul index">
+                <li>
+                    <a class="drop-btn admin" href="#"><i class="fas fa-angle-down"></i> Admin </a>
+                    <ul class="dropdown-menu admin" style="display: none;">
+                        <li><a href="#home" class="a-btn">Home</a></li>
+                        <li> <a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="drop-btn user" href="#"><i class="fas fa-angle-down"></i> User</a>
+                    <ul class="dropdown-menu user" style="display: none;">
+                        <li><a href="#Profile" class="a-btn">Profile</a></li>
+                        <li> <a href="#Settings">Settings</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="btn-link index"><i class="fas fa-bullhorn"></i> Create Offer</a></li>
+                <li><a href="#" class="btn-link index"><i class="fas fa-car-alt"></i> All Cars</a></li>
+                <li><a href="#" class="btn-link index"><i class="fas fa-id-card"></i> Register</a></li>
+                <li><a th:href="@{/users/login}" class="btn-link index"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+    </section>
+
+</header>
+
+<script th:fragment="script-index" src="/js/index-app.js"></script>
+</body>
+</html>
