@@ -12,6 +12,7 @@ public class FuelTypeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     @Enumerated(EnumType.STRING)
     private FuelTypeEnum name;
 

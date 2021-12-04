@@ -1,6 +1,7 @@
 package com.example.carssale.model.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,22 +10,41 @@ public class UserEntity extends BaseEntity{
 
     private String firstName;
     private String lastName;
-    private String cityVillageName;
-    private String region;
+//    private String cityVillageName;
+
+//    @ManyToOne
+//    private CityVillageEntity cityVillage;
+
+//    private String region;
+//    @ManyToOne
+//    private RegionEntity region;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private CityVillageEntity cityVillage;
+
     @Column(unique = true, nullable = false)
     private String email;
+
     private String phone;
     private String password;
     private boolean isActive;
 
-
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<RoleEntity> role;
+    private List<RoleEntity> role = new ArrayList<>();
 
     @OneToMany
     private List<OfferEntity> offers;
 
     public UserEntity() {
+    }
+
+    public CityVillageEntity getCityVillage() {
+        return cityVillage;
+    }
+
+    public UserEntity setCityVillage(CityVillageEntity cityVillage) {
+        this.cityVillage = cityVillage;
+        return this;
     }
 
     public String getFirstName() {
@@ -51,24 +71,6 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity setLastName(String lastName) {
         this.lastName = lastName;
-        return this;
-    }
-
-    public String getCityVillageName() {
-        return cityVillageName;
-    }
-
-    public UserEntity setCityVillageName(String cityVillageName) {
-        this.cityVillageName = cityVillageName;
-        return this;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public UserEntity setRegion(String region) {
-        this.region = region;
         return this;
     }
 

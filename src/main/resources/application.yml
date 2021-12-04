@@ -1,48 +1,54 @@
-hibernate:
-  dialect: org.hibernate.dialect.MySQLDialect
 info:
-  app:
-    description: This sample application allows to manage articles and users
-    name: Post repository application
-    version: 1.0.0
+    app:
+        description: This sample application allows to manage articles and users
+        name: Post repository application
+        version: 1.0.0
 logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-      type:
-        descriptor:
-          sql:
-            BasicBinder: TRACE
+    level:
+        org:
+            hibernate:
+                SQL: DEBUG
+            type:
+                descriptor:
+                    sql:
+                        BasicBinder: TRACE
 management:
-  endpoint:
-    health:
-      show-details: always
-  endpoints:
-    web:
-      exposure:
-        include: info, health, httptrace, metrics, threaddump, heapdump, shutdown,
-          beans, mappings
-#  trace:
-##    http:
-##      enabled: true
+    endpoint:
+        health:
+            show-details: always
+    endpoints:
+        web:
+            exposure:
+                include: info, health, httptrace, metrics, threaddump, heapdump, shutdown,
+                    beans, mappings
 server:
-  port: 8080
+    port: 8080
 spring:
-  datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    password: user
-    url: jdbc:mysql://localhost:3306/cars_sale?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
-    username: user
-  jpa:
-    database: mysql
-    hibernate:
-      ddl-auto: update
-      dialect: org.hibernate.dialect.MySQL8Dialect
-      format_sql: true
-      show_sql: true
-      use_sql_comments: true
-  mvc:
-    hiddenmethod:
-      filter:
-        enabled: true
+    datasource:
+        connectionProperties: useUnicode=true;characterEncoding=utf-8;
+        driverClassName: com.mysql.cj.jdbc.Driver
+        password: user
+        url: jdbc:mysql://localhost:3306/cars_sale?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+        username: user
+    jpa:
+        database: mysql
+        defer-datasource-initialization: true
+        hibernate:
+            ddl-auto: update
+            dialect: org.hibernate.dialect.MySQL8Dialect
+            format_sql: true
+            show_sql: true
+            use_sql_comments: true
+        properties:
+            hibernate:
+                connection:
+                    CharSet: utf-8
+                    characterEncoding: utf-8
+                    useUnicode: 'true '
+    mvc:
+        hiddenmethod:
+            filter:
+                enabled: true
+    sql:
+        init:
+            mode: always

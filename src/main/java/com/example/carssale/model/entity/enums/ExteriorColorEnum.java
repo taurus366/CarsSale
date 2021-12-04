@@ -17,10 +17,9 @@ public enum ExteriorColorEnum {
     yellow_green,
     blue_violet,
     white,
-    violet_red,
     dandelion,
     cerulean,
     apricot,
     scarlet,
-    green_yellow
+    metallic_black
 }

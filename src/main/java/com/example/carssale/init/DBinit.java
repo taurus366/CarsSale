@@ -6,6 +6,7 @@ import com.example.carssale.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.util.List;
 
 @Component
@@ -18,26 +19,76 @@ public class DBinit implements CommandLineRunner {
     private final CarStatusRepository carStatusRepository;
     private final TranssmissionRepository transsmissionRepository;
     private final CarCategoryRepository carCategoryRepository;
+    private final FuelTypeRepository fuelTypeRepository;
+    private final UserRepository userRepository;
+    private final RegionRepository regionRepository;
+    private final CityVillageRepository cityVillageRepository;
 
 
-    public DBinit(RoleRepository roleRepository, CarCoupeRepository carCoupeRepository, PriceTypeRepository priceTypeRepository, CarStatusRepository carStatusRepository, TranssmissionRepository transsmissionRepository, CarCategoryRepository carCategoryRepository) {
+    public DBinit(RoleRepository roleRepository, CarCoupeRepository carCoupeRepository, PriceTypeRepository priceTypeRepository, CarStatusRepository carStatusRepository, TranssmissionRepository transsmissionRepository, CarCategoryRepository carCategoryRepository, FuelTypeRepository fuelTypeRepository, UserRepository userRepository, RegionRepository regionRepository, CityVillageRepository cityVillageRepository) {
         this.roleRepository = roleRepository;
         this.carCoupeRepository = carCoupeRepository;
         this.priceTypeRepository = priceTypeRepository;
         this.carStatusRepository = carStatusRepository;
         this.transsmissionRepository = transsmissionRepository;
         this.carCategoryRepository = carCategoryRepository;
+        this.fuelTypeRepository = fuelTypeRepository;
+        this.userRepository = userRepository;
+        this.regionRepository = regionRepository;
+        this.cityVillageRepository = cityVillageRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-//        initRoles();
-//        initCarCoupeTypes();
-//        initPriceType();
-//        initCarStatus();
-//        initTranssmission();
+        initRoles();
+        initCarCoupeTypes();
+        initPriceType();
+        initCarStatus();
+        initTranssmission();
         initCarCategories();
+        initFuelType();
+
+//        initUsers();
+
+    }
+
+
+
+    private void initUsers() {
+
+        if (userRepository.findAll().isEmpty()) {
+            UserEntity user = new UserEntity();
+            user.setFirstName("test")
+                    .setEmail("tausadas@abv.bg")
+                    .setModified(Instant.now())
+                    .setCreated(Instant.now());
+
+            userRepository.save(user);
+        }
+
+    }
+
+    private void initFuelType() {
+
+        if (fuelTypeRepository.findAll().isEmpty()) {
+            FuelTypeEntity fuel1 = new FuelTypeEntity();
+            fuel1.setName(FuelTypeEnum.GAS);
+
+            FuelTypeEntity fuel2 = new FuelTypeEntity();
+            fuel2.setName(FuelTypeEnum.BENZIN);
+
+            FuelTypeEntity fuel3 = new FuelTypeEntity();
+            fuel3.setName(FuelTypeEnum.DIESEL);
+
+            FuelTypeEntity fuel4 = new FuelTypeEntity();
+            fuel4.setName(FuelTypeEnum.HYBRID);
+
+            FuelTypeEntity fuel5 = new FuelTypeEntity();
+            fuel5.setName(FuelTypeEnum.METAN);
+
+            fuelTypeRepository.saveAll(List.of(fuel1,fuel2,fuel3,fuel4,fuel5));
+        }
 
     }
 
