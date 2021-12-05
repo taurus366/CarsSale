@@ -6,7 +6,7 @@
     padding-bottom: 2%;
 }
 
-.register-form-row p,
+.register-form-row,
 .register-form-row label {
     font-weight: 500;
     font-size: 18px;
@@ -47,4 +47,12 @@
     letter-spacing: 1px;
     font-size: 17px;
     margin-top: 40px;
+}
+
+#region , #cityVillage {
+    padding: 0 25px 0 0;
+    margin: 0;
+}
+#region > option , #cityVillage > option{
+    text-align: left;
 }

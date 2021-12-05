@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en"   xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="fragments/navbar::head"></th:block>
+    <title>Register</title>
+</head>
+
+<body>
+    <header th:replace="fragments/navbar::header">
+
+
+    </header>
+    <main>
+        <div class="register-container">
+
+
+            <form class="register-form"
+                  th:action="@{/users/register}"
+                  method="post"
+                  th:object="${userModel}">
+
+                <h1 class="register-form-title">REGISTER FORM</h1>
+
+                <section class="register-form-row">
+                    <article class="register-form-row-column">
+                        <label for="firstName">First Name</label>
+                        <br>
+                        <input type="text" th:field="*{firstName}" id="firstName">
+                        <p class="invalid-feedback errors alert alert-danger invalid-text-registration">
+                            between 3 and 12 symbols.
+                        </p>
+                    </article>
+
+                    <article class="register-form-row-column">
+                        <label for="lastName">Last Name</label>
+                        <br>
+                        <input type="text" th:field="*{lastName}" id="lastName">
+                        <p class="invalid-feedback errors alert alert-danger invalid-text-registration">
+                            between 3 and 12 symbols.
+                        </p>
+                    </article>
+                </section>
+
+                <section class="register-form-row">
+                    <article class="register-form-row-column">
+                        <label for="cityVillage">City/Village Name</label>
+                        <br>
+                        <!--                        <input type="text" name="cityVillgae" id="cityVillgae">-->
+                        <select th:field="*{cityVillage}" id="cityVillage" disabled>
+                            <option value="select">- Select city/village -</option>
+                        </select>
+                    </article>
+
+                    <article class="register-form-row-column">
+                        <label for="region">Region</label>
+                        <br>
+                        <!--                        <input type="text" name="region" id="region">-->
+                        <select th:field="*{region}" id="region">
+                            <option value="">- Select region -</option>
+                        </select>
+                    </article>
+                </section>
+
+                <section class="register-form-row">
+                    <article class="register-form-row-column">
+                        <label for="email">Email</label>
+                        <br>
+                        <input type="text" th:field="*{email}" id="email">
+                        <p class="invalid-feedback errors alert alert-danger invalid-text-registration">
+                            between 3 and 12 symbols.
+                        </p>
+                    </article>
+
+                    <article class="register-form-row-column">
+                        <label for="phone">Phone</label>
+                        <br>
+                        <input type="tel" th:field="*{phone}" value="+359" id="phone">
+                        <p class="invalid-feedback errors alert alert-danger invalid-text-registration">
+                            between 3 and 12 symbols.
+                        </p>
+                    </article>
+                </section>
+
+                <section class="register-form-row">
+                    <article class="register-form-row-column">
+                        <label for="password">Password</label>
+                        <br>
+                        <input type="password" th:field="*{password}" id="password">
+                        <p class="invalid-feedback errors alert alert-danger invalid-text-registration">
+                            Passwords not same!
+                        </p>
+                    </article>
+
+                    <article class="register-form-row-column">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <br>
+                        <input type="password" th:field="*{confirmPassword}" id="confirmPassword">
+                    </article>
+                </section>
+                <input type="submit" value="Register" class="register-submit-btn btn">
+            </form>
+        </div>
+        <script th:replace="fragments/navbar::script-index"></script>
+        <script src="/js/register.js"></script>
+    </main>
+
+    <footer></footer>
+</body>
+
+</html>
