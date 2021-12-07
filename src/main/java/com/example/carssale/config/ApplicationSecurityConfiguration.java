@@ -49,7 +49,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 // those that want to name the input field differently , e.g. email may change the value
                 .usernameParameter("email")
                 // the name of the <input...>HTML filed that keeps the password
-                .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
+                .passwordParameter("password")
                 // The place where we should  land in case that the login is successful
                 .defaultSuccessUrl("/")
                 // the place where I should land if the login is NOT successful
@@ -78,9 +78,11 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
         // 1. Our user details service that translates usernames/emails, phone numbers, etc/
         // to UserDetails
         // 2. Password encoder - the component that can decide if the user password matches
+
         auth
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder);
+
         // registration:
         // topsecretpass -> password encoder -> ksdkjsdskhdslj (hashed password)
 

@@ -1,6 +1,6 @@
 package com.example.carssale.model.entity.enums;
 
-public enum CarCoupeEnum {
+public enum VehicleCoupeEnum {
     SEDAN,
     HATCHBACK,
     VAN,

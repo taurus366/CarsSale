@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="fragments/navbar::head">
+
+    <title>Create Offer</title>
+</head>
+
+<body>
+    <header th:replace="fragments/navbar::header"></header>
+    <main>
+        <div class="create-offer-container">
+
+            <form action="#" method="post" 
+            th:method="post"
+            enctype="multipart/form-data">
+
+                <section class="create-offer-form-section row vehicle-category">
+                    <article class="create-offer-form-section-article column">
+                        <label for="vehicleCategory">Main Category</label>
+                        <br>
+                        <select name="vehicleType" id="vehicleType" class="vehicle-type">
+                        <!-- <option value="Chose type of the vehicle" class="vehicle-type-names">---</option> -->
+                        <option value="Car" class="vehicle-type-names">Car / Jeep</option>
+                        <option value="Bus" class="vehicle-type-names">Bus</option>
+                        <option value="Motorcycle" class="vehicle-type-names">Motorcycle</option>
+                        <option value="Truck" class="vehicle-type-names">Truck</option>
+                        <!-- <option value="Caravan" class="vehicle-type-names">Caravan</option> -->
+                        <option value="Boat" class="vehicle-type-names">Yacht and Boat</option>
+                        <!-- <option value="Construction" class="vehicle-type-names">Construction</option>
+                        <option value="Agricultural" class="vehicle-type-names">Agricultural</option> -->
+                    </select>
+                    </article>
+                    <article class="vehicle-icon">
+                        <i class="fas fa-car-side ico"></i>
+                        <i class="fas fa-bus ico" style="display: none;"></i>
+                        <i class="fas fa-motorcycle ico" style="display: none;"></i>
+                        <i class="fas fa-truck ico" style="display: none;"></i>
+                        <i class="fas fa-ship ico" style="display: none;"></i>
+                    </article>
+                </section>
+
+                <!--  -->
+
+                <section class="create-offer-form-section row">
+
+                    <section class="create-offer-form-section-row-column">
+
+                        <article class="create-offer-form-section-article column">
+                            <label for="vehicleBrand">Brand</label>
+                            <br>
+                            <select name="vehicleBrand" id="vehicleBrand">
+                            <option value="Choose Vehicle Brand">---</option>
+                            <option value="">BMW</option>
+                            <option value="">Mercedes-Benz</option>
+                        </select>
+                        </article>
+
+                        <article class="create-offer-form-section-article column">
+                            <label for="vehicleModel">Model</label>
+                            <br>
+                            <!-- HERE YOU CAN USE REST API WITH JS -->
+                            <select name="vehicleModel" id="vehicleModel">
+                            <option value="">---</option>
+                            <option value="">TOYOTA -> *Yaris*</option>
+                        </select>
+                        </article>
+                    </section>
+
+                    <section class="create-offer-form-section-row-column">
+
+                        <article class="create-offer-form-section-article column">
+                            <label for="vehicleStatus">Status</label>
+                            <br>
+                            <select class="vehicle-Status" name="vehicleStatus" id="vehicleStatus">
+                            <option value="chooseStatusCar">---</option>
+                            <option value="goodCondition">In good condition</option>
+                            <option value="damagedHit">Damaged / Hit</option>
+                            <option value="forParts">Whole car for parts</option>
+                        </select>
+                        </article>
+
+                        <article class="create-offer-form-section-article column">
+                            <label for="transmission">Transmission</label>
+                            <br>
+                            <select name="transmission" id="transmission">
+                            <option value="">---</option>
+                            <option value="">AUTOMATIC</option>
+                            <option value="">MANUAL</option>
+                        </select>
+                        </article>
+                    </section>
+                </section>
+
+                <section class="create-offer-form-section row">
+
+                    <section class="create-offer-form-section-row-column">
+
+                        <article class="create-offer-form-section-article column">
+                            <label for="fuelType">Fuel type</label>
+                            <br>
+                            <select name="fuelType" id="fuelType">
+                            <option value="">---</option>
+                            <option value="">BENZIN</option>
+                            <option value="">DIESEL</option>
+                            <option value="">GAS/BENZIN</option>
+                            <option value="">GAS</option>
+                            <option value="">METAN/BENZIN</option>
+                            <option value="">METAN</option>
+                            <option value="">HYBRID</option>
+                        </select>
+                        </article>
+
+                        <article class="create-offer-form-section-article column">
+                            <label for="modification">Modification</label>
+                            <br>
+                            <input type="text" name="modification" id="modification" placeholder="1.6 dCI, 2.2 TDI...">
+                        </article>
+                    </section>
+
+                    <section class="create-offer-form-section-row-column">
+
+                        <article class="create-offer-form-section-article column">
+                            <label for="vehicleCoupe">Coupe</label>
+                            <br>
+                            <select name="vehicleCoupe" id="vehicleCoupe">
+                            <option value="">---</option>
+                            <option value="">SEDAN</option>
+                            <option value="">HATCHBACK</option>
+                        </select>
+                        </article>
+
+                        <article class="create-offer-form-section-article column">
+                            <label for="numberOfDoors">Door Count</label>
+                            <br>
+                            <select name="numberOfDoors" id="numberOfDoors">
+                            <option value="">---</option>
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                            <option value="">4</option>
+                            <option value="">5</option>
+                        </select>
+                        </article>
+                    </section>
+                </section>
+
+                <!--  -->
+
+
+                <section class="create-offer-form-section-article row">
+
+                    <section class="create-offer-form-section-row-column">
+
+                        <article class="create-offer-form-section-article column">
+                            <label for="power">Power[hp]</label>
+                            <br>
+                            <input type="number" name="power" id="power">
+                            <!-- <span class="vehicle-span">HP</span> -->
+                        </article>
+
+
+                        <article class="create-offer-form-section-article column">
+                        <label for="statusUsed">Used or New</label>
+                        <br>
+                        <select name="statusUsed" id="statusUsed">
+                            <option value="used">Used</option>
+                            <option value="new">New</option>
+                        </select>
+                    </article>
+
+                    </section>
+
+
+                    <section class="create-offer-form-section-row-column">
+                        <article class="create-offer-form-section-article column">
+                            <label for="year">Year</label>
+                            <br>
+                            <!-- HERE HAVE TO USE YEAR SELECTION -->
+                            <select name="year" id="year">
+                            <option value="">---</option>
+                            <option value="">1994</option>
+                        </select>
+                        </article>
+                        <article class="create-offer-form-section-article column">
+                            <label for="mileage">Mileage</label>
+                            <br>
+                            <input type="number" id="mileage" name="mileage" size="10">
+                        </article>
+                    </section>
+
+                </section>
+
+                <section class="create-offer-form-section-article row">
+
+                    <section class="create-offer-form-section-row-column">
+                        <article class="create-offer-form-section-article column">
+                            <label for="exteriorColor">Exterior color</label>
+                            <br>
+                            <select name="exteriorColor" id="exteriorColor">
+                            <option value="">---</option>
+                            <option value="">BLUE</option>
+                            <option value="">RED</option>
+                            <option value="">BLACK</option>
+                        </select>
+                        </article>
+                        <article class="create-offer-form-section-article column">
+                            <label for="emissionClass">Emission Class</label>
+                            <br>
+                            <select name="emissionClass" id="emissionClass">
+                            <option value="">---</option>
+                            <option value="">EURO1</option>
+                            <option value="">EURO2</option>
+                            <option value="">EURO3</option>
+                            <option value="">EURO4</option>
+                            <option value="">EURO5</option>
+                            <option value="">EURO6</option>
+                        </select>
+                        </article>
+                    </section>
+
+                    <article class="create-offer-form-section-article column">
+                        <label for="price">Price</label>
+                        <br>
+                        <input type="number" id="price" name="price">
+                        <select name="priceType" id="priceType">
+                        <!-- <option value="">Choose Price Type</option> -->
+                        <option value="">BGN</option>
+                        <option value="">EUR</option>
+                        <option value="">USD</option>
+                    </select>
+                    </article>
+                </section>
+
+                <section class="create-offer-form-section-article row">
+                    <article class="create-offer-form-section-article column">
+                        <label for="">Upload picture</label>
+                        <br>
+                        <input name="picture" type="file">
+                        <input name="picture" type="file">
+                        <br>
+                        <input name="picture" type="file">
+                        <input name="picture" type="file">
+                        </article>
+                    <!-- <article class="create-offer-form-section-article column"></article> -->
+                </section>
+
+                <section class="extras-section-btn">
+                    <article class="extras-article">
+                        <!-- <section class="create-offer-form-section-article row dropdown"> -->
+                        <a class="extras-btn" href="#"> Features <i class="far fa-check-circle"></i></a>
+
+                        <!-- </section> -->
+                    </article>
+                </section>
+                <section class="extras-section">
+                    <article class="extras-article-ul">
+                        <ul class="dropdown-extras extras extras-ul">
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="abs">ABS</label>
+                                    <input type="checkbox" name="abs" id="abs" value="">
+                                </article>
+
+                                <article class="dropdown-extras-li">
+                                    <label for="esp">ESP</label>
+                                    <input type="checkbox" name="esp" id="esp" value="">
+                                </article>
+                            </li>
+
+                            <!-- <li>
+                            <label for="esp">ESP</label>
+                            <input type="checkbox" name="esp" id="esp" value="">
+                        </li> -->
+
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="cruiseControl">Cruise Control</label>
+                                    <input type="checkbox" name="cruiseControl" id="cruiseControl" value="">
+                                </article>
+                                <article class="dropdown-extras-li">
+                                    <label for="alarmSystem">Alarm system</label>
+                                    <input type="checkbox" name="alarmSystem" id="alarmSystem" value="">
+                                </article>
+                            </li>
+
+                            <!-- <li>
+                            <label for="alarmSystem">Alarm system</label>
+                            <input type="checkbox" name="alarmSystem" id="alarmSystem" value="">
+                        </li> -->
+
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="bluetooth">Bluetooth</label>
+                                    <input type="checkbox" name="bluetooth" id="bluetooth" value="">
+                                </article>
+                                <article class="dropdown-extras-li">
+                                    <label for="centralLocking">Central Locking</label>
+                                    <input type="checkbox" name="centralLocking" id="centralLocking" value="">
+                                </article>
+                            </li>
+
+                            <!-- <li>
+                            <label for="centralLocking">Central Locking</label>
+                            <input type="checkbox" name="centralLocking" id="centralLocking" value="">
+                        </li> -->
+
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="electricitySideMirror">Electricity Side Mirror</label>
+                                    <input type="checkbox" name="electricitySideMirror" id="electricitySideMirror" value="">
+                                </article>
+                                <article class="dropdown-extras-li">
+                                    <label for="electricityWindows">Electricity Windows</label>
+                                    <input type="checkbox" name="electricityWindows" id="electricityWindows" value="">
+                                </article>
+                            </li>
+
+                            <!-- <li>
+                            <label for="electricityWindows">Electricity Windows</label>
+                            <input type="checkbox" name="electricityWindows" id="electricityWindows" value="">
+                        </li> -->
+
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="immobilizer">Immobilizer</label>
+                                    <input type="checkbox" name="immobilizer" id="immobilizer" value="">
+                                </article>
+                                <article class="dropdown-extras-li">
+                                    <label for="keylessCentralLock">Keyless Central Lock</label>
+                                    <input type="checkbox" name="keylessCentralLock" id="keylessCentralLock" value="">
+                                </article>
+                            </li>
+
+                            <!-- <li>
+                            <label for="keylessCentralLock">Keyless Central Lock</label>
+                            <input type="checkbox" name="keylessCentralLock" id="keylessCentralLock" value="">
+                        </li> -->
+
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="fogLamp">Fog Lamp</label>
+                                    <input type="checkbox" name="fogLamp" id="fogLamp" value="">
+                                </article>
+                                <article class="dropdown-extras-li">
+                                    <label for="rainSensor">Rain sensor</label>
+                                    <input type="checkbox" name="rainSensor" id="rainSensor" value="">
+                                </article>
+                            </li>
+
+                            <!-- <li>
+                            <label for="rainSensor">Rain sensor</label>
+                            <input type="checkbox" name="rainSensor" id="rainSensor" value="">
+                        </li> -->
+
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="navigationSystem">Navigation system</label>
+                                    <input type="checkbox" name="navigationSystem" id="navigationSystem" value="">
+                                </article>
+                                <article class="dropdown-extras-li">
+                                    <label for="lightSensor">Light sensor</label>
+                                    <input type="checkbox" name="lightSensor" id="lightSensor" value="">
+                                </article>
+                            </li>
+
+                            <!-- <li>
+                            <label for="lightSensor">Light sensor</label>
+                            <input type="checkbox" name="lightSensor" id="lightSensor" value="">
+                        </li> -->
+
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="ledHeadLights">LED headlights</label>
+                                    <input type="checkbox" name="ledHeadLights" id="ledHeadLights" value="">
+                                </article>
+                                <article class="dropdown-extras-li">
+                                    <label for="panoramicRoof">Panoramic roof</label>
+                                    <input type="checkbox" name="panoramicRoof" id="panoramicRoof" value="">
+                                </article>
+                            </li>
+
+                            <!-- <li>
+                            <label for="panoramicRoof">Panoramic roof</label>
+                            <input type="checkbox" name="panoramicRoof" id="panoramicRoof" value="">
+                        </li> -->
+
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="sunRoof">Sun roof</label>
+                                    <input type="checkbox" name="sunRoof" id="sunRoof" value="">
+                                </article>
+
+                                <article class="dropdown-extras-li">
+                                    <label for="speedLimitControlSystem">Speed Limit Control system</label>
+                                    <input type="checkbox" name="speedLimitControlSystem" id="speedLimitControlSystem" value="">
+                                </article>
+                            </li>
+
+                            <!-- <li>
+                            <label for="speedLimitControlSystem">Speed Limit Control system</label>
+                            <input type="checkbox" name="speedLimitControlSystem" id="speedLimitControlSystem" value="">
+                        </li> -->
+
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="voiceControl">Voice control</label>
+                                    <input type="checkbox" name="voiceControl" id="voiceControl" value="">
+                                </article>
+
+                                <article class="dropdown-extras-li">
+                                    <label for="headUpDisplay">Head-up display</label>
+                                    <input type="checkbox" name="headUpDisplay" id="headUpDisplay" value="">
+                                </article>
+                            </li>
+
+                            <!-- <li>
+                            <label for="headUpDisplay">Head-up display</label>
+                            <input type="checkbox" name="headUpDisplay" id="headUpDisplay" value="">
+                        </li> -->
+
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="soundSystem">Sound system</label>
+                                    <input type="checkbox" name="soundSystem" id="soundSystem" value="">
+                                </article>
+
+                                <article class="dropdown-extras-li">
+                                    <label for="sportSeats">Sport seats</label>
+                                    <input type="checkbox" name="sportSeats" id="sportSeats" value="">
+                                </article>
+                            </li>
+
+                            <!-- <li>
+                            <label for="sportSeats">Sport seats</label>
+                            <input type="checkbox" name="sportSeats" id="sportSeats" value="">
+                        </li> -->
+
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="startStopSystem">Start-stop system</label>
+                                    <input type="checkbox" name="startStopSystem" id="startStopSystem" value="">
+                                </article>
+
+                                <article class="dropdown-extras-li">
+                                    <label for="tractionControl">Traction control</label>
+                                    <input type="checkbox" name="tractionControl" id="tractionControl" value="">
+                                </article>
+                            </li>
+
+                            <!-- <li>
+                            <label for="tractionControl">Traction control</label>
+                            <input type="checkbox" name="tractionControl" id="tractionControl" value="">
+                        </li> -->
+
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="tunerRadio">Tuner/radio</label>
+                                    <input type="checkbox" name="tunerRadio" id="tunerRadio" value="">
+                                </article>
+
+                                <article class="dropdown-extras-li">
+                                    <label for="usbPort">USB port</label>
+                                    <input type="checkbox" name="usbPort" id="usbPort" value="">
+                                </article>
+                            </li>
+
+                            <!-- <li>
+                            <label for="usbPort">USB port</label>
+                            <input type="checkbox" name="usbPort" id="usbPort" value="">
+                        </li> -->
+
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="airBag">Air bag</label>
+                                    <input type="checkbox" name="airBag" id="airBag" value="">
+                                </article>
+
+                                <article class="dropdown-extras-li">
+                                    <label for="brakeAssist">Brake assist</label>
+                                    <input type="checkbox" name="brakeAssist" id="brakeAssist" value="">
+                                </article>
+                            </li>
+
+                            <!-- <li>
+                            <label for="brakeAssist">Brake assist</label>
+                            <input type="checkbox" name="brakeAssist" id="brakeAssist" value="">
+                        </li> -->
+
+                            <li>
+                                <article class="dropdown-extras-li">
+                                    <label for="airCondition">Air condition</label>
+                                    <input type="checkbox" name="airCondition" id="airCondition" value="">
+                                </article>
+
+                                <article class="dropdown-extras-li">
+                                    <label for="steeringWheelHeating">Steering wheel heating</label>
+                                    <input type="checkbox" name="steeringWheelHeating" id="steeringWheelHeating" value="">
+                                </article>
+                            </li>
+
+                        </ul>
+                    </article>
+                </section>
+
+                <section class="create-offer-form-section-article create-submit-btn">
+                    <input type="submit" value="Create" class="btn create-btn">
+                </section>
+            </form>
+
+        </div>
+
+    </main>
+
+    <script th:replace="fragments/navbar::script-index"></script>
+    <script src="/js/create-offer.js"></script>
+</body>
+
+</html>

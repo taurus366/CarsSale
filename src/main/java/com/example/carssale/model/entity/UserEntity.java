@@ -27,16 +27,17 @@ public class UserEntity extends BaseEntity{
 
     private String phone;
     private String password;
-    private boolean isActive;
+    private boolean isActive = true;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<RoleEntity> role = new ArrayList<>();
 
     @OneToMany
-    private List<OfferEntity> offers;
+    private List<OfferEntity> offers = new ArrayList<>();
 
     public UserEntity() {
     }
+
 
     public CityVillageEntity getCityVillage() {
         return cityVillage;

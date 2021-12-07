@@ -145,6 +145,35 @@ body {
     color: white;
 }
 
+.invalid-feedback {
+    color: red;
+}
+.is-invalid {
+    border-color: red;
+}
+
+.submit-logout-btn {
+    border: none;
+    padding: 0;
+    background: none;
+    color: rgb(180, 179, 179);
+    text-decoration: none;
+    font-family: "Font Awesome 5 Free", serif;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 25px;
+    /*margin-left: 5px;*/
+}
+
+.logout-btn-style {
+    display: flex;
+}
+.color {
+    color: rgb(180, 179, 179);
+}
+.color:hover , .submit-logout-btn:hover{
+    color: white;
+}
 
 /* DROP DOWN MENU_________________________________________________________ */
 

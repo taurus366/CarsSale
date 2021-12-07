@@ -1,6 +1,8 @@
 package com.example.carssale.web;
 
 import com.example.carssale.model.binding.UserRegistrationBindingModel;
+import com.example.carssale.model.service.UserRegistrationServiceModel;
+import com.example.carssale.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -17,9 +19,11 @@ import javax.validation.Valid;
 public class UserRegistrationController {
 
     private final ModelMapper modelMapper;
+    private final UserService userService;
 
-    public UserRegistrationController(ModelMapper modelMapper) {
+    public UserRegistrationController(ModelMapper modelMapper, UserService userService) {
         this.modelMapper = modelMapper;
+        this.userService = userService;
     }
 
     @ModelAttribute("userModel")
@@ -35,18 +39,24 @@ public class UserRegistrationController {
     @PostMapping("/register")
     public String registerNewUser(@Valid UserRegistrationBindingModel userModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
+        boolean isSame = !userModel.getPassword().equals(userModel.getConfirmPassword());
+
         if (bindingResult.hasErrors() || !userModel.getPassword().equals(userModel.getConfirmPassword())) {
             redirectAttributes
                     .addFlashAttribute("userModel", userModel)
-                    .addFlashAttribute("org.springframework.validation.BindingResult.userModel", bindingResult);
+                    .addFlashAttribute("org.springframework.validation.BindingResult.userModel", bindingResult)
+                    .addFlashAttribute("isSame",isSame);
 
             return "redirect:/users/register";
         }
 
 //        System.out.println("|"+" "+userModel.getCityVillage() + " " + "|"+ " " +userModel.getRegion() +" "+"|"+ " " +userModel.getEmail());
 
+        UserRegistrationServiceModel serviceModel = modelMapper.map(userModel, UserRegistrationServiceModel.class);
 
-    return "redirect:/users/login";
+        userService.registerAndLoginUser(serviceModel);
+
+        return "redirect:/";
 
     }
 }

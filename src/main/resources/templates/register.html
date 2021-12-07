@@ -26,17 +26,17 @@
                     <article class="register-form-row-column">
                         <label for="firstName">First Name</label>
                         <br>
-                        <input type="text" th:field="*{firstName}" id="firstName">
-                        <p class="invalid-feedback errors alert alert-danger invalid-text-registration">
-                            between 3 and 12 symbols.
-                        </p>
+                        <input type="text" th:field="*{firstName}" id="firstName" th:errorclass="is-invalid">
+                          <p class="invalid-feedback hidden invalid-text-registration">
+                              between 3 and 12 symbols.
+                          </p>
                     </article>
 
                     <article class="register-form-row-column">
                         <label for="lastName">Last Name</label>
                         <br>
-                        <input type="text" th:field="*{lastName}" id="lastName">
-                        <p class="invalid-feedback errors alert alert-danger invalid-text-registration">
+                        <input type="text" th:field="*{lastName}" th:errorclass="is-invalid" id="lastName">
+                        <p class="invalid-feedback hidden invalid-text-registration">
                             between 3 and 12 symbols.
                         </p>
                     </article>
@@ -47,18 +47,24 @@
                         <label for="cityVillage">City/Village Name</label>
                         <br>
                         <!--                        <input type="text" name="cityVillgae" id="cityVillgae">-->
-                        <select th:field="*{cityVillage}" id="cityVillage" disabled>
+                        <select th:field="*{cityVillage}" id="cityVillage" th:errorclass="is-invalid" disabled>
                             <option value="select">- Select city/village -</option>
                         </select>
+                        <p class="invalid-feedback hidden invalid-text-registration">
+                            Please choose city/village.
+                        </p>
                     </article>
 
                     <article class="register-form-row-column">
                         <label for="region">Region</label>
                         <br>
                         <!--                        <input type="text" name="region" id="region">-->
-                        <select th:field="*{region}" id="region">
-                            <option value="">- Select region -</option>
+                        <select th:field="*{region}" id="region" th:errorclass="is-invalid">
+                            <option value=" ">- Select region -</option>
                         </select>
+                        <p class="invalid-feedback hidden invalid-text-registration">
+                            Please choose Region!
+                        </p>
                     </article>
                 </section>
 
@@ -66,18 +72,18 @@
                     <article class="register-form-row-column">
                         <label for="email">Email</label>
                         <br>
-                        <input type="text" th:field="*{email}" id="email">
-                        <p class="invalid-feedback errors alert alert-danger invalid-text-registration">
-                            between 3 and 12 symbols.
+                        <input type="text" th:field="*{email}" id="email" th:errorclass="is-invalid">
+                        <p class="invalid-feedback hidden invalid-text-registration">
+                            Email is not valid!
                         </p>
                     </article>
 
                     <article class="register-form-row-column">
                         <label for="phone">Phone</label>
                         <br>
-                        <input type="tel" th:field="*{phone}" value="+359" id="phone">
-                        <p class="invalid-feedback errors alert alert-danger invalid-text-registration">
-                            between 3 and 12 symbols.
+                        <input type="number" th:field="*{phone}" id="phone" th:errorclass="is-invalid">
+                        <p class="invalid-feedback hidden invalid-text-registration">
+                            Phone is not valid.
                         </p>
                     </article>
                 </section>
@@ -86,16 +92,22 @@
                     <article class="register-form-row-column">
                         <label for="password">Password</label>
                         <br>
-                        <input type="password" th:field="*{password}" id="password">
-                        <p class="invalid-feedback errors alert alert-danger invalid-text-registration">
-                            Passwords not same!
+                        <input type="password" th:field="*{password}" id="password" th:errorclass="is-invalid">
+                        <p class="invalid-feedback hidden invalid-text-registration">
+                            between 5 and 12 symbols.
                         </p>
                     </article>
 
                     <article class="register-form-row-column">
                         <label for="confirmPassword">Confirm Password</label>
                         <br>
-                        <input type="password" th:field="*{confirmPassword}" id="confirmPassword">
+                        <input type="password" th:field="*{confirmPassword}" id="confirmPassword" th:errorclass="is-invalid">
+                        <p th:if="${isSame}" class="invalid-text-registration">
+                                Password is not equal!
+                        </p>
+                        <p class="invalid-feedback hidden invalid-text-registration">
+                            between 5 and 12 symbols.
+                        </p>
                     </article>
                 </section>
                 <input type="submit" value="Register" class="register-submit-btn btn">
@@ -103,6 +115,7 @@
         </div>
         <script th:replace="fragments/navbar::script-index"></script>
         <script src="/js/register.js"></script>
+        <script src="/js/validate.js"></script>
     </main>
 
     <footer></footer>

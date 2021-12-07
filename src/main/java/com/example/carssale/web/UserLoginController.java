@@ -1,5 +1,6 @@
 package com.example.carssale.web;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ public class UserLoginController {
 
 
     @GetMapping("/login")
+    @PreAuthorize("isAuthenticated()")
     public String login() {
         return "login";
     }
@@ -24,7 +26,7 @@ public class UserLoginController {
     @PostMapping("/login-error")
     public String failedLogin(@ModelAttribute("email") String email
             ,RedirectAttributes redirectAttributes) {
-
+        System.out.println("failed LOGINNNNNNNNNNNNNNNNNNNNNNNN" + email);
         redirectAttributes
                 .addFlashAttribute("invalid_login",true)
                 .addFlashAttribute("email",email);

@@ -4,67 +4,76 @@ import com.example.carssale.model.entity.*;
 import com.example.carssale.model.entity.enums.*;
 import com.example.carssale.repository.*;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class DBinit implements CommandLineRunner {
 
     private final RoleRepository roleRepository;
 
-    private final CarCoupeRepository carCoupeRepository;
-    private final PriceTypeRepository priceTypeRepository;
-    private final CarStatusRepository carStatusRepository;
-    private final TranssmissionRepository transsmissionRepository;
-    private final CarCategoryRepository carCategoryRepository;
+    private final VehicleCoupeRepository vehicleCoupeRepository;
+    private final TransmissionRepository transmissionRepository;
+    private final VehicleCategoryRepository vehicleCategoryRepository;
     private final FuelTypeRepository fuelTypeRepository;
     private final UserRepository userRepository;
-    private final RegionRepository regionRepository;
-    private final CityVillageRepository cityVillageRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final ModelRepository modelRepository;
 
 
-    public DBinit(RoleRepository roleRepository, CarCoupeRepository carCoupeRepository, PriceTypeRepository priceTypeRepository, CarStatusRepository carStatusRepository, TranssmissionRepository transsmissionRepository, CarCategoryRepository carCategoryRepository, FuelTypeRepository fuelTypeRepository, UserRepository userRepository, RegionRepository regionRepository, CityVillageRepository cityVillageRepository) {
+    public DBinit(RoleRepository roleRepository, VehicleCoupeRepository vehicleCoupeRepository, TransmissionRepository transmissionRepository, VehicleCategoryRepository vehicleCategoryRepository, FuelTypeRepository fuelTypeRepository, UserRepository userRepository, PasswordEncoder passwordEncoder, ModelRepository modelRepository) {
         this.roleRepository = roleRepository;
-        this.carCoupeRepository = carCoupeRepository;
-        this.priceTypeRepository = priceTypeRepository;
-        this.carStatusRepository = carStatusRepository;
-        this.transsmissionRepository = transsmissionRepository;
-        this.carCategoryRepository = carCategoryRepository;
+        this.vehicleCoupeRepository = vehicleCoupeRepository;
+        this.transmissionRepository = transmissionRepository;
+        this.vehicleCategoryRepository = vehicleCategoryRepository;
         this.fuelTypeRepository = fuelTypeRepository;
         this.userRepository = userRepository;
-        this.regionRepository = regionRepository;
-        this.cityVillageRepository = cityVillageRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.modelRepository = modelRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
         initRoles();
-        initCarCoupeTypes();
-        initPriceType();
-        initCarStatus();
-        initTranssmission();
-        initCarCategories();
-        initFuelType();
-
         initUsers();
 
+        initTranssmission();
+        initCarCoupeTypes();
+        initFuelType();
+
+        //TODO first init brands and models if table is empty! after that , set Model's [coupe,year,transmission,fuel] !
+        initCarCategories();
+//        initBrands();
+//        initModels();
     }
+
 
 
 
     private void initUsers() {
 
-        if (userRepository.findAll().isEmpty()) {
+        Optional<UserEntity> byEmail = userRepository.findByEmail("admin@abv.bg");
+
+
+        if (byEmail.isEmpty()) {
+            RoleEntity admin = roleRepository.findByRole(RoleEnum.ADMINISTRATOR);
+            admin.setRole(RoleEnum.ADMINISTRATOR);
+
             UserEntity user = new UserEntity();
-            user.setFirstName("test")
-                    .setEmail("alizinal@abv.bg")
-                    .setPassword("12345")
+            user
+                    .setFirstName("admin")
+                    .setLastName("admin")
+                    .setEmail("admin@abv.bg")
+                    .setPassword(passwordEncoder.encode("12345"))
+                    .getRole().add(admin);
+            user
                     .setModified(Instant.now())
                     .setCreated(Instant.now());
-
             userRepository.save(user);
         }
 
@@ -77,7 +86,7 @@ public class DBinit implements CommandLineRunner {
             fuel1.setName(FuelTypeEnum.GAS);
 
             FuelTypeEntity fuel2 = new FuelTypeEntity();
-            fuel2.setName(FuelTypeEnum.BENZIN);
+            fuel2.setName(FuelTypeEnum.GASOLINE);
 
             FuelTypeEntity fuel3 = new FuelTypeEntity();
             fuel3.setName(FuelTypeEnum.DIESEL);
@@ -86,7 +95,7 @@ public class DBinit implements CommandLineRunner {
             fuel4.setName(FuelTypeEnum.HYBRID);
 
             FuelTypeEntity fuel5 = new FuelTypeEntity();
-            fuel5.setName(FuelTypeEnum.METAN);
+            fuel5.setName(FuelTypeEnum.METHANE);
 
             fuelTypeRepository.saveAll(List.of(fuel1,fuel2,fuel3,fuel4,fuel5));
         }
@@ -94,97 +103,66 @@ public class DBinit implements CommandLineRunner {
     }
 
     private void initCarCategories() {
+        System.out.println("test");
+        if (vehicleCategoryRepository.findAll().isEmpty()){
+            VehicleCategoryEntity carCategory1 = new VehicleCategoryEntity();
+            carCategory1.setVehicleCategoryName(VehicleCategoryEnum.CAR);
 
-        if (carCategoryRepository.findAll().isEmpty()){
-            CarCategoryEntity carCategory1 = new CarCategoryEntity();
-            carCategory1.setCarCategoryEnum(CarCategoryEnum.CAR);
+            VehicleCategoryEntity carCategory2 = new VehicleCategoryEntity();
+            carCategory2.setVehicleCategoryName(VehicleCategoryEnum.BUS);
 
-            CarCategoryEntity carCategory2 = new CarCategoryEntity();
-            carCategory2.setCarCategoryEnum(CarCategoryEnum.BUS);
+            VehicleCategoryEntity carCategory3 = new VehicleCategoryEntity();
+            carCategory3.setVehicleCategoryName(VehicleCategoryEnum.MOTORCYCLE);
 
-            CarCategoryEntity carCategory3 = new CarCategoryEntity();
-            carCategory3.setCarCategoryEnum(CarCategoryEnum.MOTORCYCLE);
+            VehicleCategoryEntity carCategory4 = new VehicleCategoryEntity();
+            carCategory4.setVehicleCategoryName(VehicleCategoryEnum.TRUCK);
 
-            CarCategoryEntity carCategory4 = new CarCategoryEntity();
-            carCategory4.setCarCategoryEnum(CarCategoryEnum.TRUCK);
-
-            carCategoryRepository.saveAll(List.of(carCategory1,carCategory2,carCategory3,carCategory4));
+            vehicleCategoryRepository.saveAll(List.of(carCategory1,carCategory2,carCategory3,carCategory4));
         }
 
     }
 
     private void initTranssmission() {
 
-        if (transsmissionRepository.findAll().isEmpty()) {
-            TranssmissionEntity transsmission1 = new TranssmissionEntity();
+        if (transmissionRepository.findAll().isEmpty()) {
+            TransmissionEntity transsmission1 = new TransmissionEntity();
             transsmission1.setTranssmission(TranssmissionEnum.AUTOMATIC);
 
-            TranssmissionEntity transsmission2 = new TranssmissionEntity();
+            TransmissionEntity transsmission2 = new TransmissionEntity();
             transsmission2.setTranssmission(TranssmissionEnum.MANUAL);
 
-            TranssmissionEntity transsmission3 = new TranssmissionEntity();
+            TransmissionEntity transsmission3 = new TransmissionEntity();
             transsmission3.setTranssmission(TranssmissionEnum.SEMIAUTOMATIC);
 
-            transsmissionRepository.saveAll(List.of(transsmission1, transsmission2, transsmission3));
-        }
-    }
-
-    private void initCarStatus() {
-        if (carStatusRepository.findAll().isEmpty()) {
-            CarStatusEntity carStatus1 = new CarStatusEntity();
-            carStatus1.setCarStatus(CarStatusEnum.IN_GOOD_CONDITION);
-
-            CarStatusEntity carStatus2 = new CarStatusEntity();
-            carStatus2.setCarStatus(CarStatusEnum.WHOLE_CAR_FOR_PARTS);
-
-            CarStatusEntity carStatus3 = new CarStatusEntity();
-            carStatus3.setCarStatus(CarStatusEnum.DAMAGED_HIT);
-
-            carStatusRepository.saveAll(List.of(carStatus1, carStatus2, carStatus3));
-        }
-    }
-
-    private void initPriceType() {
-        if (priceTypeRepository.findAll().isEmpty()) {
-            PriceTypeEntity price1 = new PriceTypeEntity();
-            price1.setPriceType(PriceTypeEnum.BGN);
-
-            PriceTypeEntity price2 = new PriceTypeEntity();
-            price2.setPriceType(PriceTypeEnum.EUR);
-
-            PriceTypeEntity price3 = new PriceTypeEntity();
-            price3.setPriceType(PriceTypeEnum.USD);
-
-            priceTypeRepository.saveAll(List.of(price1, price2, price3));
-
+            transmissionRepository.saveAll(List.of(transsmission1, transsmission2, transsmission3));
         }
     }
 
     private void initCarCoupeTypes() {
 
-        if (carCoupeRepository.findAll().size() == 0) {
-            CarCoupeEntity carCoupe1 = new CarCoupeEntity();
-            carCoupe1.setCarCoupe(CarCoupeEnum.COUPE);
+        if (vehicleCoupeRepository.findAll().size() == 0) {
+            VehicleCoupeEntity carCoupe1 = new VehicleCoupeEntity();
+            carCoupe1.setVehicleCoupe(VehicleCoupeEnum.COUPE);
 
-            CarCoupeEntity carCoupe2 = new CarCoupeEntity();
-            carCoupe2.setCarCoupe(CarCoupeEnum.CONVERTIBLE);
+            VehicleCoupeEntity carCoupe2 = new VehicleCoupeEntity();
+            carCoupe2.setVehicleCoupe(VehicleCoupeEnum.CONVERTIBLE);
 
-            CarCoupeEntity carCoupe3 = new CarCoupeEntity();
-            carCoupe3.setCarCoupe(CarCoupeEnum.HATCHBACK);
+            VehicleCoupeEntity carCoupe3 = new VehicleCoupeEntity();
+            carCoupe3.setVehicleCoupe(VehicleCoupeEnum.HATCHBACK);
 
-            CarCoupeEntity carCoupe4 = new CarCoupeEntity();
-            carCoupe4.setCarCoupe(CarCoupeEnum.JEEP);
+            VehicleCoupeEntity carCoupe4 = new VehicleCoupeEntity();
+            carCoupe4.setVehicleCoupe(VehicleCoupeEnum.JEEP);
 
-            CarCoupeEntity carCoupe5 = new CarCoupeEntity();
-            carCoupe5.setCarCoupe(CarCoupeEnum.PICKUP);
+            VehicleCoupeEntity carCoupe5 = new VehicleCoupeEntity();
+            carCoupe5.setVehicleCoupe(VehicleCoupeEnum.PICKUP);
 
-            CarCoupeEntity carCoupe6 = new CarCoupeEntity();
-            carCoupe6.setCarCoupe(CarCoupeEnum.SEDAN);
+            VehicleCoupeEntity carCoupe6 = new VehicleCoupeEntity();
+            carCoupe6.setVehicleCoupe(VehicleCoupeEnum.SEDAN);
 
-            CarCoupeEntity carCoupe7 = new CarCoupeEntity();
-            carCoupe7.setCarCoupe(CarCoupeEnum.VAN);
+            VehicleCoupeEntity carCoupe7 = new VehicleCoupeEntity();
+            carCoupe7.setVehicleCoupe(VehicleCoupeEnum.VAN);
 
-            carCoupeRepository.saveAll(List.of(carCoupe1
+            vehicleCoupeRepository.saveAll(List.of(carCoupe1
                     , carCoupe2, carCoupe3, carCoupe4, carCoupe5
                     , carCoupe6, carCoupe7));
         }

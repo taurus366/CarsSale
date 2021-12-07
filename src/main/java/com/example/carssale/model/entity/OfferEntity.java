@@ -1,5 +1,7 @@
 package com.example.carssale.model.entity;
 
+import com.example.carssale.model.entity.enums.*;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,40 +11,42 @@ public class OfferEntity extends BaseEntity {
     @ManyToOne
     private UserEntity user;
 
-    @ManyToOne
-    private CarCategoryEntity carCategory;
+    private Integer doorCount;
 
-    @ManyToOne
-    private CarCoupeEntity carCoupe;
-
-    @ManyToOne
-    private CarStatusEntity carStatus;
-
-    // I am not sure if it needs
-    // or just write String about it.
-//    private CarYearEnum carYearEnum;
-    private String vehicleYear;
-
-//    private DoorCountEnum doorCountEnum;
-    private String doorCount;
-
-//    private EmissionClassEnum emissionClassEnum;
     private String emissionClass;
 
-    @ManyToOne
-    private ExteriorColorEntity exteriorColor;
+    private Integer vehicleYear;
 
-    @ManyToOne
-    private FuelTypeEntity fuelType;
+    @Column()
+    @Enumerated(EnumType.STRING)
+    private VehicleCoupeEnum carCoupe;
 
-    @ManyToOne
-    private PriceTypeEntity priceType;
+    @Column()
+    @Enumerated(EnumType.STRING)
+    private VehicleStatusEnum vehicleStatus;
 
-    @ManyToOne
-    private TranssmissionEntity transsmissionEnum;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private ExteriorColorEnum exteriorColor;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private FuelTypeEnum fuelType;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private ModelEntity model;
 
     @OneToOne
     private OfferDescriptionEntity offerDescription;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private PriceTypeEnum priceType;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private TranssmissionEnum transsmission;
+
 
     public OfferEntity() {
     }
@@ -56,47 +60,11 @@ public class OfferEntity extends BaseEntity {
         return this;
     }
 
-    public CarCategoryEntity getCarCategory() {
-        return carCategory;
-    }
-
-    public OfferEntity setCarCategory(CarCategoryEntity carCategory) {
-        this.carCategory = carCategory;
-        return this;
-    }
-
-    public CarCoupeEntity getCarCoupe() {
-        return carCoupe;
-    }
-
-    public OfferEntity setCarCoupe(CarCoupeEntity carCoupe) {
-        this.carCoupe = carCoupe;
-        return this;
-    }
-
-    public CarStatusEntity getCarStatus() {
-        return carStatus;
-    }
-
-    public OfferEntity setCarStatus(CarStatusEntity carStatus) {
-        this.carStatus = carStatus;
-        return this;
-    }
-
-    public String getVehicleYear() {
-        return vehicleYear;
-    }
-
-    public OfferEntity setVehicleYear(String vehicleYear) {
-        this.vehicleYear = vehicleYear;
-        return this;
-    }
-
-    public String getDoorCount() {
+    public Integer getDoorCount() {
         return doorCount;
     }
 
-    public OfferEntity setDoorCount(String doorCount) {
+    public OfferEntity setDoorCount(Integer doorCount) {
         this.doorCount = doorCount;
         return this;
     }
@@ -110,39 +78,57 @@ public class OfferEntity extends BaseEntity {
         return this;
     }
 
-    public ExteriorColorEntity getExteriorColor() {
+    public Integer getVehicleYear() {
+        return vehicleYear;
+    }
+
+    public OfferEntity setVehicleYear(Integer vehicleYear) {
+        this.vehicleYear = vehicleYear;
+        return this;
+    }
+
+    public VehicleCoupeEnum getCarCoupe() {
+        return carCoupe;
+    }
+
+    public OfferEntity setCarCoupe(VehicleCoupeEnum carCoupe) {
+        this.carCoupe = carCoupe;
+        return this;
+    }
+
+    public VehicleStatusEnum getVehicleStatus() {
+        return vehicleStatus;
+    }
+
+    public OfferEntity setVehicleStatus(VehicleStatusEnum vehicleStatus) {
+        this.vehicleStatus = vehicleStatus;
+        return this;
+    }
+
+    public ExteriorColorEnum getExteriorColor() {
         return exteriorColor;
     }
 
-    public OfferEntity setExteriorColor(ExteriorColorEntity exteriorColor) {
+    public OfferEntity setExteriorColor(ExteriorColorEnum exteriorColor) {
         this.exteriorColor = exteriorColor;
         return this;
     }
 
-    public FuelTypeEntity getFuelType() {
+    public FuelTypeEnum getFuelType() {
         return fuelType;
     }
 
-    public OfferEntity setFuelType(FuelTypeEntity fuelType) {
+    public OfferEntity setFuelType(FuelTypeEnum fuelType) {
         this.fuelType = fuelType;
         return this;
     }
 
-    public PriceTypeEntity getPriceType() {
-        return priceType;
+    public ModelEntity getModel() {
+        return model;
     }
 
-    public OfferEntity setPriceType(PriceTypeEntity priceType) {
-        this.priceType = priceType;
-        return this;
-    }
-
-    public TranssmissionEntity getTranssmissionEnum() {
-        return transsmissionEnum;
-    }
-
-    public OfferEntity setTranssmissionEnum(TranssmissionEntity transsmissionEnum) {
-        this.transsmissionEnum = transsmissionEnum;
+    public OfferEntity setModel(ModelEntity model) {
+        this.model = model;
         return this;
     }
 
@@ -152,6 +138,24 @@ public class OfferEntity extends BaseEntity {
 
     public OfferEntity setOfferDescription(OfferDescriptionEntity offerDescription) {
         this.offerDescription = offerDescription;
+        return this;
+    }
+
+    public PriceTypeEnum getPriceType() {
+        return priceType;
+    }
+
+    public OfferEntity setPriceType(PriceTypeEnum priceType) {
+        this.priceType = priceType;
+        return this;
+    }
+
+    public TranssmissionEnum getTranssmission() {
+        return transsmission;
+    }
+
+    public OfferEntity setTranssmission(TranssmissionEnum transsmission) {
+        this.transsmission = transsmission;
         return this;
     }
 }

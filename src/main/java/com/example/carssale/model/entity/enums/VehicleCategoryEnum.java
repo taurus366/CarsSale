@@ -1,6 +1,6 @@
 package com.example.carssale.model.entity.enums;
 
-public enum CarCategoryEnum {
+public enum VehicleCategoryEnum {
     BUS,
     MOTORCYCLE,
     TRUCK,
