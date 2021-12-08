@@ -23,9 +23,11 @@ public class DBinit implements CommandLineRunner {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final ModelRepository modelRepository;
+    private final BrandRepository brandRepository;
+    private final VehicleYearRepository vehicleYearRepository;
 
 
-    public DBinit(RoleRepository roleRepository, VehicleCoupeRepository vehicleCoupeRepository, TransmissionRepository transmissionRepository, VehicleCategoryRepository vehicleCategoryRepository, FuelTypeRepository fuelTypeRepository, UserRepository userRepository, PasswordEncoder passwordEncoder, ModelRepository modelRepository) {
+    public DBinit(RoleRepository roleRepository, VehicleCoupeRepository vehicleCoupeRepository, TransmissionRepository transmissionRepository, VehicleCategoryRepository vehicleCategoryRepository, FuelTypeRepository fuelTypeRepository, UserRepository userRepository, PasswordEncoder passwordEncoder, ModelRepository modelRepository, BrandRepository brandRepository, VehicleYearRepository vehicleYearRepository) {
         this.roleRepository = roleRepository;
         this.vehicleCoupeRepository = vehicleCoupeRepository;
         this.transmissionRepository = transmissionRepository;
@@ -34,25 +36,74 @@ public class DBinit implements CommandLineRunner {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.modelRepository = modelRepository;
+        this.brandRepository = brandRepository;
+        this.vehicleYearRepository = vehicleYearRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
-
+//        System.out.println("-".repeat(50));
         initRoles();
         initUsers();
 
-        initTranssmission();
+        initTransmission();
         initCarCoupeTypes();
         initFuelType();
 
         //TODO first init brands and models if table is empty! after that , set Model's [coupe,year,transmission,fuel] !
         initCarCategories();
-//        initBrands();
-//        initModels();
+        initBrands();
+        initModels();
     }
 
+    private void initModels() {
+        if (modelRepository.findAll().isEmpty()) {
+            BrandEntity bmw = brandRepository.findByBrandName("BMW");
 
+            ModelEntity modelBmwX6 = new ModelEntity();
+            modelBmwX6.setBrand(bmw);
+            modelBmwX6.setModelName("X6");
+
+            FuelTypeEntity gasoline = fuelTypeRepository.findByName(FuelTypeEnum.GASOLINE);
+            FuelTypeEntity diesel = fuelTypeRepository.findByName(FuelTypeEnum.DIESEL);
+            modelBmwX6.setFuelType(List.of(gasoline,diesel));
+
+            VehicleCoupeEntity hatchback = vehicleCoupeRepository.findByVehicleCoupe(VehicleCoupeEnum.HATCHBACK);
+            modelBmwX6.setVehicleCoupe(List.of(hatchback));
+
+            TransmissionEntity automatic = transmissionRepository.findByTransmission(TransmisionEnum.AUTOMATIC);
+            modelBmwX6.setTransmission(List.of(automatic));
+
+            VehicleYearEntity byVehicleYear = vehicleYearRepository.findByVehicleYear(2007);
+            VehicleYearEntity byVehicleYear1 = vehicleYearRepository.findByVehicleYear(2016);
+            VehicleYearEntity byVehicleYear2 = vehicleYearRepository.findByVehicleYear(2021);
+            modelBmwX6.setVehicleYear(List.of(byVehicleYear1,byVehicleYear2,byVehicleYear));
+
+            modelRepository.saveAll(List.of(modelBmwX6));
+        }
+    }
+
+    private void initBrands() {
+
+        if (brandRepository.findAll().isEmpty()) {
+            VehicleCategoryEntity byVehicleCategoryName = vehicleCategoryRepository.findByVehicleCategoryName(VehicleCategoryEnum.CAR);
+
+
+            BrandEntity brandBmw = new BrandEntity();
+            brandBmw.setCategory(byVehicleCategoryName);
+            brandBmw.setBrandName("BMW");
+
+            BrandEntity brandMercedes = new BrandEntity();
+            brandMercedes.setCategory(byVehicleCategoryName);
+            brandMercedes.setBrandName("MERCEDES-BENZ");
+
+            BrandEntity brandAudi = new BrandEntity();
+            brandAudi.setCategory(byVehicleCategoryName);
+            brandAudi.setBrandName("AUDI");
+
+            brandRepository.saveAll(List.of(brandBmw,brandAudi,brandMercedes));
+        }
+    }
 
 
     private void initUsers() {
@@ -103,7 +154,7 @@ public class DBinit implements CommandLineRunner {
     }
 
     private void initCarCategories() {
-        System.out.println("test");
+
         if (vehicleCategoryRepository.findAll().isEmpty()){
             VehicleCategoryEntity carCategory1 = new VehicleCategoryEntity();
             carCategory1.setVehicleCategoryName(VehicleCategoryEnum.CAR);
@@ -122,17 +173,17 @@ public class DBinit implements CommandLineRunner {
 
     }
 
-    private void initTranssmission() {
+    private void initTransmission() {
 
         if (transmissionRepository.findAll().isEmpty()) {
             TransmissionEntity transsmission1 = new TransmissionEntity();
-            transsmission1.setTranssmission(TranssmissionEnum.AUTOMATIC);
+            transsmission1.setTransmission(TransmisionEnum.AUTOMATIC);
 
             TransmissionEntity transsmission2 = new TransmissionEntity();
-            transsmission2.setTranssmission(TranssmissionEnum.MANUAL);
+            transsmission2.setTransmission(TransmisionEnum.MANUAL);
 
             TransmissionEntity transsmission3 = new TransmissionEntity();
-            transsmission3.setTranssmission(TranssmissionEnum.SEMIAUTOMATIC);
+            transsmission3.setTransmission(TransmisionEnum.SEMIAUTOMATIC);
 
             transmissionRepository.saveAll(List.of(transsmission1, transsmission2, transsmission3));
         }

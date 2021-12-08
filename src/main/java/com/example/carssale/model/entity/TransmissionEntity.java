@@ -1,6 +1,6 @@
 package com.example.carssale.model.entity;
 
-import com.example.carssale.model.entity.enums.TranssmissionEnum;
+import com.example.carssale.model.entity.enums.TransmisionEnum;
 
 import javax.persistence.*;
 
@@ -13,7 +13,7 @@ public class TransmissionEntity {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private TranssmissionEnum transsmission;
+    private TransmisionEnum transmission;
 
     public TransmissionEntity() {
     }
@@ -27,12 +27,12 @@ public class TransmissionEntity {
         return this;
     }
 
-    public TranssmissionEnum getTranssmission() {
-        return transsmission;
+    public TransmisionEnum getTransmission() {
+        return transmission;
     }
 
-    public TransmissionEntity setTranssmission(TranssmissionEnum transsmission) {
-        this.transsmission = transsmission;
+    public TransmissionEntity setTransmission(TransmisionEnum transmission) {
+        this.transmission = transmission;
         return this;
     }
 }

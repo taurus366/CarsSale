@@ -687,6 +687,25 @@ VALUES (2021);
 INSERT INTO vehicle_year(vehicle_year)
 VALUES (2022);
 
+#//TODO
+# INSERT INTO  vehicle_category(vehicle_category_name)
+# VALUES ('CAR');
+# INSERT INTO  vehicle_category(vehicle_category_name)
+# VALUES ('BUS');
+# INSERT INTO  vehicle_category(vehicle_category_name)
+# VALUES ('MOTORCYCLE');
+# INSERT INTO  vehicle_category(vehicle_category_name)
+# VALUES ('TRUCK');
+#
+# INSERT INTO vehicle_brands(brand_name, category_id)
+# VALUES ('BMW',1);
+# INSERT INTO vehicle_models(model_name, brand_id) VALUES ('X6',1);
+# INSERT INTO
+
+
+
+
+
 # #VEHICLE CATEGORY
 #
 # INSERT INTO vehicle_category(vehicle_category_name) VALUES ('CAR');

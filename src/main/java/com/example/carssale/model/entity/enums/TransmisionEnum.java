@@ -1,6 +1,6 @@
 package com.example.carssale.model.entity.enums;
 
-public enum TranssmissionEnum {
+public enum TransmisionEnum {
     AUTOMATIC,
     MANUAL,
     SEMIAUTOMATIC

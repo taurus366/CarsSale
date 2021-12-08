@@ -1,7 +1,10 @@
 let region = document.querySelector('#region');
 let cityVillage = document.querySelector('#cityVillage');
 
-fetch('http://localhost:8080/users/region',{method:'GET'})
+let ipLocal = 'http://localhost:8080';
+let ipWan = 'http://77.71.76.17:8080';
+
+fetch(ipLocal+'/users/region',{method:'GET'})
     .then(response => response.json())
     .then(data => {
       data
@@ -26,7 +29,7 @@ region
     })
 
 function fetchForCityVillage(id) {
-    fetch('http://localhost:8080/users/cityVillage/'+id,{
+    fetch(ipLocal+'/users/cityVillage/'+id,{
         method:'GET'
     })
         .then(response => response.json())

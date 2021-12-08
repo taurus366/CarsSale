@@ -45,7 +45,7 @@ public class OfferEntity extends BaseEntity {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private TranssmissionEnum transsmission;
+    private TransmisionEnum transsmission;
 
 
     public OfferEntity() {
@@ -150,11 +150,11 @@ public class OfferEntity extends BaseEntity {
         return this;
     }
 
-    public TranssmissionEnum getTranssmission() {
+    public TransmisionEnum getTranssmission() {
         return transsmission;
     }
 
-    public OfferEntity setTranssmission(TranssmissionEnum transsmission) {
+    public OfferEntity setTranssmission(TransmisionEnum transsmission) {
         this.transsmission = transsmission;
         return this;
     }

@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VehicleYearRepository extends JpaRepository<VehicleYearEntity,Long> {
+
+    VehicleYearEntity findByVehicleYear(Integer vehicleYear);
 }
