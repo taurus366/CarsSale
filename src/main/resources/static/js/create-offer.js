@@ -36,13 +36,20 @@ function doFetchForBrand(id) {
     fetch('http://localhost:8080/users/brand/'+id,{method:'GET'})
         .then(response => response.json())
         .then(data => {
-            Array.from(data)
-                .forEach(brand => {
-                    let newBrandOptionEl = document.createElement('option');
-                    newBrandOptionEl.textContent = brand.brandName;
-                    newBrandOptionEl.setAttribute("value", brand.id);
-                    brandSelect.appendChild(newBrandOptionEl);
-                })
+            if (Array.from(data).length === 0) {
+                let newBrandOptionEl = document.createElement('option');
+                newBrandOptionEl.textContent = 'empty Brand';
+                brandSelect.appendChild(newBrandOptionEl);
+            } else {
+                Array.from(data)
+                    .forEach(brand => {
+                        let newBrandOptionEl = document.createElement('option');
+                        newBrandOptionEl.textContent = brand.brandName;
+                        newBrandOptionEl.setAttribute("value", brand.id);
+                        brandSelect.appendChild(newBrandOptionEl);
+                    })
+            }
+
         })
 
     console.log(id)

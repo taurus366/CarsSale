@@ -199,10 +199,8 @@
                             <label for="exteriorColor">Exterior color</label>
                             <br>
                             <select name="exteriorColor" id="exteriorColor">
-                            <option value="">---</option>
-                            <option value="">BLUE</option>
-                            <option value="">RED</option>
-                            <option value="">BLACK</option>
+                            <option value="">Choose Color</option>
+                            <option th:each="color : ${T(com.example.carssale.model.entity.enums.ExteriorColorEnum).values()}" th:value="${color}" th:text="${color}">BLUE</option>
                         </select>
                         </article>
                         <article class="create-offer-form-section-article column">

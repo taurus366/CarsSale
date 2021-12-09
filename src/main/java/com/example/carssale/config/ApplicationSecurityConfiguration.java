@@ -32,7 +32,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 // with this line we allow access to all static resources
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 // the next line allows access to the home page, login page and registration for everyone
-                .antMatchers("/","/users/login", "/users/register" , "/users/region" , "/users/cityVillage/{id}" , "/users/category", "/users/brand/{id}").permitAll()
+                .antMatchers("/","/users/login", "/users/register" , "/users/region" , "/users/cityVillage/{id}" , "/users/category", "/users/brand/{id}","/users/model/{id}").permitAll()
                 // we permit the page below only for admin users
                 .antMatchers("/statistics").hasRole(RoleEnum.ADMINISTRATOR.name())
                 // next we forbid all other pages for unauthenticated users.
