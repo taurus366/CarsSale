@@ -16,16 +16,16 @@ public class ModelEntity {
     @ManyToOne
     private BrandEntity brand;
 
-    @OneToMany
+    @ManyToMany
     private List<FuelTypeEntity> fuelType;
 
-    @OneToMany
+    @ManyToMany
     private List<TransmissionEntity> transmission;
 
-    @OneToMany
+    @ManyToMany
     private List<VehicleCoupeEntity> vehicleCoupe;
 
-    @OneToMany
+    @ManyToMany
     private List<VehicleYearEntity> vehicleYear;
 
     public ModelEntity() {

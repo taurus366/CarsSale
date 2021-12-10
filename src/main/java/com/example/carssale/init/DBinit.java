@@ -79,7 +79,17 @@ public class DBinit implements CommandLineRunner {
             VehicleYearEntity byVehicleYear2 = vehicleYearRepository.findByVehicleYear(2021);
             modelBmwX6.setVehicleYear(List.of(byVehicleYear1,byVehicleYear2,byVehicleYear));
 
-            modelRepository.saveAll(List.of(modelBmwX6));
+
+
+            ModelEntity modelBmwX7 = new ModelEntity();
+            modelBmwX7.setBrand(bmw);
+            modelBmwX7.setModelName("X7");
+            modelBmwX7.setFuelType(List.of(gasoline,diesel));
+            modelBmwX7.setVehicleCoupe(List.of(hatchback));
+            modelBmwX7.setTransmission(List.of(automatic));
+            modelBmwX7.setVehicleYear(List.of(byVehicleYear1,byVehicleYear2,byVehicleYear));
+
+            modelRepository.saveAll(List.of(modelBmwX6,modelBmwX7));
         }
     }
 
