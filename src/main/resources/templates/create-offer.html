@@ -50,21 +50,20 @@
                         <article class="create-offer-form-section-article column">
                             <label for="vehicleBrand">Brand</label>
                             <br>
-                            <select name="vehicleBrand" id="vehicleBrand">
-                            <option value="Choose Vehicle Brand">---</option>
-                            <option value="">BMW</option>
-                            <option value="">Mercedes-Benz</option>
-                        </select>
+                            <select name="vehicleBrand" id="vehicleBrand" disabled>
+                                <option value="choose">Choose Brand</option>
+                                <option value="">BMW</option>
+                                <option value="">Mercedes-Benz</option>
+                            </select>
                         </article>
 
                         <article class="create-offer-form-section-article column">
                             <label for="vehicleModel">Model</label>
                             <br>
                             <!-- HERE YOU CAN USE REST API WITH JS -->
-                            <select name="vehicleModel" id="vehicleModel">
-                            <option value="">---</option>
-                            <option value="">TOYOTA -> *Yaris*</option>
-                        </select>
+                            <select name="vehicleModel" id="vehicleModel" disabled>
+                                <option value="choose">Choose Model</option>
+                            </select>
                         </article>
                     </section>
 
@@ -74,21 +73,21 @@
                             <label for="vehicleStatus">Status</label>
                             <br>
                             <select class="vehicle-Status" name="vehicleStatus" id="vehicleStatus">
-                            <option value="chooseStatusCar">---</option>
-                            <option value="goodCondition">In good condition</option>
-                            <option value="damagedHit">Damaged / Hit</option>
-                            <option value="forParts">Whole car for parts</option>
-                        </select>
+                                <option value="chooseStatusCar">---</option>
+                                <option value="goodCondition">In good condition</option>
+                                <option value="damagedHit">Damaged / Hit</option>
+                                <option value="forParts">Whole car for parts</option>
+                            </select>
                         </article>
 
                         <article class="create-offer-form-section-article column">
                             <label for="transmission">Transmission</label>
                             <br>
-                            <select name="transmission" id="transmission">
-                            <option value="">---</option>
-                            <option value="">AUTOMATIC</option>
-                            <option value="">MANUAL</option>
-                        </select>
+                            <select name="transmission" id="transmission" disabled>
+                                <option value="">---</option>
+                                <!--                            <option value="">AUTOMATIC</option>-->
+                                <!--                            <option value="">MANUAL</option>-->
+                            </select>
                         </article>
                     </section>
                 </section>
@@ -100,16 +99,16 @@
                         <article class="create-offer-form-section-article column">
                             <label for="fuelType">Fuel type</label>
                             <br>
-                            <select name="fuelType" id="fuelType">
-                            <option value="">---</option>
-                            <option value="">BENZIN</option>
-                            <option value="">DIESEL</option>
-                            <option value="">GAS/BENZIN</option>
-                            <option value="">GAS</option>
-                            <option value="">METAN/BENZIN</option>
-                            <option value="">METAN</option>
-                            <option value="">HYBRID</option>
-                        </select>
+                            <select name="fuelType" id="fuelType" disabled>
+                                <option value="">---</option>
+                                <option value="">BENZIN</option>
+                                <option value="">DIESEL</option>
+                                <option value="">GAS/BENZIN</option>
+                                <option value="">GAS</option>
+                                <option value="">METAN/BENZIN</option>
+                                <option value="">METAN</option>
+                                <option value="">HYBRID</option>
+                            </select>
                         </article>
 
                         <article class="create-offer-form-section-article column">
@@ -124,24 +123,24 @@
                         <article class="create-offer-form-section-article column">
                             <label for="vehicleCoupe">Coupe</label>
                             <br>
-                            <select name="vehicleCoupe" id="vehicleCoupe">
-                            <option value="">---</option>
-                            <option value="">SEDAN</option>
-                            <option value="">HATCHBACK</option>
-                        </select>
+                            <select name="vehicleCoupe" id="vehicleCoupe" disabled>
+                                <option value="">---</option>
+                                <!--                            <option value="">SEDAN</option>-->
+                                <!--                            <option value="">HATCHBACK</option>-->
+                            </select>
                         </article>
 
                         <article class="create-offer-form-section-article column">
                             <label for="numberOfDoors">Door Count</label>
                             <br>
                             <select name="numberOfDoors" id="numberOfDoors">
-                            <option value="">---</option>
-                            <option value="">1</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                            <option value="">4</option>
-                            <option value="">5</option>
-                        </select>
+                                <option value="">---</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                            </select>
                         </article>
                     </section>
                 </section>
@@ -162,13 +161,13 @@
 
 
                         <article class="create-offer-form-section-article column">
-                        <label for="statusUsed">Used or New</label>
-                        <br>
-                        <select name="statusUsed" id="statusUsed">
-                            <option value="used">Used</option>
-                            <option value="new">New</option>
-                        </select>
-                    </article>
+                            <label for="statusUsed">Used or New</label>
+                            <br>
+                            <select name="statusUsed" id="statusUsed">
+                                <option value="used">Used</option>
+                                <option value="new">New</option>
+                            </select>
+                        </article>
 
                     </section>
 
@@ -178,10 +177,10 @@
                             <label for="year">Year</label>
                             <br>
                             <!-- HERE HAVE TO USE YEAR SELECTION -->
-                            <select name="year" id="year">
-                            <option value="">---</option>
-                            <option value="">1994</option>
-                        </select>
+                            <select name="year" id="year" disabled>
+                                <option value="">---</option>
+                                <!--                            <option value="">1994</option>-->
+                            </select>
                         </article>
                         <article class="create-offer-form-section-article column">
                             <label for="mileage">Mileage</label>
@@ -199,22 +198,24 @@
                             <label for="exteriorColor">Exterior color</label>
                             <br>
                             <select name="exteriorColor" id="exteriorColor">
-                            <option value="">Choose Color</option>
-                            <option th:each="color : ${T(com.example.carssale.model.entity.enums.ExteriorColorEnum).values()}" th:value="${color}" th:text="${color}">BLUE</option>
-                        </select>
+                                <option value="">---</option>
+                                <option value="">BLUE</option>
+                                <option value="">RED</option>
+                                <option value="">BLACK</option>
+                            </select>
                         </article>
                         <article class="create-offer-form-section-article column">
                             <label for="emissionClass">Emission Class</label>
                             <br>
                             <select name="emissionClass" id="emissionClass">
-                            <option value="">---</option>
-                            <option value="">EURO1</option>
-                            <option value="">EURO2</option>
-                            <option value="">EURO3</option>
-                            <option value="">EURO4</option>
-                            <option value="">EURO5</option>
-                            <option value="">EURO6</option>
-                        </select>
+                                <option value="">---</option>
+                                <option value="">EURO1</option>
+                                <option value="">EURO2</option>
+                                <option value="">EURO3</option>
+                                <option value="">EURO4</option>
+                                <option value="">EURO5</option>
+                                <option value="">EURO6</option>
+                            </select>
                         </article>
                     </section>
 
@@ -223,11 +224,11 @@
                         <br>
                         <input type="number" id="price" name="price">
                         <select name="priceType" id="priceType">
-                        <!-- <option value="">Choose Price Type</option> -->
-                        <option value="">BGN</option>
-                        <option value="">EUR</option>
-                        <option value="">USD</option>
-                    </select>
+                            <!-- <option value="">Choose Price Type</option> -->
+                            <option value="">BGN</option>
+                            <option value="">EUR</option>
+                            <option value="">USD</option>
+                        </select>
                     </article>
                 </section>
 
@@ -240,7 +241,7 @@
                         <br>
                         <input name="picture" type="file">
                         <input name="picture" type="file">
-                        </article>
+                    </article>
                     <!-- <article class="create-offer-form-section-article column"></article> -->
                 </section>
 

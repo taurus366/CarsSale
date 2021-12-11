@@ -1,7 +1,6 @@
 let localUrl = 'http://localhost:8080';
 let wanUrl = 'http://77.71.76.17:8080';
 
-
 let vehicleType = document.querySelector('.vehicle-type');
 
 let brandSelect = document.querySelector('#vehicleBrand');
@@ -238,6 +237,7 @@ function doFetchForModel(id) {
             lastModel = models;
             Array.from(models)
                 .forEach(model => {
+                    // console.log(model);
                     let elModel = document.createElement("option");
                     elModel.textContent = model.modelName;
                     elModel.setAttribute("value", model.id);

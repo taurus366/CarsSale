@@ -44,7 +44,7 @@
                     </ul>
                 </li>
                 <li sec:authorize="isAuthenticated()"><a th:href="@{/users/offer/add}" class="btn-link index"><i class="fas fa-bullhorn"></i> Create Offer</a></li>
-                <li sec:authorize="isAuthenticated()"><a href="#" class="btn-link index"><i class="fas fa-car-alt"></i> All Cars</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/users/offers/all}" class="btn-link index"><i class="fas fa-car-alt"></i> All Cars</a></li>
                 <li sec:authorize="!isAuthenticated()"><a th:href="@{/users/register}" class="btn-link index"><i class="fas fa-id-card"></i> Register</a></li>
                 <li sec:authorize="!isAuthenticated()"><a th:href="@{/users/login}" class="btn-link index"><i class="fas fa-sign-in-alt"></i> Login</a></li>
 <!--                <li sec:authorize="isAuthenticated()">-->

@@ -25,9 +25,10 @@ public class DBinit implements CommandLineRunner {
     private final ModelRepository modelRepository;
     private final BrandRepository brandRepository;
     private final VehicleYearRepository vehicleYearRepository;
+    private final OfferRepository offerRepository;
 
 
-    public DBinit(RoleRepository roleRepository, VehicleCoupeRepository vehicleCoupeRepository, TransmissionRepository transmissionRepository, VehicleCategoryRepository vehicleCategoryRepository, FuelTypeRepository fuelTypeRepository, UserRepository userRepository, PasswordEncoder passwordEncoder, ModelRepository modelRepository, BrandRepository brandRepository, VehicleYearRepository vehicleYearRepository) {
+    public DBinit(RoleRepository roleRepository, VehicleCoupeRepository vehicleCoupeRepository, TransmissionRepository transmissionRepository, VehicleCategoryRepository vehicleCategoryRepository, FuelTypeRepository fuelTypeRepository, UserRepository userRepository, PasswordEncoder passwordEncoder, ModelRepository modelRepository, BrandRepository brandRepository, VehicleYearRepository vehicleYearRepository, OfferRepository offerRepository) {
         this.roleRepository = roleRepository;
         this.vehicleCoupeRepository = vehicleCoupeRepository;
         this.transmissionRepository = transmissionRepository;
@@ -38,6 +39,7 @@ public class DBinit implements CommandLineRunner {
         this.modelRepository = modelRepository;
         this.brandRepository = brandRepository;
         this.vehicleYearRepository = vehicleYearRepository;
+        this.offerRepository = offerRepository;
     }
 
     @Override
@@ -54,6 +56,32 @@ public class DBinit implements CommandLineRunner {
         initCarCategories();
         initBrands();
         initModels();
+
+        initOffer();
+    }
+
+    private void initOffer() {
+      if (offerRepository.findAll().isEmpty()) {
+          OfferEntity offer = new OfferEntity();
+          offer.setCreated(Instant.now());
+          offer.setModified(Instant.now());
+
+          offer.setModel(modelRepository.findAll().get(0));
+          offer.setUser(userRepository.getById(Long.parseLong("1")));
+          offer.setTransmission(TransmisionEnum.AUTOMATIC);
+          offer.setFuelType(FuelTypeEnum.DIESEL);
+          offer.setCarCoupe(VehicleCoupeEnum.COUPE);
+          offer.setDoorCount(5);
+          offer.setEmissionClass("EURO5");
+          offer.setExteriorColor(ExteriorColorEnum.RED);
+          offer.setPriceType(PriceTypeEnum.BGN);
+          offer.setVehicleStatus(VehicleStatusEnum.GOOD);
+          offer.setVehicleYear(2021);
+          offer.setPrice(25000);
+
+
+          offerRepository.save(offer);
+      }
     }
 
     private void initModels() {

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <th:block th:replace="fragments/navbar::head"></th:block>
+    <title>Vehicle Info</title>
+  </head>
+  <body>
+  <header th:replace="fragments/navbar::header"></header>
+
+    <main>
+      <div class="vehicle-info-container">
+        <section class="vehicle-info-container-section" >
+          <section class="vehicle-info-information-section" >
+            <article>
+              <p>Brand:</p>
+              <span class="vehicle-info-information-section-article" th:text="${offer.getBrand()}">test</span>
+            </article>
+            <article>
+              <p>Model:</p>
+              <span class="vehicle-info-information-section-article" th:text="${offer.getModel()}">test</span>
+            </article>
+            <article>
+              <p>Fuel type:</p>
+              <span class="vehicle-info-information-section-article" th:text="${offer.getFuelType()}">test</span>
+            </article>
+            <article>
+              <p>Modification:</p>
+              <span class="vehicle-info-information-section-article" th:text="${offer.getModification()}">test</span>
+            </article>
+            <article>
+              <p>Power:</p>
+              <span class="vehicle-info-information-section-article" th:text="${offer.getPower()}">test</span>
+            </article>
+            <article>
+              <p>Exterior color:</p>
+              <span class="vehicle-info-information-section-article" th:text="${offer.getExteriorColor()}">test</span>
+            </article>
+            <article>
+              <p>Emission class:</p>
+              <span class="vehicle-info-information-section-article" th:text="${offer.getEmissionClass()}">test</span>
+            </article>
+            <article>
+              <p>Status:</p>
+              <span class="vehicle-info-information-section-article" th:text="${offer.getVehicleStatus()}">test</span>
+            </article>
+            <article>
+              <p>Transmission:</p>
+              <span class="vehicle-info-information-section-article" th:text="${offer.getTransmission()}">test</span>
+            </article>
+            <article>
+              <p>Coupe:</p>
+              <span class="vehicle-info-information-section-article" th:text="${offer.getCarCoupe()}">test</span>
+            </article>
+            <article>
+              <p>Door count:</p>
+              <span class="vehicle-info-information-section-article" th:text="${offer.getDoorCount()}">test</span>
+            </article>
+            <article>
+              <p>Year:</p>
+              <span class="vehicle-info-information-section-article" th:text="${offer.getVehicleYear()}">test</span>
+            </article>
+            <article>
+              <p>Mileage:</p>
+              <span class="vehicle-info-information-section-article" th:text="${offer.getKilometer()}">test</span>
+            </article>
+            <article>
+              <p>Price:</p>
+              <span class="vehicle-info-information-section-article" th:text="${offer.getPrice() + ' ' + offer.getPriceType()}">test</span>
+            </article>
+          </section>
+
+          <article class="vehicle-img">
+            <img src="https://media.istockphoto.com/photos/illustration-of-generic-compact-car-perspective-view-picture-id1148853697?k=20&m=1148853697&s=612x612&w=0&h=x_IL5R5PF48fTZhuD-1gMHDqstoxyrUfRMH-Oet-7Mk=" alt="img" />
+
+            <section class="change-pictures-btn">
+              <article>
+                <a class="change-pictures-btn-a active" href="#">Picture1</a>
+              </article>
+              <article>
+                <a class="change-pictures-btn-a" href="#">Picture2</a>
+              </article>
+              <article>
+                <a class="change-pictures-btn-a" href="#">Picture3</a>
+              </article>
+              <article>
+                <a class="change-pictures-btn-a" href="#">Picture4</a>
+              </article>
+            </section>
+
+            <!-- SHOW IT , IF THE ADMIN IS LOGGED IN! -->
+            <section class="vehicle-info-admin">
+              <a href="#" class="admin-delete-btn">Delete</a>
+            </section>
+            <!-- SHOW IT , IF THE ADMIN IS LOGGED IN! -->
+
+            <section class="user-self-ad">
+              <article class="user-self-ad-edit">
+                <a href="#" class="user-btn edit">Edit</a>
+              </article>
+              <article class="user-self-ad-delete">
+                <a href="#" class="user-btn delete">Delete</a>
+              </article>
+            </section>
+
+            <section class="views">
+              <label class="views-label" for="views-number">Views:</label>
+              <span class="views-number">123</span>
+            </section>
+          </article>
+        </section>
+
+      </div>
+    </main>
+
+    <script th:replace="fragments/navbar::script-index"></script>
+    <script src="/js/vehicle-info.js"></script>
+  </body>
+</html>

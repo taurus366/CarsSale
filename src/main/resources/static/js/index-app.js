@@ -2,6 +2,7 @@ let dropBtnAdmin = document.querySelector('.drop-btn.admin');
 let activeBtns = document.querySelectorAll('.btn-link');
 let dropBtnUser = document.querySelector('.drop-btn.user');
 
+console.log(activeBtns);
 
 
 if (dropBtnAdmin !== null) {
@@ -32,7 +33,7 @@ activeBtns
 
 
 
-console.log(activeBtns);
+// console.log(activeBtns);
 
 
 // Here i read url for active link buttons in NAV (HEADER)

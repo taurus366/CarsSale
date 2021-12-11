@@ -17,6 +17,14 @@ public class OfferEntity extends BaseEntity {
 
     private Integer vehicleYear;
 
+    private Integer price;
+
+    private String modification;
+
+    private Integer kilometer;
+
+    private Integer power;
+
     @Column()
     @Enumerated(EnumType.STRING)
     private VehicleCoupeEnum carCoupe;
@@ -45,10 +53,46 @@ public class OfferEntity extends BaseEntity {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private TransmisionEnum transsmission;
+    private TransmisionEnum transmission;
 
 
     public OfferEntity() {
+    }
+
+    public Integer getPower() {
+        return power;
+    }
+
+    public OfferEntity setPower(Integer power) {
+        this.power = power;
+        return this;
+    }
+
+    public Integer getKilometer() {
+        return kilometer;
+    }
+
+    public OfferEntity setKilometer(Integer kilometer) {
+        this.kilometer = kilometer;
+        return this;
+    }
+
+    public String getModification() {
+        return modification;
+    }
+
+    public OfferEntity setModification(String modification) {
+        this.modification = modification;
+        return this;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public OfferEntity setPrice(Integer price) {
+        this.price = price;
+        return this;
     }
 
     public UserEntity getUser() {
@@ -150,12 +194,12 @@ public class OfferEntity extends BaseEntity {
         return this;
     }
 
-    public TransmisionEnum getTranssmission() {
-        return transsmission;
+    public TransmisionEnum getTransmission() {
+        return transmission;
     }
 
-    public OfferEntity setTranssmission(TransmisionEnum transsmission) {
-        this.transsmission = transsmission;
+    public OfferEntity setTransmission(TransmisionEnum transmission) {
+        this.transmission = transmission;
         return this;
     }
 }
