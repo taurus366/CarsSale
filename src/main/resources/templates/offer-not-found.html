@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/navbar :: head"></th:block>
+    <title>Not Found</title>
+</head>
+<body>
+<header th:replace="fragments/navbar :: header"></header>
+
+
+<main>
+    <div class="offer-not-found-container">
+
+        <section class="offer-not-found-container-section">
+            <article class="offer-not-found-container-section-img-article">
+                <img src="/images/offerNotFound.jpg">
+            </article>
+
+            <article class="offer-not-found-container-section-text-article">
+                <p th:text="${message}">
+                    Cannot find Car Offer with that id 1
+                </p>
+            </article>
+
+        </section>
+
+    </div>
+</main>
+
+<!--    <span th:text="${message}"></span>-->
+<!--    <span th:text="${offerID}"></span>-->
+
+<script th:replace="fragments/navbar :: script-index"></script>
+</body>
+</html>

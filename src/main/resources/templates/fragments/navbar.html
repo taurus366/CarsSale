@@ -36,14 +36,14 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </li>
-                <li sec:authorize="isAuthenticated()">
+                <li sec:authorize="isAuthenticated() && hasRole('USER')">
                     <a class="drop-btn user" href="#"><i class="fas fa-angle-down"></i> User</a>
                     <ul class="dropdown-menu user" style="display: none;">
                         <li><a href="#Profile" class="a-btn">Profile</a></li>
                         <li> <a href="#Settings">Settings</a></li>
                     </ul>
                 </li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/users/offer/add}" class="btn-link index"><i class="fas fa-bullhorn"></i> Create Offer</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/users/offers/add}" class="btn-link index"><i class="fas fa-bullhorn"></i> Create Offer</a></li>
                 <li sec:authorize="isAuthenticated()"><a th:href="@{/users/offers/all}" class="btn-link index"><i class="fas fa-car-alt"></i> All Cars</a></li>
                 <li sec:authorize="!isAuthenticated()"><a th:href="@{/users/register}" class="btn-link index"><i class="fas fa-id-card"></i> Register</a></li>
                 <li sec:authorize="!isAuthenticated()"><a th:href="@{/users/login}" class="btn-link index"><i class="fas fa-sign-in-alt"></i> Login</a></li>

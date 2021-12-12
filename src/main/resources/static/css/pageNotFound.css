@@ -1,0 +1,23 @@
+.page-not-found-container {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    max-width: 50%;
+    margin: 6% auto auto auto;
+    /*border: solid 1px rgba(59, 59, 59, 0.64);*/
+    background-color: rgba(59, 59, 59, 0.64);
+    /*padding-bottom: 2%;*/
+}
+
+.page-not-found-container-article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.page-not-found-container-article a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    border: 2px solid white;
+    margin-bottom: 5px;
+}

@@ -18,7 +18,7 @@ public class UserLoginController {
 
 
     @GetMapping("/login")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("!isAuthenticated()")
     public String login() {
         return "login";
     }

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/navbar :: head"></th:block>
+    <title>Error</title>
+</head>
+<body>
+<main>
+    <div class="page-not-found-container">
+        <article class="page-not-found-container-article">
+            <img src="/images/pageNotFound-removebg-preview.png">
+            <a th:href="@{/}" >Click to Home page</a>
+        </article>
+    </div>
+</main>
+</body>
+</html>

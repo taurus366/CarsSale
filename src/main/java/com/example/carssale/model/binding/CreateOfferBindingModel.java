@@ -1,31 +1,73 @@
-package com.example.carssale.model.entity;
+package com.example.carssale.model.binding;
 
+import com.example.carssale.model.entity.ModelEntity;
+import com.example.carssale.model.entity.OfferDescriptionEntity;
 import com.example.carssale.model.entity.enums.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "offers")
-public class OfferEntity extends BaseEntity {
+public class CreateOfferBindingModel {
 
-    @ManyToOne
-    private UserEntity user;
-
+    @NotNull
     private Integer doorCount;
 
+    @NotNull
     private String emissionClass;
 
+    @NotNull
     private Integer vehicleYear;
 
+    @NotNull
+    @Positive
     private Integer price;
 
+    @NotNull
     private String modification;
 
+    @NotNull
+    @Positive
     private Integer kilometer;
 
+    @NotNull
+    @Positive
     private Integer power;
+
+    @NotNull
+    private VehicleStatusEnum vehicleStatus;
+
+    @NotNull
+    private String statusUsed;
+
+    @NotNull
+    private VehicleCoupeEnum carCoupe;
+
+    @NotNull
+    private ExteriorColorEnum exteriorColor;
+
+    @NotNull
+    private FuelTypeEnum fuelType;
+
+    @NotNull
+    private ModelEntity model;
+
+//    @NotNull
+//    private OfferDescriptionEntity offerDescription;
+
+    @NotNull
+    private PriceTypeEnum priceType;
+
+    @NotNull
+    private TransmisionEnum transmission;
+
+    @NotNull
+    private List<MultipartFile> picture = new ArrayList<>();
+
+    @NotNull
+    private String brand;
 
     private String abs;
     private String esp;
@@ -58,52 +100,23 @@ public class OfferEntity extends BaseEntity {
     private String airCondition;
     private String steeringWheelHeating;
 
-    @Column
-    @Enumerated(EnumType.STRING)
-    private StatusUsedEnum statusUsed;
+    public CreateOfferBindingModel() {
+    }
 
-    @Column()
-    @Enumerated(EnumType.STRING)
-    private VehicleCoupeEnum carCoupe;
+    public String getStatusUsed() {
+        return statusUsed;
+    }
 
-    @Column()
-    @Enumerated(EnumType.STRING)
-    private VehicleStatusEnum vehicleStatus;
-
-    @Column
-    @Enumerated(EnumType.STRING)
-    private ExteriorColorEnum exteriorColor;
-
-    @Column
-    @Enumerated(EnumType.STRING)
-    private FuelTypeEnum fuelType;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    private ModelEntity model;
-
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private List<PictureEntity> pictures = new ArrayList<>();
-
-//    @OneToOne
-//    private OfferDescriptionEntity offerDescription;
-
-    @Column
-    @Enumerated(EnumType.STRING)
-    private PriceTypeEnum priceType;
-
-    @Column
-    @Enumerated(EnumType.STRING)
-    private TransmisionEnum transmission;
-
-
-    public OfferEntity() {
+    public CreateOfferBindingModel setStatusUsed(String statusUsed) {
+        this.statusUsed = statusUsed;
+        return this;
     }
 
     public String getAbs() {
         return abs;
     }
 
-    public OfferEntity setAbs(String abs) {
+    public CreateOfferBindingModel setAbs(String abs) {
         this.abs = abs;
         return this;
     }
@@ -112,7 +125,7 @@ public class OfferEntity extends BaseEntity {
         return esp;
     }
 
-    public OfferEntity setEsp(String esp) {
+    public CreateOfferBindingModel setEsp(String esp) {
         this.esp = esp;
         return this;
     }
@@ -121,7 +134,7 @@ public class OfferEntity extends BaseEntity {
         return cruiseControl;
     }
 
-    public OfferEntity setCruiseControl(String cruiseControl) {
+    public CreateOfferBindingModel setCruiseControl(String cruiseControl) {
         this.cruiseControl = cruiseControl;
         return this;
     }
@@ -130,7 +143,7 @@ public class OfferEntity extends BaseEntity {
         return alarmSystem;
     }
 
-    public OfferEntity setAlarmSystem(String alarmSystem) {
+    public CreateOfferBindingModel setAlarmSystem(String alarmSystem) {
         this.alarmSystem = alarmSystem;
         return this;
     }
@@ -139,7 +152,7 @@ public class OfferEntity extends BaseEntity {
         return bluetooth;
     }
 
-    public OfferEntity setBluetooth(String bluetooth) {
+    public CreateOfferBindingModel setBluetooth(String bluetooth) {
         this.bluetooth = bluetooth;
         return this;
     }
@@ -148,7 +161,7 @@ public class OfferEntity extends BaseEntity {
         return centralLocking;
     }
 
-    public OfferEntity setCentralLocking(String centralLocking) {
+    public CreateOfferBindingModel setCentralLocking(String centralLocking) {
         this.centralLocking = centralLocking;
         return this;
     }
@@ -157,7 +170,7 @@ public class OfferEntity extends BaseEntity {
         return electricitySideMirror;
     }
 
-    public OfferEntity setElectricitySideMirror(String electricitySideMirror) {
+    public CreateOfferBindingModel setElectricitySideMirror(String electricitySideMirror) {
         this.electricitySideMirror = electricitySideMirror;
         return this;
     }
@@ -166,7 +179,7 @@ public class OfferEntity extends BaseEntity {
         return electricityWindows;
     }
 
-    public OfferEntity setElectricityWindows(String electricityWindows) {
+    public CreateOfferBindingModel setElectricityWindows(String electricityWindows) {
         this.electricityWindows = electricityWindows;
         return this;
     }
@@ -175,7 +188,7 @@ public class OfferEntity extends BaseEntity {
         return immobilizer;
     }
 
-    public OfferEntity setImmobilizer(String immobilizer) {
+    public CreateOfferBindingModel setImmobilizer(String immobilizer) {
         this.immobilizer = immobilizer;
         return this;
     }
@@ -184,7 +197,7 @@ public class OfferEntity extends BaseEntity {
         return keylessCentralLock;
     }
 
-    public OfferEntity setKeylessCentralLock(String keylessCentralLock) {
+    public CreateOfferBindingModel setKeylessCentralLock(String keylessCentralLock) {
         this.keylessCentralLock = keylessCentralLock;
         return this;
     }
@@ -193,7 +206,7 @@ public class OfferEntity extends BaseEntity {
         return fogLamp;
     }
 
-    public OfferEntity setFogLamp(String fogLamp) {
+    public CreateOfferBindingModel setFogLamp(String fogLamp) {
         this.fogLamp = fogLamp;
         return this;
     }
@@ -202,7 +215,7 @@ public class OfferEntity extends BaseEntity {
         return rainSensor;
     }
 
-    public OfferEntity setRainSensor(String rainSensor) {
+    public CreateOfferBindingModel setRainSensor(String rainSensor) {
         this.rainSensor = rainSensor;
         return this;
     }
@@ -211,7 +224,7 @@ public class OfferEntity extends BaseEntity {
         return navigationSystem;
     }
 
-    public OfferEntity setNavigationSystem(String navigationSystem) {
+    public CreateOfferBindingModel setNavigationSystem(String navigationSystem) {
         this.navigationSystem = navigationSystem;
         return this;
     }
@@ -220,7 +233,7 @@ public class OfferEntity extends BaseEntity {
         return lightSensor;
     }
 
-    public OfferEntity setLightSensor(String lightSensor) {
+    public CreateOfferBindingModel setLightSensor(String lightSensor) {
         this.lightSensor = lightSensor;
         return this;
     }
@@ -229,7 +242,7 @@ public class OfferEntity extends BaseEntity {
         return ledHeadLights;
     }
 
-    public OfferEntity setLedHeadLights(String ledHeadLights) {
+    public CreateOfferBindingModel setLedHeadLights(String ledHeadLights) {
         this.ledHeadLights = ledHeadLights;
         return this;
     }
@@ -238,7 +251,7 @@ public class OfferEntity extends BaseEntity {
         return panoramicRoof;
     }
 
-    public OfferEntity setPanoramicRoof(String panoramicRoof) {
+    public CreateOfferBindingModel setPanoramicRoof(String panoramicRoof) {
         this.panoramicRoof = panoramicRoof;
         return this;
     }
@@ -247,7 +260,7 @@ public class OfferEntity extends BaseEntity {
         return sunRoof;
     }
 
-    public OfferEntity setSunRoof(String sunRoof) {
+    public CreateOfferBindingModel setSunRoof(String sunRoof) {
         this.sunRoof = sunRoof;
         return this;
     }
@@ -256,7 +269,7 @@ public class OfferEntity extends BaseEntity {
         return speedLimitControlSystem;
     }
 
-    public OfferEntity setSpeedLimitControlSystem(String speedLimitControlSystem) {
+    public CreateOfferBindingModel setSpeedLimitControlSystem(String speedLimitControlSystem) {
         this.speedLimitControlSystem = speedLimitControlSystem;
         return this;
     }
@@ -265,7 +278,7 @@ public class OfferEntity extends BaseEntity {
         return voiceControl;
     }
 
-    public OfferEntity setVoiceControl(String voiceControl) {
+    public CreateOfferBindingModel setVoiceControl(String voiceControl) {
         this.voiceControl = voiceControl;
         return this;
     }
@@ -274,7 +287,7 @@ public class OfferEntity extends BaseEntity {
         return headUpDisplay;
     }
 
-    public OfferEntity setHeadUpDisplay(String headUpDisplay) {
+    public CreateOfferBindingModel setHeadUpDisplay(String headUpDisplay) {
         this.headUpDisplay = headUpDisplay;
         return this;
     }
@@ -283,7 +296,7 @@ public class OfferEntity extends BaseEntity {
         return soundSystem;
     }
 
-    public OfferEntity setSoundSystem(String soundSystem) {
+    public CreateOfferBindingModel setSoundSystem(String soundSystem) {
         this.soundSystem = soundSystem;
         return this;
     }
@@ -292,7 +305,7 @@ public class OfferEntity extends BaseEntity {
         return sportSeats;
     }
 
-    public OfferEntity setSportSeats(String sportSeats) {
+    public CreateOfferBindingModel setSportSeats(String sportSeats) {
         this.sportSeats = sportSeats;
         return this;
     }
@@ -301,7 +314,7 @@ public class OfferEntity extends BaseEntity {
         return startStopSystem;
     }
 
-    public OfferEntity setStartStopSystem(String startStopSystem) {
+    public CreateOfferBindingModel setStartStopSystem(String startStopSystem) {
         this.startStopSystem = startStopSystem;
         return this;
     }
@@ -310,7 +323,7 @@ public class OfferEntity extends BaseEntity {
         return tractionControl;
     }
 
-    public OfferEntity setTractionControl(String tractionControl) {
+    public CreateOfferBindingModel setTractionControl(String tractionControl) {
         this.tractionControl = tractionControl;
         return this;
     }
@@ -319,7 +332,7 @@ public class OfferEntity extends BaseEntity {
         return tunerRadio;
     }
 
-    public OfferEntity setTunerRadio(String tunerRadio) {
+    public CreateOfferBindingModel setTunerRadio(String tunerRadio) {
         this.tunerRadio = tunerRadio;
         return this;
     }
@@ -328,7 +341,7 @@ public class OfferEntity extends BaseEntity {
         return usbPort;
     }
 
-    public OfferEntity setUsbPort(String usbPort) {
+    public CreateOfferBindingModel setUsbPort(String usbPort) {
         this.usbPort = usbPort;
         return this;
     }
@@ -337,7 +350,7 @@ public class OfferEntity extends BaseEntity {
         return airBag;
     }
 
-    public OfferEntity setAirBag(String airBag) {
+    public CreateOfferBindingModel setAirBag(String airBag) {
         this.airBag = airBag;
         return this;
     }
@@ -346,7 +359,7 @@ public class OfferEntity extends BaseEntity {
         return brakeAssist;
     }
 
-    public OfferEntity setBrakeAssist(String brakeAssist) {
+    public CreateOfferBindingModel setBrakeAssist(String brakeAssist) {
         this.brakeAssist = brakeAssist;
         return this;
     }
@@ -355,7 +368,7 @@ public class OfferEntity extends BaseEntity {
         return airCondition;
     }
 
-    public OfferEntity setAirCondition(String airCondition) {
+    public CreateOfferBindingModel setAirCondition(String airCondition) {
         this.airCondition = airCondition;
         return this;
     }
@@ -364,71 +377,26 @@ public class OfferEntity extends BaseEntity {
         return steeringWheelHeating;
     }
 
-    public OfferEntity setSteeringWheelHeating(String steeringWheelHeating) {
+    public CreateOfferBindingModel setSteeringWheelHeating(String steeringWheelHeating) {
         this.steeringWheelHeating = steeringWheelHeating;
         return this;
     }
 
-    public List<PictureEntity> getPictures() {
-        return pictures;
+    public String getBrand() {
+        return brand;
     }
 
-    public OfferEntity setPictures(List<PictureEntity> pictures) {
-        this.pictures = pictures;
+    public CreateOfferBindingModel setBrand(String brand) {
+        this.brand = brand;
         return this;
     }
 
-    public StatusUsedEnum getStatusUsed() {
-        return statusUsed;
+    public List<MultipartFile> getPicture() {
+        return picture;
     }
 
-    public OfferEntity setStatusUsed(StatusUsedEnum statusUsed) {
-        this.statusUsed = statusUsed;
-        return this;
-    }
-
-    public Integer getPower() {
-        return power;
-    }
-
-    public OfferEntity setPower(Integer power) {
-        this.power = power;
-        return this;
-    }
-
-    public Integer getKilometer() {
-        return kilometer;
-    }
-
-    public OfferEntity setKilometer(Integer kilometer) {
-        this.kilometer = kilometer;
-        return this;
-    }
-
-    public String getModification() {
-        return modification;
-    }
-
-    public OfferEntity setModification(String modification) {
-        this.modification = modification;
-        return this;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public OfferEntity setPrice(Integer price) {
-        this.price = price;
-        return this;
-    }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public OfferEntity setUser(UserEntity user) {
-        this.user = user;
+    public CreateOfferBindingModel setPicture(List<MultipartFile> picture) {
+        this.picture = picture;
         return this;
     }
 
@@ -436,7 +404,7 @@ public class OfferEntity extends BaseEntity {
         return doorCount;
     }
 
-    public OfferEntity setDoorCount(Integer doorCount) {
+    public CreateOfferBindingModel setDoorCount(Integer doorCount) {
         this.doorCount = doorCount;
         return this;
     }
@@ -445,7 +413,7 @@ public class OfferEntity extends BaseEntity {
         return emissionClass;
     }
 
-    public OfferEntity setEmissionClass(String emissionClass) {
+    public CreateOfferBindingModel setEmissionClass(String emissionClass) {
         this.emissionClass = emissionClass;
         return this;
     }
@@ -454,17 +422,44 @@ public class OfferEntity extends BaseEntity {
         return vehicleYear;
     }
 
-    public OfferEntity setVehicleYear(Integer vehicleYear) {
+    public CreateOfferBindingModel setVehicleYear(Integer vehicleYear) {
         this.vehicleYear = vehicleYear;
         return this;
     }
 
-    public VehicleCoupeEnum getCarCoupe() {
-        return carCoupe;
+    public Integer getPrice() {
+        return price;
     }
 
-    public OfferEntity setCarCoupe(VehicleCoupeEnum carCoupe) {
-        this.carCoupe = carCoupe;
+    public CreateOfferBindingModel setPrice(Integer price) {
+        this.price = price;
+        return this;
+    }
+
+    public String getModification() {
+        return modification;
+    }
+
+    public CreateOfferBindingModel setModification(String modification) {
+        this.modification = modification;
+        return this;
+    }
+
+    public Integer getKilometer() {
+        return kilometer;
+    }
+
+    public CreateOfferBindingModel setKilometer(Integer kilometer) {
+        this.kilometer = kilometer;
+        return this;
+    }
+
+    public Integer getPower() {
+        return power;
+    }
+
+    public CreateOfferBindingModel setPower(Integer power) {
+        this.power = power;
         return this;
     }
 
@@ -472,8 +467,17 @@ public class OfferEntity extends BaseEntity {
         return vehicleStatus;
     }
 
-    public OfferEntity setVehicleStatus(VehicleStatusEnum vehicleStatus) {
+    public CreateOfferBindingModel setVehicleStatus(VehicleStatusEnum vehicleStatus) {
         this.vehicleStatus = vehicleStatus;
+        return this;
+    }
+
+    public VehicleCoupeEnum getCarCoupe() {
+        return carCoupe;
+    }
+
+    public CreateOfferBindingModel setCarCoupe(VehicleCoupeEnum carCoupe) {
+        this.carCoupe = carCoupe;
         return this;
     }
 
@@ -481,7 +485,7 @@ public class OfferEntity extends BaseEntity {
         return exteriorColor;
     }
 
-    public OfferEntity setExteriorColor(ExteriorColorEnum exteriorColor) {
+    public CreateOfferBindingModel setExteriorColor(ExteriorColorEnum exteriorColor) {
         this.exteriorColor = exteriorColor;
         return this;
     }
@@ -490,7 +494,7 @@ public class OfferEntity extends BaseEntity {
         return fuelType;
     }
 
-    public OfferEntity setFuelType(FuelTypeEnum fuelType) {
+    public CreateOfferBindingModel setFuelType(FuelTypeEnum fuelType) {
         this.fuelType = fuelType;
         return this;
     }
@@ -499,7 +503,7 @@ public class OfferEntity extends BaseEntity {
         return model;
     }
 
-    public OfferEntity setModel(ModelEntity model) {
+    public CreateOfferBindingModel setModel(ModelEntity model) {
         this.model = model;
         return this;
     }
@@ -508,7 +512,7 @@ public class OfferEntity extends BaseEntity {
 //        return offerDescription;
 //    }
 //
-//    public OfferEntity setOfferDescription(OfferDescriptionEntity offerDescription) {
+//    public CreateOfferBindingModel setOfferDescription(OfferDescriptionEntity offerDescription) {
 //        this.offerDescription = offerDescription;
 //        return this;
 //    }
@@ -517,7 +521,7 @@ public class OfferEntity extends BaseEntity {
         return priceType;
     }
 
-    public OfferEntity setPriceType(PriceTypeEnum priceType) {
+    public CreateOfferBindingModel setPriceType(PriceTypeEnum priceType) {
         this.priceType = priceType;
         return this;
     }
@@ -526,7 +530,7 @@ public class OfferEntity extends BaseEntity {
         return transmission;
     }
 
-    public OfferEntity setTransmission(TransmisionEnum transmission) {
+    public CreateOfferBindingModel setTransmission(TransmisionEnum transmission) {
         this.transmission = transmission;
         return this;
     }

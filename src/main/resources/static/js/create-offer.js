@@ -1,14 +1,23 @@
 let localUrl = 'http://localhost:8080';
 let wanUrl = 'http://77.71.76.17:8080';
 
+let image = document.querySelectorAll('#picture')[0];
+
+let coverBtnPicture = document.querySelector('#loadFirstInput');
+
+coverBtnPicture.addEventListener('click', () => {
+   image.click();
+});
+
+
 let vehicleType = document.querySelector('.vehicle-type');
 
-let brandSelect = document.querySelector('#vehicleBrand');
-let modelSelect = document.querySelector('#vehicleModel');
+let brandSelect = document.querySelector('#brand');
+let modelSelect = document.querySelector('#model');
 
 let transmissionSelect = document.querySelector('#transmission');
-let coupeTypeSelect = document.querySelector('#vehicleCoupe');
-let vehicleYearSelect = document.querySelector('#year');
+let coupeTypeSelect = document.querySelector('#carCoupe');
+let vehicleYearSelect = document.querySelector('#vehicleYear');
 let fuelTypeSelect = document.querySelector("#fuelType");
 
 let disableAndEnable = {

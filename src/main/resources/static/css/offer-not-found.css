@@ -1,0 +1,93 @@
+.offer-not-found-container {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    max-width: 50%;
+    margin: 6% auto auto auto;
+    /*border: solid 1px rgba(59, 59, 59, 0.64);*/
+    background-color: rgba(59, 59, 59, 0.64);
+    /*padding-bottom: 2%;*/
+}
+
+.offer-not-found-container-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+/*.offer-not-found-container-section-text-article {*/
+/*   position: relative;*/
+/*    text-align: center;*/
+/*}*/
+
+.offer-not-found-container-section-text-article p {
+   color: red;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+
+
+.offer-not-found-container-section-img-article {
+   width: 100%;
+
+}
+
+.offer-not-found-container-section-img-article img {
+    /*height: 500px;*/
+    width: 100%;
+}
+
+/* MEDIA QUERIES*/
+
+
+
+@media (min-width: 1689px) {
+    .offer-not-found-container-section-text-article p {
+        color: red;
+        font-size: 25px;
+        font-weight: 600;
+    }
+}
+
+@media (min-width: 1459px) and (max-width: 1688px) {
+    .offer-not-found-container-section-text-article p {
+        color: red;
+        font-size: 22px;
+        font-weight: 600;
+    }
+}
+
+@media (min-width: 980px) and (max-width: 1458px) {
+    .offer-not-found-container-section-text-article p {
+        color: red;
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 979px) {
+    .offer-not-found-container-section-text-article p {
+        color: red;
+        font-size: 18px;
+        font-weight: 600;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 699px) {
+    .offer-not-found-container-section-text-article p {
+        color: red;
+        font-size: 15px;
+        font-weight: 600;
+    }
+}
+
+@media (min-width: 360px) and (max-width: 499px) {
+    .offer-not-found-container-section-text-article p {
+        color: red;
+        font-size: 13px;
+        font-weight: 600;
+    }
+}
+

@@ -19,7 +19,7 @@ public class UserEntity extends BaseEntity{
 //    @ManyToOne
 //    private RegionEntity region;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     private CityVillageEntity cityVillage;
 
     @Column(unique = true, nullable = false)

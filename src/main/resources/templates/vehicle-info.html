@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <th:block th:replace="fragments/navbar::head"></th:block>
     <title>Vehicle Info</title>
@@ -9,96 +9,96 @@
 
     <main>
       <div class="vehicle-info-container">
-        <section class="vehicle-info-container-section" >
+        <section class="vehicle-info-container-section" th:object="${offer}" >
           <section class="vehicle-info-information-section" >
             <article>
               <p>Brand:</p>
-              <span class="vehicle-info-information-section-article" th:text="${offer.getBrand()}">test</span>
+              <span class="vehicle-info-information-section-article" th:text="*{getBrand()}">test</span>
             </article>
             <article>
               <p>Model:</p>
-              <span class="vehicle-info-information-section-article" th:text="${offer.getModel()}">test</span>
+              <span class="vehicle-info-information-section-article" th:text="*{getModel()}">test</span>
             </article>
             <article>
               <p>Fuel type:</p>
-              <span class="vehicle-info-information-section-article" th:text="${offer.getFuelType()}">test</span>
+              <span class="vehicle-info-information-section-article" th:text="*{getFuelType()}">test</span>
             </article>
             <article>
               <p>Modification:</p>
-              <span class="vehicle-info-information-section-article" th:text="${offer.getModification()}">test</span>
+              <span class="vehicle-info-information-section-article" th:text="*{getModification()}">test</span>
             </article>
             <article>
               <p>Power:</p>
-              <span class="vehicle-info-information-section-article" th:text="${offer.getPower()}">test</span>
+              <span class="vehicle-info-information-section-article" th:text="*{getPower()}">test</span>
             </article>
             <article>
               <p>Exterior color:</p>
-              <span class="vehicle-info-information-section-article" th:text="${offer.getExteriorColor()}">test</span>
+              <span class="vehicle-info-information-section-article" th:text="*{getExteriorColor()}">test</span>
             </article>
             <article>
               <p>Emission class:</p>
-              <span class="vehicle-info-information-section-article" th:text="${offer.getEmissionClass()}">test</span>
+              <span class="vehicle-info-information-section-article" th:text="*{getEmissionClass()}">test</span>
             </article>
             <article>
               <p>Status:</p>
-              <span class="vehicle-info-information-section-article" th:text="${offer.getVehicleStatus()}">test</span>
+              <span class="vehicle-info-information-section-article" th:text="*{getVehicleStatus()}">test</span>
             </article>
             <article>
               <p>Transmission:</p>
-              <span class="vehicle-info-information-section-article" th:text="${offer.getTransmission()}">test</span>
+              <span class="vehicle-info-information-section-article" th:text="*{getTransmission()}">test</span>
             </article>
             <article>
               <p>Coupe:</p>
-              <span class="vehicle-info-information-section-article" th:text="${offer.getCarCoupe()}">test</span>
+              <span class="vehicle-info-information-section-article" th:text="*{getCarCoupe()}">test</span>
             </article>
             <article>
               <p>Door count:</p>
-              <span class="vehicle-info-information-section-article" th:text="${offer.getDoorCount()}">test</span>
+              <span class="vehicle-info-information-section-article" th:text="*{getDoorCount()}">test</span>
             </article>
             <article>
               <p>Year:</p>
-              <span class="vehicle-info-information-section-article" th:text="${offer.getVehicleYear()}">test</span>
+              <span class="vehicle-info-information-section-article" th:text="*{getVehicleYear()}">test</span>
             </article>
             <article>
               <p>Mileage:</p>
-              <span class="vehicle-info-information-section-article" th:text="${offer.getKilometer()}">test</span>
+              <span class="vehicle-info-information-section-article" th:text="*{getKilometer()}">test</span>
             </article>
             <article>
               <p>Price:</p>
-              <span class="vehicle-info-information-section-article" th:text="${offer.getPrice() + ' ' + offer.getPriceType()}">test</span>
+              <span class="vehicle-info-information-section-article" th:text="*{getPrice() + ' ' + getPriceType()}">test</span>
             </article>
           </section>
 
           <article class="vehicle-img">
-            <img src="https://media.istockphoto.com/photos/illustration-of-generic-compact-car-perspective-view-picture-id1148853697?k=20&m=1148853697&s=612x612&w=0&h=x_IL5R5PF48fTZhuD-1gMHDqstoxyrUfRMH-Oet-7Mk=" alt="img" />
+            <img th:src="*{getPictures().get(0).getUrl()}" class="img-main" alt="img" />
 
             <section class="change-pictures-btn">
-              <article>
-                <a class="change-pictures-btn-a active" href="#">Picture1</a>
+              <article th:each="picture : *{getPictures()}">
+                <a class="change-pictures-btn-a" th:href="${picture.getUrl()}">Picture</a>
               </article>
-              <article>
-                <a class="change-pictures-btn-a" href="#">Picture2</a>
-              </article>
-              <article>
-                <a class="change-pictures-btn-a" href="#">Picture3</a>
-              </article>
-              <article>
-                <a class="change-pictures-btn-a" href="#">Picture4</a>
-              </article>
+<!--              <article>-->
+<!--                <a class="change-pictures-btn-a" th:href="${picture.getUrl()}">Picture2</a>-->
+<!--              </article>-->
+<!--              <article>-->
+<!--                <a class="change-pictures-btn-a" th:href="${picture.getUrl()}">Picture3</a>-->
+<!--              </article>-->
+<!--              <article>-->
+<!--                <a class="change-pictures-btn-a" th:href="${picture.getUrl()}">Picture4</a>-->
+<!--              </article>-->
             </section>
 
             <!-- SHOW IT , IF THE ADMIN IS LOGGED IN! -->
-            <section class="vehicle-info-admin">
-              <a href="#" class="admin-delete-btn">Delete</a>
+            <section class="vehicle-info-admin" th:if="${isAdmin}">
+              <a th:href="@{/admin/delete/{id}(id= *{getId()})}" class="admin-delete-btn">Delete</a>
             </section>
             <!-- SHOW IT , IF THE ADMIN IS LOGGED IN! -->
 
-            <section class="user-self-ad">
+            <section class="user-self-ad" th:if="${isOwnerTheOffer}">
               <article class="user-self-ad-edit">
-                <a href="#" class="user-btn edit">Edit</a>
+                <a th:href="@{/users/offers/edit/{id}(id= *{getId()})}" class="user-btn edit">Edit</a>
               </article>
               <article class="user-self-ad-delete">
-                <a href="#" class="user-btn delete">Delete</a>
+                <a th:href="@{/users/offers/delete/{id}(id= *{getId()})}" class="user-btn delete">Delete</a>
               </article>
             </section>
 

@@ -14,9 +14,19 @@ public class RegionEntity {
 
     private String regionName;
 
-
+    @OneToMany(mappedBy = "region",cascade = CascadeType.ALL)
+    private List<CityVillageEntity> cityVillages;
 
     public RegionEntity() {
+    }
+
+    public List<CityVillageEntity> getCityVillages() {
+        return cityVillages;
+    }
+
+    public RegionEntity setCityVillages(List<CityVillageEntity> cityVillages) {
+        this.cityVillages = cityVillages;
+        return this;
     }
 
     public Long getId() {

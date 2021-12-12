@@ -25,6 +25,8 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'com.cloudinary:cloudinary:1.0.14'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 }
 
 test {

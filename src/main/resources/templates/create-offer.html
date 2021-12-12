@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/navbar::head">
 
@@ -11,7 +11,7 @@
     <main>
         <div class="create-offer-container">
 
-            <form action="#" method="post" 
+            <form th:action="@{/users/offers/add}"
             th:method="post"
             enctype="multipart/form-data">
 
@@ -48,9 +48,9 @@
                     <section class="create-offer-form-section-row-column">
 
                         <article class="create-offer-form-section-article column">
-                            <label for="vehicleBrand">Brand</label>
+                            <label for="brand">Brand</label>
                             <br>
-                            <select name="vehicleBrand" id="vehicleBrand" disabled>
+                            <select name="brand" id="brand" disabled>
                                 <option value="choose">Choose Brand</option>
                                 <option value="">BMW</option>
                                 <option value="">Mercedes-Benz</option>
@@ -58,10 +58,10 @@
                         </article>
 
                         <article class="create-offer-form-section-article column">
-                            <label for="vehicleModel">Model</label>
+                            <label for="model">Model</label>
                             <br>
                             <!-- HERE YOU CAN USE REST API WITH JS -->
-                            <select name="vehicleModel" id="vehicleModel" disabled>
+                            <select name="model" id="model" disabled>
                                 <option value="choose">Choose Model</option>
                             </select>
                         </article>
@@ -73,10 +73,7 @@
                             <label for="vehicleStatus">Status</label>
                             <br>
                             <select class="vehicle-Status" name="vehicleStatus" id="vehicleStatus">
-                                <option value="chooseStatusCar">---</option>
-                                <option value="goodCondition">In good condition</option>
-                                <option value="damagedHit">Damaged / Hit</option>
-                                <option value="forParts">Whole car for parts</option>
+                                <option th:each="status : ${T(com.example.carssale.model.entity.enums.VehicleStatusEnum).values()}" th:value="${status}" th:text="${status}">---</option>
                             </select>
                         </article>
 
@@ -101,13 +98,13 @@
                             <br>
                             <select name="fuelType" id="fuelType" disabled>
                                 <option value="">---</option>
-                                <option value="">BENZIN</option>
-                                <option value="">DIESEL</option>
-                                <option value="">GAS/BENZIN</option>
-                                <option value="">GAS</option>
-                                <option value="">METAN/BENZIN</option>
-                                <option value="">METAN</option>
-                                <option value="">HYBRID</option>
+<!--                                <option value="">BENZIN</option>-->
+<!--                                <option value="">DIESEL</option>-->
+<!--                                <option value="">GAS/BENZIN</option>-->
+<!--                                <option value="">GAS</option>-->
+<!--                                <option value="">METAN/BENZIN</option>-->
+<!--                                <option value="">METAN</option>-->
+<!--                                <option value="">HYBRID</option>-->
                             </select>
                         </article>
 
@@ -121,9 +118,9 @@
                     <section class="create-offer-form-section-row-column">
 
                         <article class="create-offer-form-section-article column">
-                            <label for="vehicleCoupe">Coupe</label>
+                            <label for="carCoupe">Coupe</label>
                             <br>
-                            <select name="vehicleCoupe" id="vehicleCoupe" disabled>
+                            <select name="carCoupe" id="carCoupe" disabled>
                                 <option value="">---</option>
                                 <!--                            <option value="">SEDAN</option>-->
                                 <!--                            <option value="">HATCHBACK</option>-->
@@ -131,15 +128,15 @@
                         </article>
 
                         <article class="create-offer-form-section-article column">
-                            <label for="numberOfDoors">Door Count</label>
+                            <label for="doorCount">Door Count</label>
                             <br>
-                            <select name="numberOfDoors" id="numberOfDoors">
-                                <option value="">---</option>
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                                <option value="">4</option>
-                                <option value="">5</option>
+                            <select name="doorCount" id="doorCount">
+<!--                                <option value="">-&#45;&#45;</option>-->
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
                             </select>
                         </article>
                     </section>
@@ -164,8 +161,8 @@
                             <label for="statusUsed">Used or New</label>
                             <br>
                             <select name="statusUsed" id="statusUsed">
-                                <option value="used">Used</option>
-                                <option value="new">New</option>
+                                <option th:each="status : ${T(com.example.carssale.model.entity.enums.StatusUsedEnum).values()}" th:value="${status}" th:text="${status}">Used</option>
+<!--                                <option value="new">New</option>-->
                             </select>
                         </article>
 
@@ -174,18 +171,18 @@
 
                     <section class="create-offer-form-section-row-column">
                         <article class="create-offer-form-section-article column">
-                            <label for="year">Year</label>
+                            <label for="vehicleYear">Year</label>
                             <br>
                             <!-- HERE HAVE TO USE YEAR SELECTION -->
-                            <select name="year" id="year" disabled>
+                            <select name="vehicleYear" id="vehicleYear" disabled>
                                 <option value="">---</option>
                                 <!--                            <option value="">1994</option>-->
                             </select>
                         </article>
                         <article class="create-offer-form-section-article column">
-                            <label for="mileage">Mileage</label>
+                            <label for="kilometer">Kilometer</label>
                             <br>
-                            <input type="number" id="mileage" name="mileage" size="10">
+                            <input type="number" id="kilometer" name="kilometer" size="10">
                         </article>
                     </section>
 
@@ -198,23 +195,23 @@
                             <label for="exteriorColor">Exterior color</label>
                             <br>
                             <select name="exteriorColor" id="exteriorColor">
-                                <option value="">---</option>
-                                <option value="">BLUE</option>
-                                <option value="">RED</option>
-                                <option value="">BLACK</option>
+                                <option th:each="color : ${T(com.example.carssale.model.entity.enums.ExteriorColorEnum).values()}" th:value="${color}" th:text="${color}">---</option>
+<!--                                <option value="">BLUE</option>-->
+<!--                                <option value="">RED</option>-->
+<!--                                <option value="">BLACK</option>-->
                             </select>
                         </article>
                         <article class="create-offer-form-section-article column">
                             <label for="emissionClass">Emission Class</label>
                             <br>
                             <select name="emissionClass" id="emissionClass">
-                                <option value="">---</option>
-                                <option value="">EURO1</option>
-                                <option value="">EURO2</option>
-                                <option value="">EURO3</option>
-                                <option value="">EURO4</option>
-                                <option value="">EURO5</option>
-                                <option value="">EURO6</option>
+<!--                                <option value="choose">-&#45;&#45;</option>-->
+                                <option value="EURO1">EURO1</option>
+                                <option value="EURO2">EURO2</option>
+                                <option value="EURO3">EURO3</option>
+                                <option value="EURO4">EURO4</option>
+                                <option value="EURO5">EURO5</option>
+                                <option value="EURO6">EURO6</option>
                             </select>
                         </article>
                     </section>
@@ -225,19 +222,21 @@
                         <input type="number" id="price" name="price">
                         <select name="priceType" id="priceType">
                             <!-- <option value="">Choose Price Type</option> -->
-                            <option value="">BGN</option>
-                            <option value="">EUR</option>
-                            <option value="">USD</option>
+                            <option th:each="priceType : ${T(com.example.carssale.model.entity.enums.PriceTypeEnum).values()}" th:text="${priceType}" th:value="${priceType}">BGN</option>
+<!--                            <option value="">EUR</option>-->
+<!--                            <option value="">USD</option>-->
                         </select>
                     </article>
                 </section>
 
                 <section class="create-offer-form-section-article row">
                     <article class="create-offer-form-section-article column">
-                        <label for="">Upload picture</label>
+                        <label for="picture">Upload picture</label>
                         <br>
-                        <input name="picture" type="file">
-                        <input name="picture" type="file">
+                        <input type="button" id="loadFirstInput" value="Cover picture"/>
+                        <input name="picture" id="picture" type="file" style="display: none">
+
+                        <input name="picture"  type="file">
                         <br>
                         <input name="picture" type="file">
                         <input name="picture" type="file">
@@ -259,12 +258,12 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="abs">ABS</label>
-                                    <input type="checkbox" name="abs" id="abs" value="">
+                                    <input type="checkbox" name="abs" id="abs" value="abs">
                                 </article>
 
                                 <article class="dropdown-extras-li">
                                     <label for="esp">ESP</label>
-                                    <input type="checkbox" name="esp" id="esp" value="">
+                                    <input type="checkbox" name="esp" id="esp" value="esp">
                                 </article>
                             </li>
 
@@ -276,11 +275,11 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="cruiseControl">Cruise Control</label>
-                                    <input type="checkbox" name="cruiseControl" id="cruiseControl" value="">
+                                    <input type="checkbox" name="cruiseControl" id="cruiseControl" value="cruiseControl">
                                 </article>
                                 <article class="dropdown-extras-li">
                                     <label for="alarmSystem">Alarm system</label>
-                                    <input type="checkbox" name="alarmSystem" id="alarmSystem" value="">
+                                    <input type="checkbox" name="alarmSystem" id="alarmSystem" value="alarmSystem">
                                 </article>
                             </li>
 
@@ -292,11 +291,11 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="bluetooth">Bluetooth</label>
-                                    <input type="checkbox" name="bluetooth" id="bluetooth" value="">
+                                    <input type="checkbox" name="bluetooth" id="bluetooth" value="bluetooth">
                                 </article>
                                 <article class="dropdown-extras-li">
                                     <label for="centralLocking">Central Locking</label>
-                                    <input type="checkbox" name="centralLocking" id="centralLocking" value="">
+                                    <input type="checkbox" name="centralLocking" id="centralLocking" value="centralLocking">
                                 </article>
                             </li>
 
@@ -308,11 +307,11 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="electricitySideMirror">Electricity Side Mirror</label>
-                                    <input type="checkbox" name="electricitySideMirror" id="electricitySideMirror" value="">
+                                    <input type="checkbox" name="electricitySideMirror" id="electricitySideMirror" value="electricitySideMirror">
                                 </article>
                                 <article class="dropdown-extras-li">
                                     <label for="electricityWindows">Electricity Windows</label>
-                                    <input type="checkbox" name="electricityWindows" id="electricityWindows" value="">
+                                    <input type="checkbox" name="electricityWindows" id="electricityWindows" value="electricityWindows">
                                 </article>
                             </li>
 
@@ -324,11 +323,11 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="immobilizer">Immobilizer</label>
-                                    <input type="checkbox" name="immobilizer" id="immobilizer" value="">
+                                    <input type="checkbox" name="immobilizer" id="immobilizer" value="immobilizer">
                                 </article>
                                 <article class="dropdown-extras-li">
                                     <label for="keylessCentralLock">Keyless Central Lock</label>
-                                    <input type="checkbox" name="keylessCentralLock" id="keylessCentralLock" value="">
+                                    <input type="checkbox" name="keylessCentralLock" id="keylessCentralLock" value="keylessCentralLock">
                                 </article>
                             </li>
 
@@ -340,11 +339,11 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="fogLamp">Fog Lamp</label>
-                                    <input type="checkbox" name="fogLamp" id="fogLamp" value="">
+                                    <input type="checkbox" name="fogLamp" id="fogLamp" value="fogLamp">
                                 </article>
                                 <article class="dropdown-extras-li">
                                     <label for="rainSensor">Rain sensor</label>
-                                    <input type="checkbox" name="rainSensor" id="rainSensor" value="">
+                                    <input type="checkbox" name="rainSensor" id="rainSensor" value="rainSensor">
                                 </article>
                             </li>
 
@@ -356,11 +355,11 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="navigationSystem">Navigation system</label>
-                                    <input type="checkbox" name="navigationSystem" id="navigationSystem" value="">
+                                    <input type="checkbox" name="navigationSystem" id="navigationSystem" value="navigationSystem">
                                 </article>
                                 <article class="dropdown-extras-li">
                                     <label for="lightSensor">Light sensor</label>
-                                    <input type="checkbox" name="lightSensor" id="lightSensor" value="">
+                                    <input type="checkbox" name="lightSensor" id="lightSensor" value="lightSensor">
                                 </article>
                             </li>
 
@@ -372,11 +371,11 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="ledHeadLights">LED headlights</label>
-                                    <input type="checkbox" name="ledHeadLights" id="ledHeadLights" value="">
+                                    <input type="checkbox" name="ledHeadLights" id="ledHeadLights" value="ledHeadLights">
                                 </article>
                                 <article class="dropdown-extras-li">
                                     <label for="panoramicRoof">Panoramic roof</label>
-                                    <input type="checkbox" name="panoramicRoof" id="panoramicRoof" value="">
+                                    <input type="checkbox" name="panoramicRoof" id="panoramicRoof" value="panoramicRoof">
                                 </article>
                             </li>
 
@@ -388,12 +387,12 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="sunRoof">Sun roof</label>
-                                    <input type="checkbox" name="sunRoof" id="sunRoof" value="">
+                                    <input type="checkbox" name="sunRoof" id="sunRoof" value="sunRoof">
                                 </article>
 
                                 <article class="dropdown-extras-li">
                                     <label for="speedLimitControlSystem">Speed Limit Control system</label>
-                                    <input type="checkbox" name="speedLimitControlSystem" id="speedLimitControlSystem" value="">
+                                    <input type="checkbox" name="speedLimitControlSystem" id="speedLimitControlSystem" value="speedLimitControlSystem">
                                 </article>
                             </li>
 
@@ -405,12 +404,12 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="voiceControl">Voice control</label>
-                                    <input type="checkbox" name="voiceControl" id="voiceControl" value="">
+                                    <input type="checkbox" name="voiceControl" id="voiceControl" value="voiceControl">
                                 </article>
 
                                 <article class="dropdown-extras-li">
                                     <label for="headUpDisplay">Head-up display</label>
-                                    <input type="checkbox" name="headUpDisplay" id="headUpDisplay" value="">
+                                    <input type="checkbox" name="headUpDisplay" id="headUpDisplay" value="headUpDisplay">
                                 </article>
                             </li>
 
@@ -422,12 +421,12 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="soundSystem">Sound system</label>
-                                    <input type="checkbox" name="soundSystem" id="soundSystem" value="">
+                                    <input type="checkbox" name="soundSystem" id="soundSystem" value="soundSystem">
                                 </article>
 
                                 <article class="dropdown-extras-li">
                                     <label for="sportSeats">Sport seats</label>
-                                    <input type="checkbox" name="sportSeats" id="sportSeats" value="">
+                                    <input type="checkbox" name="sportSeats" id="sportSeats" value="sportSeats">
                                 </article>
                             </li>
 
@@ -439,12 +438,12 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="startStopSystem">Start-stop system</label>
-                                    <input type="checkbox" name="startStopSystem" id="startStopSystem" value="">
+                                    <input type="checkbox" name="startStopSystem" id="startStopSystem" value="startStopSystem">
                                 </article>
 
                                 <article class="dropdown-extras-li">
                                     <label for="tractionControl">Traction control</label>
-                                    <input type="checkbox" name="tractionControl" id="tractionControl" value="">
+                                    <input type="checkbox" name="tractionControl" id="tractionControl" value="tractionControl">
                                 </article>
                             </li>
 
@@ -456,12 +455,12 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="tunerRadio">Tuner/radio</label>
-                                    <input type="checkbox" name="tunerRadio" id="tunerRadio" value="">
+                                    <input type="checkbox" name="tunerRadio" id="tunerRadio" value="tunerRadio">
                                 </article>
 
                                 <article class="dropdown-extras-li">
                                     <label for="usbPort">USB port</label>
-                                    <input type="checkbox" name="usbPort" id="usbPort" value="">
+                                    <input type="checkbox" name="usbPort" id="usbPort" value="usbPort">
                                 </article>
                             </li>
 
@@ -473,12 +472,12 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="airBag">Air bag</label>
-                                    <input type="checkbox" name="airBag" id="airBag" value="">
+                                    <input type="checkbox" name="airBag" id="airBag" value="airBag">
                                 </article>
 
                                 <article class="dropdown-extras-li">
                                     <label for="brakeAssist">Brake assist</label>
-                                    <input type="checkbox" name="brakeAssist" id="brakeAssist" value="">
+                                    <input type="checkbox" name="brakeAssist" id="brakeAssist" value="brakeAssist">
                                 </article>
                             </li>
 
@@ -490,12 +489,12 @@
                             <li>
                                 <article class="dropdown-extras-li">
                                     <label for="airCondition">Air condition</label>
-                                    <input type="checkbox" name="airCondition" id="airCondition" value="">
+                                    <input type="checkbox" name="airCondition" id="airCondition" value="airCondition">
                                 </article>
 
                                 <article class="dropdown-extras-li">
                                     <label for="steeringWheelHeating">Steering wheel heating</label>
-                                    <input type="checkbox" name="steeringWheelHeating" id="steeringWheelHeating" value="">
+                                    <input type="checkbox" name="steeringWheelHeating" id="steeringWheelHeating" value="steeringWheelHeating">
                                 </article>
                             </li>
 

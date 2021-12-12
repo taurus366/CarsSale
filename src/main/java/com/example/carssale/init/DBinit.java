@@ -26,9 +26,11 @@ public class DBinit implements CommandLineRunner {
     private final BrandRepository brandRepository;
     private final VehicleYearRepository vehicleYearRepository;
     private final OfferRepository offerRepository;
+    private final CityVillageRepository cityVillageRepository;
+    private final RegionRepository regionRepository;
 
 
-    public DBinit(RoleRepository roleRepository, VehicleCoupeRepository vehicleCoupeRepository, TransmissionRepository transmissionRepository, VehicleCategoryRepository vehicleCategoryRepository, FuelTypeRepository fuelTypeRepository, UserRepository userRepository, PasswordEncoder passwordEncoder, ModelRepository modelRepository, BrandRepository brandRepository, VehicleYearRepository vehicleYearRepository, OfferRepository offerRepository) {
+    public DBinit(RoleRepository roleRepository, VehicleCoupeRepository vehicleCoupeRepository, TransmissionRepository transmissionRepository, VehicleCategoryRepository vehicleCategoryRepository, FuelTypeRepository fuelTypeRepository, UserRepository userRepository, PasswordEncoder passwordEncoder, ModelRepository modelRepository, BrandRepository brandRepository, VehicleYearRepository vehicleYearRepository, OfferRepository offerRepository, CityVillageRepository cityVillageRepository, RegionRepository regionRepository) {
         this.roleRepository = roleRepository;
         this.vehicleCoupeRepository = vehicleCoupeRepository;
         this.transmissionRepository = transmissionRepository;
@@ -40,6 +42,8 @@ public class DBinit implements CommandLineRunner {
         this.brandRepository = brandRepository;
         this.vehicleYearRepository = vehicleYearRepository;
         this.offerRepository = offerRepository;
+        this.cityVillageRepository = cityVillageRepository;
+        this.regionRepository = regionRepository;
     }
 
     @Override
@@ -150,10 +154,17 @@ public class DBinit implements CommandLineRunner {
 
 
         if (byEmail.isEmpty()) {
+            CityVillageEntity cityVillageEntity = cityVillageRepository.getAllCityVillageByRegionId(1L).get(0);
+
+            System.out.println(cityVillageEntity.getCityVillageName());
+
             RoleEntity admin = roleRepository.findByRole(RoleEnum.ADMINISTRATOR);
             admin.setRole(RoleEnum.ADMINISTRATOR);
 
             UserEntity user = new UserEntity();
+            user
+                   .setCityVillage(cityVillageEntity);
+
             user
                     .setFirstName("admin")
                     .setLastName("admin")

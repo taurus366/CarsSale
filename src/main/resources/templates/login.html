@@ -58,7 +58,11 @@
                     <br>
                     <input type="password"  id="password" name="password">
                 </article>
-
+                <th:block th:if="${invalid_login}">
+                    <p class="invalid-feedback invalid-text-registration">
+                    Email or Password are not valid!
+                    </p>
+                </th:block>
 
             </section>
             <input type="submit" class="submit-btn btn" value="Login">

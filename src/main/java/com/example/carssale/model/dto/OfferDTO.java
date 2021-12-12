@@ -1,9 +1,12 @@
 package com.example.carssale.model.dto;
 
+import com.example.carssale.model.entity.PictureEntity;
 import com.example.carssale.model.entity.enums.ExteriorColorEnum;
 import com.example.carssale.model.entity.enums.FuelTypeEnum;
 import com.example.carssale.model.entity.enums.VehicleCoupeEnum;
 import com.example.carssale.model.entity.enums.VehicleStatusEnum;
+
+import java.util.List;
 
 public class OfferDTO {
 
@@ -24,9 +27,19 @@ public class OfferDTO {
     private Integer kilometer;
     private String from;
     private Integer power;
+    private List<PictureEntity> pictures;
 //    image URL TODO
 
     public OfferDTO() {
+    }
+
+    public List<PictureEntity> getPictures() {
+        return pictures;
+    }
+
+    public OfferDTO setPictures(List<PictureEntity> pictures) {
+        this.pictures = pictures;
+        return this;
     }
 
     public Integer getPower() {

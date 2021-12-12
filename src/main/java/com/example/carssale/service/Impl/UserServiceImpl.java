@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -72,5 +73,38 @@ public class UserServiceImpl implements UserService {
         SecurityContextHolder
                 .getContext()
                 .setAuthentication(authentication);
+    }
+
+    @Override
+    public boolean isEmailExists(String email) {
+       try {
+           userRepository.findByEmail(email).orElseThrow();
+       }catch (Exception e){
+           return false;
+       }
+        return true;
+    }
+
+    @Override
+    public boolean isAdmin(String email) {
+
+        return userRepository
+                .findByEmail(email).orElseThrow()
+                .getRole()
+                .stream()
+                .map(RoleEntity::getRole)
+                .anyMatch(role -> role.equals(RoleEnum.ADMINISTRATOR));
+
+//        AtomicBoolean isAdmin = new AtomicBoolean(false);
+//
+//         userRepository.findByEmail(email)
+//                 .orElseThrow()
+//                 .getRole()
+//                 .forEach(roleEntity -> {
+//                     if (roleEntity.getRole().name().equals("ADMINISTRATOR")) {
+//                         isAdmin.set(true);
+//                     }
+//                 });
+//        return isAdmin.get();
     }
 }

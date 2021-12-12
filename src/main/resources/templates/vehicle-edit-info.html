@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+   <th:block th:replace="fragments/navbar::head"></th:block>
+    <title>Vehicle Edit</title>
+  </head>
+  <body>
+   <header th:replace="fragments/navbar::header"></header>
+
+    <main>
+      <div class="vehicle-edit-container">
+        <section class="vehicle-edit-container-section" th:object="${offer}">
+          <form class="edit-form" action="#" method="post">
+
+
+          <section class="text">
+<!--            <section class="brand-section edit">-->
+<!--                <label for="">Brand</label>-->
+<!--                <br>-->
+<!--                <select name="vehicleBrand" id="vehicleBrand">-->
+<!--                    <option th:each="brand :  *{getBrand()}" th:text="*{getBrand().toUpperCase()}" th:value="*{getBrand().toUpperCase()}" th:selected="${offer.getBrand().toUpperCase()} == *{getBrand().toUpperCase()}" ></option>-->
+
+<!--                </select>-->
+<!--            </section>-->
+<!--            <section class="model-section edit">-->
+<!--                <label for="">Model</label>-->
+<!--                <br>-->
+<!--                <select name="vehicleModel" id="vehicleModel">-->
+<!--                    <option value="">-&#45;&#45;</option>-->
+<!--                    <option value="">TOYOTA -> *Yaris*</option>-->
+<!--                </select>-->
+<!--            </section>-->
+
+            <section class="modification-section edit">
+              <label for="">Modification</label>
+              <br>
+              <input type="text" name="modification" id="modification" th:placeholder="*{getModification()}">
+            </section>
+
+<!--            <section class="fuelType-section edit">-->
+<!--                <label for="fuelType">Fuel type</label>-->
+<!--                <br>-->
+<!--                <select name="fuelType" id="fuelType">-->
+<!--                    <option value="" th:each="fuelT *{}">-&#45;&#45;</option>-->
+<!--                   -->
+<!--                </select>-->
+<!--            </section>-->
+
+            <section class="power-section edit">
+                <label for="">Power[hp]</label>
+                <br>
+                <input type="number" name="power" id="power" th:placeholder="*{getPower()}">
+            </section>
+<!--            <section class="transsmission-section edit">-->
+<!--                <label for="">Transsmission</label>-->
+<!--                <br>-->
+<!--                <select name="transmission" id="transmission">-->
+<!--                    <option value="">-&#45;&#45;</option>-->
+<!--                    <option value="">AUTOMATIC</option>-->
+<!--                    <option value="">MANUAL</option>-->
+<!--                </select>-->
+<!--            </section>-->
+            <section class="mileage-section edit">
+                <label for="">Kilometer</label>
+                <br>
+                <input type="number" id="kilometer" name="kilometer" th:placeholder="*{getKilometer()}" size="10">
+            </section>
+            <section class="price-section edit">
+                <label for="">Price</label>
+                <br>
+                <input type="number" id="price" name="price" th:placeholder="*{getPrice()}">
+                <select name="priceType" id="priceType">
+                <!-- <option value="">Choose Price Type</option> -->
+                <option  th:each="value : ${T(com.example.carssale.model.entity.enums.PriceTypeEnum).values()}" th:text="${value}" th:value="${value}" th:selected="${value} == *{getPriceType()}">BGN</option>
+
+            </select>
+            </section>
+
+            
+            <section class="status-section edit">
+                <label for="">Status</label>
+                <br>
+                <select class="vehicle-Status" name="vehicleStatus" id="vehicleStatus">
+                    <option th:each="status : ${T(com.example.carssale.model.entity.enums.VehicleStatusEnum).values()}" th:selected="${status} == *{getVehicleStatus()}" th:text="${status}" th:value="${status}">---</option>
+                </select>
+            </section>
+<!--            <section class="year-section edit">-->
+<!--                <label for="">Year</label>-->
+<!--                <br>-->
+<!--                <select name="year" id="year">-->
+<!--                    <option value="">-&#45;&#45;</option>-->
+<!--                    <option value="">1994</option>-->
+<!--                </select>-->
+<!--            </section>-->
+<!--            <section class="doorCount-section edit">-->
+<!--                <label for="numberOfDoors">Door count</label>-->
+<!--                <br>-->
+<!--                <select name="numberOfDoors" id="numberOfDoors">-->
+<!--                    <option value="">-&#45;&#45;</option>-->
+<!--                    <option value="">1</option>-->
+<!--                    <option value="">2</option>-->
+<!--                    <option value="">3</option>-->
+<!--                    <option value="">4</option>-->
+<!--                    <option value="">5</option>-->
+<!--                </select>-->
+<!--            </section>-->
+            <section class="exteriorColor-section edit">
+                <label for="">Exterior color</label>
+                <br>
+                <select name="exteriorColor" id="exteriorColor">
+                    <option th:each="color : ${T(com.example.carssale.model.entity.enums.ExteriorColorEnum).values()}" th:value="${color}" th:text="${color}" th:selected="${color} == *{getExteriorColor()}">---</option>
+                </select>
+            </section>
+<!--            <section class="emissionClass-section edit">-->
+<!--                <label for="">Emission class</label>-->
+<!--                <br>-->
+<!--                <select name="numberOfDoors" id="numberOfDoors">-->
+<!--                    <option value="">-&#45;&#45;</option>-->
+<!--                    <option value="">1</option>-->
+<!--                    <option value="">2</option>-->
+<!--                    <option value="">3</option>-->
+<!--                    <option value="">4</option>-->
+<!--                    <option value="">5</option>-->
+<!--                </select>-->
+<!--            </section>-->
+            <section class="button-confirm-section">
+                <input class="button-confirm-section-input btn" type="submit" value="Save changes">
+            </section>
+          </section>
+
+         
+
+            <section class="edit-form-image buttons">
+                <img th:src="*{getPictures().get(0).getUrl()}" alt="img" srcset="">
+
+                <section class="img-btns change-pictures-btn">
+                   
+                        <article th:each="picture : *{getPictures()}">
+                          <a class="change-pictures-btn-a active"  th:href="${picture.getUrl()}">Picture</a>
+                          <a th:href="@{/users/picture/delete/{id}/{publicID}(publicID = ${picture.getPublicId()} , id = *{getId()})}" class="delete-picture-btn-a">delete</a>
+                        </article>
+<!--                        <article>-->
+<!--                          <a class="change-pictures-btn-a" href="#">Picture2</a>-->
+<!--                          <a href="#2" class="delete-picture-btn-a">delete</a>-->
+<!--                        </article>-->
+<!--                        <article>-->
+<!--                          <a class="change-pictures-btn-a" href="#">Picture3</a>-->
+<!--                          <a href="#2" class="delete-picture-btn-a">delete</a>-->
+<!--                        </article>-->
+<!--                        <article>-->
+<!--                          <a class="change-pictures-btn-a" href="#">Picture4</a>-->
+<!--                          <a href="#2" class="delete-picture-btn-a">delete</a>-->
+<!--                        </article>-->
+                        
+                </section>
+
+               <section class="upload-picture">
+                <h1>Upload picture</h1>
+                <form
+                th:method="post"
+                th:action="@{users/picture/add/{id}(id= *{getId()})}"
+                enctype="multipart/form-data">
+                    <input name="picture" type="file"><br>
+                    <input type="submit" value="Upload">
+                </form>
+               </section>
+            </section>
+
+           
+          </form>
+
+
+        </section>
+      </div>
+    </main>
+
+    <script th:replace="fragments/navbar::script-index"></script>
+    <script src="/js/vehicle-info.js"></script>
+  </body>
+</html>

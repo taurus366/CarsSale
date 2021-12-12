@@ -40,12 +40,14 @@ public class UserRegistrationController {
     public String registerNewUser(@Valid UserRegistrationBindingModel userModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         boolean isSame = !userModel.getPassword().equals(userModel.getConfirmPassword());
+        boolean isEmailExists = userService.isEmailExists(userModel.getEmail());
 
-        if (bindingResult.hasErrors() || !userModel.getPassword().equals(userModel.getConfirmPassword())) {
+        if (bindingResult.hasErrors() || !userModel.getPassword().equals(userModel.getConfirmPassword()) || isEmailExists) {
             redirectAttributes
                     .addFlashAttribute("userModel", userModel)
                     .addFlashAttribute("org.springframework.validation.BindingResult.userModel", bindingResult)
-                    .addFlashAttribute("isSame",isSame);
+                    .addFlashAttribute("isSame",isSame)
+                    .addFlashAttribute("isExistsEmail", isEmailExists);
 
             return "redirect:/users/register";
         }

@@ -77,6 +77,12 @@
                         <p class="invalid-feedback hidden invalid-text-registration">
                             Email is not valid!
                         </p>
+                        <th:block th:if="${isExistsEmail}">
+                            <p class="invalid-feedback invalid-text-registration">
+                                Email already exists!
+                            </p>
+
+                        </th:block>
                     </article>
 
                     <article class="register-form-row-column">
