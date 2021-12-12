@@ -115,10 +115,13 @@
 }
 
 .views {
-    position: relative;
-    bottom: -3%;
-    left: 64%;
-    width: 50%;
+    /*position: relative;*/
+    /*bottom: -5%;*/
+    /*left: 64%;*/
+    /*width: 50%;*/
+    position: absolute;
+    bottom: 4%;
+    left: 78%;
 }
 
 .views-label {
@@ -127,4 +130,14 @@
 .views-number {
     color: #f1f1f1;
     font-size: 25px;
+}
+
+.admin-user-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-self-ad {
+    display: flex;
 }

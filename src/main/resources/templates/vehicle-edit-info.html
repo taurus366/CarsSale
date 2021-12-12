@@ -130,44 +130,35 @@
 
          
 
-            <section class="edit-form-image buttons">
-                <img th:src="*{getPictures().get(0).getUrl()}" alt="img" srcset="">
 
-                <section class="img-btns change-pictures-btn">
-                   
-                        <article th:each="picture : *{getPictures()}">
-                          <a class="change-pictures-btn-a active"  th:href="${picture.getUrl()}">Picture</a>
-                          <a th:href="@{/users/picture/delete/{id}/{publicID}(publicID = ${picture.getPublicId()} , id = *{getId()})}" class="delete-picture-btn-a">delete</a>
-                        </article>
-<!--                        <article>-->
-<!--                          <a class="change-pictures-btn-a" href="#">Picture2</a>-->
-<!--                          <a href="#2" class="delete-picture-btn-a">delete</a>-->
-<!--                        </article>-->
-<!--                        <article>-->
-<!--                          <a class="change-pictures-btn-a" href="#">Picture3</a>-->
-<!--                          <a href="#2" class="delete-picture-btn-a">delete</a>-->
-<!--                        </article>-->
-<!--                        <article>-->
-<!--                          <a class="change-pictures-btn-a" href="#">Picture4</a>-->
-<!--                          <a href="#2" class="delete-picture-btn-a">delete</a>-->
-<!--                        </article>-->
-                        
-                </section>
-
-               <section class="upload-picture">
-                <h1>Upload picture</h1>
-                <form
-                th:method="post"
-                th:action="@{users/picture/add/{id}(id= *{getId()})}"
-                enctype="multipart/form-data">
-                    <input name="picture" type="file"><br>
-                    <input type="submit" value="Upload">
-                </form>
-               </section>
-            </section>
 
            
           </form>
+            <section class="edit-form-image buttons">
+                <img th:src="*{getPictures().get(0).getUrl()}" class="img-main-edit" alt="img">
+
+                <section class="img-btns change-pictures-btn">
+
+                    <article th:each="picture : *{getPictures()}">
+                        <a class="change-pictures-btn-a"  th:href="${picture.getUrl()}">Picture</a>
+                        <a th:href="@{/users/picture/delete/{id}/{publicID}(publicID = ${picture.getPublicId()} , id = *{getId()})}" class="delete-picture-btn-a">delete</a>
+                    </article>
+
+
+                </section>
+
+                <section class="upload-picture">
+                    <h1>Upload picture</h1>
+                    <form
+                            th:method="post"
+                            th:action="@{/users/picture/add/{id}(id= *{getId()})}"
+                            enctype="multipart/form-data"
+                    >
+                        <input name="picture" type="file"><br>
+                        <input type="submit" value="Upload">
+                    </form>
+                </section>
+            </section>
 
 
         </section>
@@ -176,5 +167,6 @@
 
     <script th:replace="fragments/navbar::script-index"></script>
     <script src="/js/vehicle-info.js"></script>
+    <script src="/js/vehicle-edit-info.js"></script>
   </body>
 </html>

@@ -5,6 +5,7 @@ import com.example.carssale.service.CloudinaryService;
 import com.example.carssale.service.Impl.CarsSaleUser;
 import com.example.carssale.service.OfferService;
 import com.example.carssale.service.PictureService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/users/picture")
@@ -28,8 +30,14 @@ public class PictureController {
         this.offerService = offerService;
     }
 
+    @PreAuthorize("@offerServiceImpl.isOwnerTheOffer(#id,#principal.username)")
     @PostMapping("/add/{id}")
-    public String uploadPicture(@Valid PictureUploadBindingModel pictureUploadBindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes, @AuthenticationPrincipal CarsSaleUser principal, @PathVariable String id) {
+    public String uploadPicture(@Valid PictureUploadBindingModel pictureUploadBindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes, @AuthenticationPrincipal CarsSaleUser principal, @PathVariable String id) throws IOException {
+
+
+        if (pictureUploadBindingModel.getPicture().getSize() == 0) {
+            bindingResult.rejectValue("picture","picture.picture");
+        }
 
         if (bindingResult.hasErrors()) {
             redirectAttributes
@@ -39,6 +47,8 @@ public class PictureController {
             return "redirect:/users/offers/edit/"+id;
         }
 
+
+        pictureService.uploadPicture(pictureUploadBindingModel,Long.parseLong(id));
 
         return "redirect:/users/offers/edit/"+id;
     }

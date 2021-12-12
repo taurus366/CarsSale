@@ -8,6 +8,7 @@ import com.example.carssale.service.Impl.CarsSaleUser;
 import com.example.carssale.service.OfferService;
 import com.example.carssale.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,17 +64,26 @@ public class OfferController {
     }
 
 
-
+    @PreAuthorize("@offerServiceImpl.isOwnerTheOffer(#id,#principal.username)")
     @GetMapping("/edit/{id}")
     public String editOfferById(@PathVariable String id, @AuthenticationPrincipal CarsSaleUser principal,Model model) {
        boolean isOwnerTheOffer = offerService.isOwnerTheOffer(Long.parseLong(id), principal.getUserIdentifierEmail());
 
-        if (isOwnerTheOffer) {
+//        if (isOwnerTheOffer) {
             model
                     .addAttribute("offer",offerService.getOfferById(Long.parseLong(id)));
 
             return "vehicle-edit-info";
-        }
+//        }
+//        return "redirect:/users/offers/all";
+    }
+
+    @PreAuthorize("@offerServiceImpl.isOwnerTheOffer(#id,#principal.username)")
+    @DeleteMapping("/delete/{id}")
+    public String deleteOfferById(@PathVariable String id, @AuthenticationPrincipal CarsSaleUser principal) {
+
+        offerService.deleteOfferById(Long.parseLong(id));
+
         return "redirect:/users/offers/all";
     }
 

@@ -13,20 +13,20 @@ public class PictureEntity extends BaseEntity{
 
     private String publicId;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private OfferEntity offerEntity;
+//    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+//    private OfferEntity offerEntity;
 
     public PictureEntity() {
     }
 
-    public OfferEntity getOfferEntity() {
-        return offerEntity;
-    }
-
-    public PictureEntity setOfferEntity(OfferEntity offerEntity) {
-        this.offerEntity = offerEntity;
-        return this;
-    }
+//    public OfferEntity getOfferEntity() {
+//        return offerEntity;
+//    }
+//
+//    public PictureEntity setOfferEntity(OfferEntity offerEntity) {
+//        this.offerEntity = offerEntity;
+//        return this;
+//    }
 
     public String getUrl() {
         return url;

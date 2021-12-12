@@ -112,19 +112,37 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public void deleteFromOfferPicture(long parseLong, String publicId) {
-        OfferEntity byId = offerRepository
-                .getById(parseLong);
-        byId
+//        OfferEntity byId = offerRepository
+//                .getById(parseLong);
+//        byId
+//                .getPictures()
+//                .forEach(pictureEntity -> {
+//                    if (pictureEntity.getPublicId().equals(publicId)) {
+//                        System.out.println("it is");
+//                        byId.getPictures().remove(pictureEntity);
+//                    }
+//                });
+        System.out.println(  offerRepository
+                .findById(parseLong)
+                .orElseThrow()
+                .getPictures().size());
+
+        List<PictureEntity> collect = offerRepository
+                .findById(parseLong)
+                .orElseThrow()
                 .getPictures()
-                .forEach(pictureEntity -> {
-                    if (pictureEntity.getPublicId().equals(publicId)) {
-                        byId.getPictures().remove(pictureEntity);
-                    }
-                });
+                .stream()
+                .filter(pictureEntity -> !pictureEntity.getPublicId().equals(publicId))
+                .collect(Collectors.toList());
 
-        System.out.println(byId.getPictures().size());
+        OfferEntity offerEntity = offerRepository
+                .findById(parseLong)
+                .orElseThrow();
+        offerEntity.setPictures(collect);
 
-        offerRepository.save(byId);
+//        System.out.println(byId.getPictures().size());
+
+        offerRepository.save(offerEntity);
     }
 
 

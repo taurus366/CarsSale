@@ -28,7 +28,6 @@ public class OfferDTO {
     private String from;
     private Integer power;
     private List<PictureEntity> pictures;
-//    image URL TODO
 
     public OfferDTO() {
     }

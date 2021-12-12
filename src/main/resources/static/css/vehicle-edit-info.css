@@ -22,11 +22,14 @@
     margin-bottom: 15px;
 }
 
-form.edit-form {
+/*form.edit-form {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*}*/
+.vehicle-edit-container-section {
     display: flex;
-    justify-content: space-between;
+        justify-content: space-between;
 }
-
 .edit-form-image img {
     width: 100%;
 }

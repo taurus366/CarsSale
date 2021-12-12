@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 
 public class PictureUploadBindingModel {
 
-    @NotEmpty
     private MultipartFile picture;
 
     public PictureUploadBindingModel() {
