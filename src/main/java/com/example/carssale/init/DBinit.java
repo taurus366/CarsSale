@@ -61,7 +61,7 @@ public class DBinit implements CommandLineRunner {
         initBrands();
         initModels();
 
-        initOffer();
+//        initOffer();
     }
 
     private void initOffer() {

@@ -28,6 +28,7 @@ public class OfferDTO {
     private String from;
     private Integer power;
     private List<PictureEntity> pictures;
+    private Boolean canDelete = false;
 
     public OfferDTO() {
     }
@@ -38,6 +39,15 @@ public class OfferDTO {
 
     public OfferDTO setPictures(List<PictureEntity> pictures) {
         this.pictures = pictures;
+        return this;
+    }
+
+    public Boolean getCanDelete() {
+        return canDelete;
+    }
+
+    public OfferDTO setCanDelete(Boolean canDelete) {
+        this.canDelete = canDelete;
         return this;
     }
 

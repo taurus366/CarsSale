@@ -7,19 +7,20 @@ import com.example.carssale.model.service.CreateOfferServiceModel;
 import com.example.carssale.service.Impl.CarsSaleUser;
 import com.example.carssale.service.OfferService;
 import com.example.carssale.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/users/offers")
@@ -34,6 +35,7 @@ public class OfferController {
         this.userService = userService;
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/all")
     public String getAllOffer(Model model) {
 
@@ -45,16 +47,17 @@ public class OfferController {
         return "vehicles-catalog";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/{id}")
     public String getOfferByID(@PathVariable String id, Model model, @AuthenticationPrincipal CarsSaleUser principal) {
 
         try {
-            boolean admin = userService.isAdmin(principal.getUserIdentifierEmail());
             boolean isOwnerTheOffer = offerService.isOwnerTheOffer(Long.parseLong(id), principal.getUserIdentifierEmail());
+            OfferDTO offerById = offerService.getOfferById(Long.parseLong(id));
+            offerById.setCanDelete(isOwnerTheOffer);
             model
-                    .addAttribute("offer",offerService.getOfferById(Long.parseLong(id)))
-                    .addAttribute("isAdmin",admin)
-                    .addAttribute("isOwnerTheOffer", isOwnerTheOffer);
+                    .addAttribute("offer",offerById);
+//                    .addAttribute("isOwnerTheOffer", isOwnerTheOffer);
         } catch (EntityNotFoundException e) {
             throw new OfferNotFoundException(Long.parseLong(id),OFFER_NOT_FOUND);
         }
@@ -64,10 +67,11 @@ public class OfferController {
     }
 
 
-    @PreAuthorize("@offerServiceImpl.isOwnerTheOffer(#id,#principal.username)")
+    @PreAuthorize("isOwner(#id)")
     @GetMapping("/edit/{id}")
-    public String editOfferById(@PathVariable String id, @AuthenticationPrincipal CarsSaleUser principal,Model model) {
-       boolean isOwnerTheOffer = offerService.isOwnerTheOffer(Long.parseLong(id), principal.getUserIdentifierEmail());
+    public String editOfferById(@PathVariable String id, Model model) {
+//       boolean isOwnerTheOffer = offerService.isOwnerTheOffer(Long.parseLong(id), principal.getUserIdentifierEmail());
+
 
 //        if (isOwnerTheOffer) {
             model
@@ -78,15 +82,16 @@ public class OfferController {
 //        return "redirect:/users/offers/all";
     }
 
-    @PreAuthorize("@offerServiceImpl.isOwnerTheOffer(#id,#principal.username)")
+    @PreAuthorize("isOwner(#id)")
+   // @PreAuthorize("@offerServiceImpl.isOwnerTheOffer(#id,#principal.username)")
     @DeleteMapping("/delete/{id}")
-    public String deleteOfferById(@PathVariable String id, @AuthenticationPrincipal CarsSaleUser principal) {
-
+    public String deleteOfferById(@PathVariable String id) {
         offerService.deleteOfferById(Long.parseLong(id));
 
         return "redirect:/users/offers/all";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/add")
     public String showOfferPage(Model model) {
 
@@ -98,6 +103,7 @@ public class OfferController {
         return new CreateOfferBindingModel();
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/add")
     public String createOffer(@Valid CreateOfferBindingModel createOfferBindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes, @AuthenticationPrincipal CarsSaleUser principal) {
 
@@ -121,6 +127,17 @@ public class OfferController {
 //                ,createOfferBindingModel.getStatusUsed()
 //                ,createOfferBindingModel.getVehicleStatus()
 //                ,createOfferBindingModel.getVehicleYear());
+
+        List<MultipartFile> pictures =  createOfferBindingModel
+                .getPicture()
+                .stream()
+                .filter(picture -> !picture.isEmpty())
+                .collect(Collectors.toList());
+
+
+        if (pictures.size() == 0) {
+            bindingResult.rejectValue("picture","picture.picture");
+        }
 
         if (bindingResult.hasErrors()) {
             redirectAttributes

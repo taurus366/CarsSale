@@ -22,6 +22,7 @@ public class CarsSaleUserServiceImpl implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         System.out.println(email + " " + "-----------------------------------------");
@@ -43,7 +44,8 @@ public class CarsSaleUserServiceImpl implements UserDetailsService {
         return new CarsSaleUser(
                 user.getEmail(),
                 user.getPassword(),
-                authorities
+                authorities,
+                user.getFirstName()
         );
     }
 }

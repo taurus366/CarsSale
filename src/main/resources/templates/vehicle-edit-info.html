@@ -141,7 +141,9 @@
 
                     <article th:each="picture : *{getPictures()}">
                         <a class="change-pictures-btn-a"  th:href="${picture.getUrl()}">Picture</a>
+                        <th:block th:if="*{getPictures().size() > 1}">
                         <a th:href="@{/users/picture/delete/{id}/{publicID}(publicID = ${picture.getPublicId()} , id = *{getId()})}" class="delete-picture-btn-a">delete</a>
+                        </th:block>
                     </article>
 
 

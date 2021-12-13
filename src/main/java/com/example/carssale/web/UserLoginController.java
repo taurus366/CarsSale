@@ -18,7 +18,7 @@ public class UserLoginController {
 
 
     @GetMapping("/login")
-    @PreAuthorize("!isAuthenticated()")
+    @PreAuthorize("isAnonymous()")
     public String login() {
         return "login";
     }

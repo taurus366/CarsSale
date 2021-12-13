@@ -25,10 +25,11 @@ public class AdministratorController {
         this.offerService = offerService;
     }
 
-//    @PreAuthorize("isOwner(#id)")
-    @PreAuthorize("@userServiceImpl.isAdmin(#principal.username)")
+    @PreAuthorize("isAdmin()")
+//    @PreAuthorize("@userServiceImpl.isAdmin(#principal.username)")
     @DeleteMapping("/delete/{id}")
-    public String deletePictureById(@PathVariable String id, @AuthenticationPrincipal CarsSaleUser principal) {
+    public String deletePictureById(@PathVariable String id) {
+// @AuthenticationPrincipal CarsSaleUser principal   -> I don't use it because of @PreAuthorize("isAdmin()") !!!
 
 //        boolean admin = userService.isAdmin(principal.getUserIdentifierEmail());
 //        if (admin) {

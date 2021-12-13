@@ -31,6 +31,11 @@ public class CloudinaryServiceImpl implements CloudinaryService {
                     .uploader()
                     .upload(tempFile,Map.of());
 
+            // here I can choose which folder to save the files
+//            Map<String,String> uploadResult = cloudinary
+//                    .uploader()
+//                    .upload(tempFile,Map.of("use_filename",true,"unique_filename",false,"folder","DestinyOfTheChosen"+folderName));
+
             String url = uploadResult.getOrDefault(URL, "https://i.pinimg.com/originals/fd/78/c4/fd78c47f2a009df65b5b5a46f4437399.png");
             String publicId = uploadResult.getOrDefault(PUBLIC_ID,"");
 

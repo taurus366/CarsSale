@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head>
     <th:block th:replace="fragments/navbar::head"></th:block>
     <title>Vehicle Info</title>
@@ -89,15 +90,15 @@
 
             <section class="admin-user-btns">
               <!-- SHOW IT , IF THE ADMIN IS LOGGED IN! -->
-              <section class="vehicle-info-admin" th:if="${isAdmin}">
+              <section class="vehicle-info-admin" sec:authorize="hasRole('ADMINISTRATOR')">
                 <form th:method="delete" th:action="@{/admin/delete/{id}(id= *{getId()})}">
                   <input class="admin-delete-btn" type="submit" value="Delete">
                 </form>
                 <!--              <a th:href="@{/admin/delete/{id}(id= *{getId()})}" class="admin-delete-btn">Delete</a>-->
               </section>
               <!-- SHOW IT , IF THE ADMIN IS LOGGED IN! -->
-
-              <section class="user-self-ad" th:if="${isOwnerTheOffer}">
+              <section class="user-self-ad">
+              <th:block class="user-self-ad" th:if="*{canDelete}">
                 <article class="user-self-ad-edit">
                   <form th:method="get" th:action="@{/users/offers/edit/{id}(id= *{getId()})}">
                     <input class="user-btn edit" type="submit" value="Edit">
@@ -110,6 +111,7 @@
                   </form>
                   <!--                <a th:href="@{/users/offers/delete/{id}(id= *{getId()})}" class="user-btn delete">Delete</a>-->
                 </article>
+              </th:block>
               </section>
             </section>
 
