@@ -1,5 +1,9 @@
 package com.example.carssale.config;
 
+import com.example.carssale.exception.NotAdministratorException;
+import com.example.carssale.exception.NotOwnerException;
+import com.example.carssale.exception.OfferNotFoundException;
+import com.example.carssale.messages.Messages;
 import com.example.carssale.service.OfferService;
 import com.example.carssale.service.UserService;
 import org.springframework.security.access.expression.SecurityExpressionRoot;
@@ -37,18 +41,21 @@ public class OwnerSecurityExpressionRoot extends SecurityExpressionRoot implemen
         if (userEmail == null) {
             return false;
         }
-
-        return offerService.isOwnerTheOffer(offerId , userEmail);
+        throw new NotOwnerException(1L, Messages.getOfferNotOwner(String.valueOf(offerId)));
+//        return offerService.isOwnerTheOffer(offerId , userEmail);
     }
 
     public boolean isAdmin() {
         String userEmail = currentUserEmail();
 
-        if (userEmail == null) {
-            return false;
+
+        boolean isAdmin = userService.isAdmin(userEmail);
+        if (!isAdmin || userEmail == null) {
+            throw new NotAdministratorException("ttestADMIN");
         }
 
-        return userService.isAdmin(userEmail);
+        return true;
+//        return ;
     }
 
 

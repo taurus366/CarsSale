@@ -90,12 +90,12 @@
 
             <section class="admin-user-btns">
               <!-- SHOW IT , IF THE ADMIN IS LOGGED IN! -->
-              <section class="vehicle-info-admin" sec:authorize="hasRole('ADMINISTRATOR')">
+<!--              <section class="vehicle-info-admin" sec:authorize="hasRole('ADMINISTRATOR')">-->
                 <form th:method="delete" th:action="@{/admin/delete/{id}(id= *{getId()})}">
                   <input class="admin-delete-btn" type="submit" value="Delete">
                 </form>
                 <!--              <a th:href="@{/admin/delete/{id}(id= *{getId()})}" class="admin-delete-btn">Delete</a>-->
-              </section>
+<!--              </section>-->
               <!-- SHOW IT , IF THE ADMIN IS LOGGED IN! -->
               <section class="user-self-ad">
               <th:block class="user-self-ad" th:if="*{canDelete}">

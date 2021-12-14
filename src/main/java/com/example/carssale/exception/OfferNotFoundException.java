@@ -18,4 +18,8 @@ public class OfferNotFoundException extends RuntimeException{
     public Long getOfferId() {
         return offerId;
     }
+
+    public String getReason() {
+        return reason;
+    }
 }

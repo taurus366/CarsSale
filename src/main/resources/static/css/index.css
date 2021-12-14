@@ -1,0 +1,19 @@
+.registered-user-index-container {
+    background-color: rgba(98, 98, 98, 0.66);
+    width: 70%;
+    margin: 3% auto auto auto;
+    /*justify-content: space-evenly;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    padding: 20px;
+}
+
+.registered-user-index-container-article {
+    text-align: center;
+}
+
+.offers-event {
+    color: red;
+    font-size: 25px;
+    font-weight: 500;
+}

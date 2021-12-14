@@ -10,7 +10,7 @@
     <main>
       <div class="vehicle-edit-container">
         <section class="vehicle-edit-container-section" th:object="${offer}">
-          <form class="edit-form" action="#" method="post">
+          <form class="edit-form" th:action="@{/users/offers/edit/{id}(id = *{getId()})}" th:method="patch">
 
 
           <section class="text">
@@ -34,7 +34,7 @@
             <section class="modification-section edit">
               <label for="">Modification</label>
               <br>
-              <input type="text" name="modification" id="modification" th:placeholder="*{getModification()}">
+              <input type="text" name="modification" id="modification" th:field="*{modification}">
             </section>
 
 <!--            <section class="fuelType-section edit">-->
@@ -49,7 +49,7 @@
             <section class="power-section edit">
                 <label for="">Power[hp]</label>
                 <br>
-                <input type="number" name="power" id="power" th:placeholder="*{getPower()}">
+                <input type="number" name="power" id="power" th:field="*{power}">
             </section>
 <!--            <section class="transsmission-section edit">-->
 <!--                <label for="">Transsmission</label>-->
@@ -63,20 +63,20 @@
             <section class="mileage-section edit">
                 <label for="">Kilometer</label>
                 <br>
-                <input type="number" id="kilometer" name="kilometer" th:placeholder="*{getKilometer()}" size="10">
+                <input type="number" id="kilometer" name="kilometer" th:field="*{kilometer}" size="10">
             </section>
             <section class="price-section edit">
                 <label for="">Price</label>
                 <br>
-                <input type="number" id="price" name="price" th:placeholder="*{getPrice()}">
+                <input type="number" id="price" name="price" th:field="*{price}">
                 <select name="priceType" id="priceType">
                 <!-- <option value="">Choose Price Type</option> -->
-                <option  th:each="value : ${T(com.example.carssale.model.entity.enums.PriceTypeEnum).values()}" th:text="${value}" th:value="${value}" th:selected="${value} == *{getPriceType()}">BGN</option>
+                <option  th:each="value : ${T(com.example.carssale.model.entity.enums.PriceTypeEnum).values()}"  th:selected="${value.toString()} == *{getPriceType()}" th:text="${value}" th:value="${value}">---</option>
 
             </select>
             </section>
 
-            
+
             <section class="status-section edit">
                 <label for="">Status</label>
                 <br>
@@ -128,7 +128,7 @@
             </section>
           </section>
 
-         
+
 
 
 

@@ -2,8 +2,10 @@ package com.example.carssale.web;
 
 import com.example.carssale.exception.OfferNotFoundException;
 import com.example.carssale.model.binding.CreateOfferBindingModel;
+import com.example.carssale.model.binding.OfferEditBindingModel;
 import com.example.carssale.model.dto.OfferDTO;
 import com.example.carssale.model.service.CreateOfferServiceModel;
+import com.example.carssale.model.service.OfferEditServiceModel;
 import com.example.carssale.service.Impl.CarsSaleUser;
 import com.example.carssale.service.OfferService;
 import com.example.carssale.service.UserService;
@@ -89,6 +91,27 @@ public class OfferController {
         offerService.deleteOfferById(Long.parseLong(id));
 
         return "redirect:/users/offers/all";
+    }
+
+    @PreAuthorize("isOwner(#id)")
+    @PatchMapping("/edit/{id}")
+    public String changeInfoOffer(@PathVariable String id, @Valid OfferEditBindingModel offerEditBindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+// redirectAttributes
+//                    .addFlashAttribute("createOfferBindingModel", createOfferBindingModel)
+//                    .addFlashAttribute("org.springframework.validation.BindingResult.createOfferBindingModel", bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes
+                    .addFlashAttribute("offerEditBindingModel", offerEditBindingModel)
+                    .addFlashAttribute("org.springframework.validation.BindingResult.offerEditBindingModel", bindingResult);
+
+            return "redirect:/users/offers/edit/"+id;
+        }
+
+        //TODO
+        OfferEditServiceModel offerEditServiceModel = offerService.changeOffer(offerEditBindingModel, Long.parseLong(id));
+
+        return "redirect:/users/offers/"+id;
     }
 
     @PreAuthorize("isAuthenticated()")

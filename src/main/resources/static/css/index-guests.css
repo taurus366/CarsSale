@@ -1,0 +1,32 @@
+.guests-index-container {
+    background-color: rgba(98, 98, 98, 0.66);
+    width: 70%;
+    margin: 3% auto auto auto;
+    /*justify-content: space-evenly;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    padding: 20px;
+}
+
+.guests-index-container-article {
+    text-align: center;
+}
+
+.guests-index-container-article > :first-child {
+    color: red;
+    font-size: 25px;
+}
+
+.guests-index-container-article > :last-child {
+    color: black;
+    font-size: 25px;
+}
+
+.guests-index-container-article > :last-child > a {
+    text-decoration: none;
+}
+
+.guests-index-container-article > :last-child > a:hover {
+    color: white;
+}
+

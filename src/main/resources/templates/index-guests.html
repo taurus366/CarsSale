@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/navbar :: head"></th:block>
+    <title>Guest</title>
+</head>
+<body>
+<header th:replace="fragments/navbar :: header"></header>
+<main>
+    <div class="guests-index-container">
+      <article class="guests-index-container-article">
+          <p> Welcome dear Guest,</p>
+          <p> You have to <a th:href="@{/users/register}">Register</a> or <a th:href="@{/users/login}">Login</a> to use our site!</p>
+      </article>
+    </div>
+</main>
+
+
+<script th:replace="fragments/navbar :: script-index"></script>
+</body>
+</html>

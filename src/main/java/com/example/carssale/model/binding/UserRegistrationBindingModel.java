@@ -4,10 +4,12 @@ import javax.validation.constraints.*;
 public class UserRegistrationBindingModel {
 
     @NotNull
+    @NotBlank
     @Size(min = 3,max = 12)
     private String firstName;
 
     @NotNull
+    @NotBlank
     @Size(min = 3,max = 12)
     private String lastName;
 
@@ -15,22 +17,25 @@ public class UserRegistrationBindingModel {
     private String cityVillage;
 
     @NotNull
-    @NotBlank
     private String region;
 
     @NotNull
     @Email
+    @NotBlank
     private String email;
 
     @NotNull
+    @NotBlank
     @Size(min = 10)
     private String phone;
 
     @NotNull
+    @NotBlank
     @Size(min = 5,max = 12)
     private String password;
 
     @NotNull
+    @NotBlank
     @Size(min = 5,max = 12)
     private String confirmPassword;
 

@@ -5,6 +5,8 @@ import com.example.carssale.model.entity.OfferDescriptionEntity;
 import com.example.carssale.model.entity.enums.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ public class CreateOfferBindingModel {
     private Integer price;
 
     @NotNull
+    @NotBlank
     private String modification;
 
     @NotNull
@@ -100,8 +103,6 @@ public class CreateOfferBindingModel {
     private String airCondition;
     private String steeringWheelHeating;
 
-    public CreateOfferBindingModel() {
-    }
 
     public String getStatusUsed() {
         return statusUsed;

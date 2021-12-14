@@ -1,11 +1,15 @@
 package com.example.carssale.service.Impl;
 
+import com.example.carssale.exception.OfferNotFoundException;
+import com.example.carssale.messages.Messages;
 import com.example.carssale.model.binding.CreateOfferBindingModel;
+import com.example.carssale.model.binding.OfferEditBindingModel;
 import com.example.carssale.model.dto.OfferDTO;
 import com.example.carssale.model.entity.OfferEntity;
 import com.example.carssale.model.entity.PictureEntity;
 import com.example.carssale.model.entity.UserEntity;
 import com.example.carssale.model.service.CreateOfferServiceModel;
+import com.example.carssale.model.service.OfferEditServiceModel;
 import com.example.carssale.repository.OfferRepository;
 import com.example.carssale.repository.PictureRepository;
 import com.example.carssale.repository.UserRepository;
@@ -143,6 +147,32 @@ public class OfferServiceImpl implements OfferService {
 //        System.out.println(byId.getPictures().size());
 
         offerRepository.save(offerEntity);
+    }
+
+    @Override
+    public OfferEditServiceModel changeOffer(OfferEditBindingModel offerEditBindingModel, Long offerId) {
+
+        OfferEditServiceModel offerEditServiceModel = modelMapper.map(offerEditBindingModel, OfferEditServiceModel.class);
+
+        OfferEntity offerEntityById = offerRepository.getById(offerId);
+
+       if (offerEntityById.getId() != null) {
+        offerEntityById
+                .setModification(offerEditServiceModel.getModification())
+                .setPower(offerEditServiceModel.getPower())
+                .setKilometer(offerEditServiceModel.getKilometer())
+                .setPrice(offerEditServiceModel.getPrice())
+                .setPriceType(offerEditServiceModel.getPriceType())
+                .setVehicleStatus(offerEditServiceModel.getVehicleStatus())
+                .setExteriorColor(offerEditServiceModel.getExteriorColor())
+                .setModified(Instant.now());
+       }else {
+           throw new OfferNotFoundException(offerId, Messages.getOfferNotFound(String.valueOf(offerId)));
+       }
+
+        OfferEntity offerEntitySaved = offerRepository.save(offerEntityById);
+
+        return modelMapper.map(offerEntitySaved, OfferEditServiceModel.class);
     }
 
 
