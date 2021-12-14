@@ -37,12 +37,11 @@ public class OwnerSecurityExpressionRoot extends SecurityExpressionRoot implemen
 
     public boolean isOwner(Long offerId) {
         String userEmail = currentUserEmail();
-
-        if (userEmail == null) {
-            return false;
+        boolean isOwner = offerService.isOwnerTheOffer(offerId, userEmail);
+        if (userEmail == null || !isOwner) {
+            throw new NotOwnerException(1L, Messages.getOfferNotOwner(String.valueOf(offerId)));
         }
-        throw new NotOwnerException(1L, Messages.getOfferNotOwner(String.valueOf(offerId)));
-//        return offerService.isOwnerTheOffer(offerId , userEmail);
+        return true;
     }
 
     public boolean isAdmin() {
@@ -52,10 +51,10 @@ public class OwnerSecurityExpressionRoot extends SecurityExpressionRoot implemen
         boolean isAdmin = userService.isAdmin(userEmail);
         if (!isAdmin || userEmail == null) {
             throw new NotAdministratorException("ttestADMIN");
+            // TODO for admin message
         }
 
         return true;
-//        return ;
     }
 
 
