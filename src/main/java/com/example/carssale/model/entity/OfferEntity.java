@@ -1,6 +1,8 @@
 package com.example.carssale.model.entity;
 
 import com.example.carssale.model.entity.enums.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -81,7 +83,8 @@ public class OfferEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     private ModelEntity model;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(cascade = {CascadeType.ALL})
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<PictureEntity> pictures = new ArrayList<>();
 
 //    @OneToOne

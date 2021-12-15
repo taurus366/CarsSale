@@ -29,13 +29,13 @@ public class GlobalExceptionHandler {
         return modelAndView;
     }
 
-    @ExceptionHandler({NotAdministratorException.class})
-    public ModelAndView handleException(NotAdministratorException e){
-        ModelAndView modelAndView = new ModelAndView("error/not-owner-exception");
-        modelAndView
-                .addObject("message" , e.getMessage());
-        modelAndView.setStatus(HttpStatus.FORBIDDEN);
-
-        return modelAndView;
-    }
+//    @ExceptionHandler({NotAdministratorException.class})
+//    public ModelAndView handleException(NotAdministratorException e){
+//        ModelAndView modelAndView = new ModelAndView("error/403");
+//        modelAndView
+//                .addObject("message" , e.getMessage());
+//        modelAndView.setStatus(HttpStatus.FORBIDDEN);
+//
+//        return modelAndView;
+//    }
 }

@@ -2,6 +2,7 @@ package com.example.carssale.web;
 
 import com.example.carssale.model.dto.RegionDTO;
 import com.example.carssale.service.RegionService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,6 +24,7 @@ public class RegionController {
 
     @GetMapping("/region")
     @CrossOrigin(origins = "*")
+    @Cacheable("regions")
     public ResponseEntity<List<RegionDTO>> getAllRegions() {
         List<RegionDTO> allRegions = regionService.getAllRegions();
 

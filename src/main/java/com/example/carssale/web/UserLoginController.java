@@ -1,7 +1,7 @@
 package com.example.carssale.web;
 
+import com.example.carssale.service.OfferService;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,9 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/users")
 public class UserLoginController {
-
-
-
 
 
     @GetMapping("/login")
@@ -30,6 +27,7 @@ public class UserLoginController {
         redirectAttributes
                 .addFlashAttribute("invalid_login",true)
                 .addFlashAttribute("email",email);
+
 
         return "redirect:/users/login";
     }

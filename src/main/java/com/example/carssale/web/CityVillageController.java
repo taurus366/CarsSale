@@ -4,6 +4,7 @@ import com.example.carssale.model.dto.CityVillageDTO;
 import com.example.carssale.model.dto.RegionDTO;
 import com.example.carssale.service.CityVillageService;
 import com.google.gson.Gson;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ public class CityVillageController {
 
     @GetMapping("/cityVillage/{id}")
     @CrossOrigin(origins = "*")
+    @Cacheable("city")
     public ResponseEntity<List<CityVillageDTO>> getCityVillageById(@PathVariable String id) {
 
         List<CityVillageDTO> cityVillageByRegionId = cityVillageService.getCityVillageById(Long.parseLong(id));

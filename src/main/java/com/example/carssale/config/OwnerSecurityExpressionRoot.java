@@ -47,14 +47,11 @@ public class OwnerSecurityExpressionRoot extends SecurityExpressionRoot implemen
     public boolean isAdmin() {
         String userEmail = currentUserEmail();
 
-
-        boolean isAdmin = userService.isAdmin(userEmail);
-        if (!isAdmin || userEmail == null) {
-            throw new NotAdministratorException("ttestADMIN");
-            // TODO for admin message
+        if (userEmail == null) {
+            return false;
         }
 
-        return true;
+        return userService.isAdmin(userEmail);
     }
 
 

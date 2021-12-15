@@ -21,11 +21,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.Clock;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.time.ZoneId;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -174,7 +173,6 @@ public class OfferServiceImpl implements OfferService {
 
         return modelMapper.map(offerEntitySaved, OfferEditServiceModel.class);
     }
-
 
     private PictureEntity createPictureEntity (MultipartFile file) throws IOException {
         CloudinaryImage upload = cloudinaryService.upload(file);

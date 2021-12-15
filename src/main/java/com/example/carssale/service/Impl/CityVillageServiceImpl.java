@@ -31,6 +31,14 @@ public class CityVillageServiceImpl implements CityVillageService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<CityVillageDTO> getAllCities() {
+      return  cityVillageRepository.findAll()
+                .stream()
+                .map(cityVillage -> modelMapper.map(cityVillage,CityVillageDTO.class))
+                .collect(Collectors.toList());
+    }
+
     private CityVillageDTO asCityVillageDTO(CityVillageEntity cityVillage) {
         return modelMapper.map(cityVillage,CityVillageDTO.class);
     }

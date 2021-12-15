@@ -8,4 +8,6 @@ import java.util.List;
 public interface CityVillageService {
 
     List<CityVillageDTO> getCityVillageById(Long id);
+
+    List<CityVillageDTO> getAllCities();
 }

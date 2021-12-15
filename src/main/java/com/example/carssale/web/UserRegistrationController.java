@@ -1,9 +1,12 @@
 package com.example.carssale.web;
 
+import com.example.carssale.event.UserRegisterSuccessfulEvent;
 import com.example.carssale.model.binding.UserRegistrationBindingModel;
 import com.example.carssale.model.service.UserRegistrationServiceModel;
 import com.example.carssale.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +23,12 @@ public class UserRegistrationController {
 
     private final ModelMapper modelMapper;
     private final UserService userService;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
-    public UserRegistrationController(ModelMapper modelMapper, UserService userService) {
+    public UserRegistrationController(ModelMapper modelMapper, UserService userService, ApplicationEventPublisher applicationEventPublisher) {
         this.modelMapper = modelMapper;
         this.userService = userService;
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     @ModelAttribute("userModel")
@@ -36,6 +41,8 @@ public class UserRegistrationController {
         return "register";
     }
 
+
+    @PreAuthorize("isAnonymous()")
     @PostMapping("/register")
     public String registerNewUser(@Valid UserRegistrationBindingModel userModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
@@ -51,6 +58,10 @@ public class UserRegistrationController {
 
             return "redirect:/users/register";
         }
+
+        UserRegisterSuccessfulEvent event = new UserRegisterSuccessfulEvent(userModel.getEmail());
+
+        applicationEventPublisher.publishEvent(event);
 
 //        System.out.println("|"+" "+userModel.getCityVillage() + " " + "|"+ " " +userModel.getRegion() +" "+"|"+ " " +userModel.getEmail());
 

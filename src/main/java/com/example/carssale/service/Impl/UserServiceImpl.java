@@ -1,5 +1,6 @@
 package com.example.carssale.service.Impl;
 
+import com.example.carssale.model.dto.UserDTO;
 import com.example.carssale.model.entity.CityVillageEntity;
 import com.example.carssale.model.entity.RoleEntity;
 import com.example.carssale.model.entity.UserEntity;
@@ -10,6 +11,7 @@ import com.example.carssale.repository.RegionRepository;
 import com.example.carssale.repository.RoleRepository;
 import com.example.carssale.repository.UserRepository;
 import com.example.carssale.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,7 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -29,14 +31,16 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final CarsSaleUserServiceImpl carsSaleUserService;
+    private final ModelMapper modelMapper;
 
-    public UserServiceImpl(UserRepository userRepository, RegionRepository regionRepository, CityVillageRepository cityVillageRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, CarsSaleUserServiceImpl carsSaleUserService) {
+    public UserServiceImpl(UserRepository userRepository, RegionRepository regionRepository, CityVillageRepository cityVillageRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, CarsSaleUserServiceImpl carsSaleUserService, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.regionRepository = regionRepository;
         this.cityVillageRepository = cityVillageRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.carsSaleUserService = carsSaleUserService;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -106,5 +110,14 @@ public class UserServiceImpl implements UserService {
 //                     }
 //                 });
 //        return isAdmin.get();
+    }
+
+    @Override
+    public UserDTO getUsernameByEmail(String userIdentifierEmail) {
+
+        UserEntity userEntity = userRepository.findByEmail(userIdentifierEmail)
+                .get();
+
+        return modelMapper.map(userEntity,UserDTO.class);
     }
 }
