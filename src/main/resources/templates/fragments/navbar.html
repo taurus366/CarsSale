@@ -34,6 +34,7 @@
                         <li><a href="#home" class="a-btn">Home</a></li>
                         <li> <a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
+                        <li><a href="#allUsers" th:text="#{viewUsersText}">All Users</a></li>
                     </ul>
                 </li>
                 <li sec:authorize="isAuthenticated() && hasRole('USER')">
@@ -41,6 +42,7 @@
                     <ul class="dropdown-menu user" style="display: none;">
                         <li><a href="#Profile" class="a-btn" th:text="#{profile}">Profile</a></li>
                         <li> <a href="#Settings" th:text="#{setting}">Settings</a></li>
+                        <li> <a href="#myOffers" th:text="#{myOffersText}">My Offers</a></li>
                         <li>
                             <form class="lang-form" th:method="get" th:action="@{/}">
 <!--                                <label th:text="#{language}" for="lang"></label>-->
