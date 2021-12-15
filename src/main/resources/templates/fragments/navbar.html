@@ -29,7 +29,7 @@
         <nav class="header-nav">
             <ul class="header-nav-ul index">
                 <li sec:authorize="hasRole('ADMINISTRATOR')">
-                    <a class="drop-btn admin" href="#"><i class="fas fa-angle-down"></i> Admin </a>
+                    <a class="drop-btn admin" href="#" ><i class="fas fa-angle-down"></i> <span th:text="#{adminText}"></span> </a>
                     <ul class="dropdown-menu admin" style="display: none;">
                         <li><a href="#home" class="a-btn">Home</a></li>
                         <li> <a href="#about">About</a></li>
@@ -37,16 +37,29 @@
                     </ul>
                 </li>
                 <li sec:authorize="isAuthenticated() && hasRole('USER')">
-                    <a class="drop-btn user" href="#"><i class="fas fa-angle-down"></i> User</a>
+                    <a class="drop-btn user" href="#" ><i class="fas fa-angle-down"></i> <span th:text="#{userText}"></span></a>
                     <ul class="dropdown-menu user" style="display: none;">
-                        <li><a href="#Profile" class="a-btn">Profile</a></li>
-                        <li> <a href="#Settings">Settings</a></li>
+                        <li><a href="#Profile" class="a-btn" th:text="#{profile}">Profile</a></li>
+                        <li> <a href="#Settings" th:text="#{setting}">Settings</a></li>
+                        <li>
+                            <form class="lang-form" th:method="get" th:action="@{/}">
+<!--                                <label th:text="#{language}" for="lang"></label>-->
+                                <select
+                                        onchange="this.form.submit()"
+                                        id="lang"
+                                        name="lang">
+                                    <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                                    <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                                </select>
+                            </form>
+                           </li>
                     </ul>
                 </li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/users/offers/add}" class="btn-link index"><i class="fas fa-bullhorn"></i> Create Offer</a></li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/users/offers/all}" class="btn-link index"><i class="fas fa-car-alt"></i> All Cars</a></li>
-                <li sec:authorize="!isAuthenticated()"><a th:href="@{/users/register}" class="btn-link index"><i class="fas fa-id-card"></i> Register</a></li>
-                <li sec:authorize="!isAuthenticated()"><a th:href="@{/users/login}" class="btn-link index"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/users/offers/add}" class="btn-link index" ><i class="fas fa-bullhorn"></i> <span th:text="#{createOfferText}"></span></a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/users/offers/all}" class="btn-link index" ><i class="fas fa-car-alt" ></i> <span th:text="#{allCarsText}"></span></a></li>
+                <li sec:authorize="!isAuthenticated()"><a th:href="@{/users/register}" class="btn-link index" ><i class="fas fa-id-card"></i> <span th:text="#{registerText}"></span></a></li>
+                <li sec:authorize="!isAuthenticated()"><a th:href="@{/users/login}" class="btn-link index" ><i class="fas fa-sign-in-alt"></i> <span th:text="#{loginText}"></span></a></li>
 <!--                <li sec:authorize="isAuthenticated()">-->
 <!--                    <form th:action="@{/users/logout}" th:method="post">-->
 <!--                        <input class="submit-logout-btn" type="submit" value="Logout">-->
@@ -55,7 +68,7 @@
 <!--                </li>-->
                 <li class="logout-btn-style" sec:authorize="isAuthenticated()">
                     <form th:action="@{/users/logout}" th:method="post">
-                        <i class="fas fa-sign-out-alt color"> <input class="submit-logout-btn" type="submit" value="Logout"></i>
+                        <i class="fas fa-sign-out-alt color"> <input class="submit-logout-btn" type="submit" th:value="#{logoutText}"></i>
                     </form>
                 </li>
             </ul>

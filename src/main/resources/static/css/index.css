@@ -12,13 +12,13 @@
     text-align: center;
 }
 
-.offers-event {
+.offers-event > span:first-child {
     color: red;
     font-size: 25px;
     font-weight: 500;
 }
 
-.offers-event > span {
+.offers-event > span:last-child {
     color: black;
     font-size: 25px;
     font-weight: 500;
