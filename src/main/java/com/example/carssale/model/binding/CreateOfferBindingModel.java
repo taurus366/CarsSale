@@ -72,37 +72,47 @@ public class CreateOfferBindingModel {
     @NotNull
     private String brand;
 
-    private String abs;
-    private String esp;
-    private String cruiseControl;
-    private String alarmSystem;
-    private String bluetooth;
-    private String centralLocking;
-    private String electricitySideMirror;
-    private String electricityWindows;
-    private String immobilizer;
-    private String keylessCentralLock;
-    private String fogLamp;
-    private String rainSensor;
-    private String navigationSystem;
-    private String lightSensor;
-    private String ledHeadLights;
-    private String panoramicRoof;
-    private String sunRoof;
-    private String speedLimitControlSystem;
-    private String voiceControl;
-    private String headUpDisplay;
-    private String soundSystem;
-    private String sportSeats;
-    private String startStopSystem;
-    private String tractionControl;
-    private String tunerRadio;
-    private String usbPort;
-    private String airBag;
-    private String brakeAssist;
-    private String airCondition;
-    private String steeringWheelHeating;
+//    private String abs;
+//    private String esp;
+//    private String cruiseControl;
+//    private String alarmSystem;
+//    private String bluetooth;
+//    private String centralLocking;
+//    private String electricitySideMirror;
+//    private String electricityWindows;
+//    private String immobilizer;
+//    private String keylessCentralLock;
+//    private String fogLamp;
+//    private String rainSensor;
+//    private String navigationSystem;
+//    private String lightSensor;
+//    private String ledHeadLights;
+//    private String panoramicRoof;
+//    private String sunRoof;
+//    private String speedLimitControlSystem;
+//    private String voiceControl;
+//    private String headUpDisplay;
+//    private String soundSystem;
+//    private String sportSeats;
+//    private String startStopSystem;
+//    private String tractionControl;
+//    private String tunerRadio;
+//    private String usbPort;
+//    private String airBag;
+//    private String brakeAssist;
+//    private String airCondition;
+//    private String steeringWheelHeating;
 
+    List<String> features = new ArrayList<>();
+
+    public List<String> getFeatures() {
+        return features;
+    }
+
+    public CreateOfferBindingModel setFeatures(List<String> features) {
+        this.features = features;
+        return this;
+    }
 
     public String getStatusUsed() {
         return statusUsed;
@@ -113,275 +123,275 @@ public class CreateOfferBindingModel {
         return this;
     }
 
-    public String getAbs() {
-        return abs;
-    }
-
-    public CreateOfferBindingModel setAbs(String abs) {
-        this.abs = abs;
-        return this;
-    }
-
-    public String getEsp() {
-        return esp;
-    }
-
-    public CreateOfferBindingModel setEsp(String esp) {
-        this.esp = esp;
-        return this;
-    }
-
-    public String getCruiseControl() {
-        return cruiseControl;
-    }
-
-    public CreateOfferBindingModel setCruiseControl(String cruiseControl) {
-        this.cruiseControl = cruiseControl;
-        return this;
-    }
-
-    public String getAlarmSystem() {
-        return alarmSystem;
-    }
-
-    public CreateOfferBindingModel setAlarmSystem(String alarmSystem) {
-        this.alarmSystem = alarmSystem;
-        return this;
-    }
-
-    public String getBluetooth() {
-        return bluetooth;
-    }
-
-    public CreateOfferBindingModel setBluetooth(String bluetooth) {
-        this.bluetooth = bluetooth;
-        return this;
-    }
-
-    public String getCentralLocking() {
-        return centralLocking;
-    }
-
-    public CreateOfferBindingModel setCentralLocking(String centralLocking) {
-        this.centralLocking = centralLocking;
-        return this;
-    }
-
-    public String getElectricitySideMirror() {
-        return electricitySideMirror;
-    }
-
-    public CreateOfferBindingModel setElectricitySideMirror(String electricitySideMirror) {
-        this.electricitySideMirror = electricitySideMirror;
-        return this;
-    }
-
-    public String getElectricityWindows() {
-        return electricityWindows;
-    }
-
-    public CreateOfferBindingModel setElectricityWindows(String electricityWindows) {
-        this.electricityWindows = electricityWindows;
-        return this;
-    }
-
-    public String getImmobilizer() {
-        return immobilizer;
-    }
-
-    public CreateOfferBindingModel setImmobilizer(String immobilizer) {
-        this.immobilizer = immobilizer;
-        return this;
-    }
-
-    public String getKeylessCentralLock() {
-        return keylessCentralLock;
-    }
-
-    public CreateOfferBindingModel setKeylessCentralLock(String keylessCentralLock) {
-        this.keylessCentralLock = keylessCentralLock;
-        return this;
-    }
-
-    public String getFogLamp() {
-        return fogLamp;
-    }
-
-    public CreateOfferBindingModel setFogLamp(String fogLamp) {
-        this.fogLamp = fogLamp;
-        return this;
-    }
-
-    public String getRainSensor() {
-        return rainSensor;
-    }
-
-    public CreateOfferBindingModel setRainSensor(String rainSensor) {
-        this.rainSensor = rainSensor;
-        return this;
-    }
-
-    public String getNavigationSystem() {
-        return navigationSystem;
-    }
-
-    public CreateOfferBindingModel setNavigationSystem(String navigationSystem) {
-        this.navigationSystem = navigationSystem;
-        return this;
-    }
-
-    public String getLightSensor() {
-        return lightSensor;
-    }
-
-    public CreateOfferBindingModel setLightSensor(String lightSensor) {
-        this.lightSensor = lightSensor;
-        return this;
-    }
-
-    public String getLedHeadLights() {
-        return ledHeadLights;
-    }
-
-    public CreateOfferBindingModel setLedHeadLights(String ledHeadLights) {
-        this.ledHeadLights = ledHeadLights;
-        return this;
-    }
-
-    public String getPanoramicRoof() {
-        return panoramicRoof;
-    }
-
-    public CreateOfferBindingModel setPanoramicRoof(String panoramicRoof) {
-        this.panoramicRoof = panoramicRoof;
-        return this;
-    }
-
-    public String getSunRoof() {
-        return sunRoof;
-    }
-
-    public CreateOfferBindingModel setSunRoof(String sunRoof) {
-        this.sunRoof = sunRoof;
-        return this;
-    }
-
-    public String getSpeedLimitControlSystem() {
-        return speedLimitControlSystem;
-    }
-
-    public CreateOfferBindingModel setSpeedLimitControlSystem(String speedLimitControlSystem) {
-        this.speedLimitControlSystem = speedLimitControlSystem;
-        return this;
-    }
-
-    public String getVoiceControl() {
-        return voiceControl;
-    }
-
-    public CreateOfferBindingModel setVoiceControl(String voiceControl) {
-        this.voiceControl = voiceControl;
-        return this;
-    }
-
-    public String getHeadUpDisplay() {
-        return headUpDisplay;
-    }
-
-    public CreateOfferBindingModel setHeadUpDisplay(String headUpDisplay) {
-        this.headUpDisplay = headUpDisplay;
-        return this;
-    }
-
-    public String getSoundSystem() {
-        return soundSystem;
-    }
-
-    public CreateOfferBindingModel setSoundSystem(String soundSystem) {
-        this.soundSystem = soundSystem;
-        return this;
-    }
-
-    public String getSportSeats() {
-        return sportSeats;
-    }
-
-    public CreateOfferBindingModel setSportSeats(String sportSeats) {
-        this.sportSeats = sportSeats;
-        return this;
-    }
-
-    public String getStartStopSystem() {
-        return startStopSystem;
-    }
-
-    public CreateOfferBindingModel setStartStopSystem(String startStopSystem) {
-        this.startStopSystem = startStopSystem;
-        return this;
-    }
-
-    public String getTractionControl() {
-        return tractionControl;
-    }
-
-    public CreateOfferBindingModel setTractionControl(String tractionControl) {
-        this.tractionControl = tractionControl;
-        return this;
-    }
-
-    public String getTunerRadio() {
-        return tunerRadio;
-    }
-
-    public CreateOfferBindingModel setTunerRadio(String tunerRadio) {
-        this.tunerRadio = tunerRadio;
-        return this;
-    }
-
-    public String getUsbPort() {
-        return usbPort;
-    }
-
-    public CreateOfferBindingModel setUsbPort(String usbPort) {
-        this.usbPort = usbPort;
-        return this;
-    }
-
-    public String getAirBag() {
-        return airBag;
-    }
-
-    public CreateOfferBindingModel setAirBag(String airBag) {
-        this.airBag = airBag;
-        return this;
-    }
-
-    public String getBrakeAssist() {
-        return brakeAssist;
-    }
-
-    public CreateOfferBindingModel setBrakeAssist(String brakeAssist) {
-        this.brakeAssist = brakeAssist;
-        return this;
-    }
-
-    public String getAirCondition() {
-        return airCondition;
-    }
-
-    public CreateOfferBindingModel setAirCondition(String airCondition) {
-        this.airCondition = airCondition;
-        return this;
-    }
-
-    public String getSteeringWheelHeating() {
-        return steeringWheelHeating;
-    }
-
-    public CreateOfferBindingModel setSteeringWheelHeating(String steeringWheelHeating) {
-        this.steeringWheelHeating = steeringWheelHeating;
-        return this;
-    }
+//    public String getAbs() {
+//        return abs;
+//    }
+//
+//    public CreateOfferBindingModel setAbs(String abs) {
+//        this.abs = abs;
+//        return this;
+//    }
+//
+//    public String getEsp() {
+//        return esp;
+//    }
+//
+//    public CreateOfferBindingModel setEsp(String esp) {
+//        this.esp = esp;
+//        return this;
+//    }
+//
+//    public String getCruiseControl() {
+//        return cruiseControl;
+//    }
+//
+//    public CreateOfferBindingModel setCruiseControl(String cruiseControl) {
+//        this.cruiseControl = cruiseControl;
+//        return this;
+//    }
+//
+//    public String getAlarmSystem() {
+//        return alarmSystem;
+//    }
+//
+//    public CreateOfferBindingModel setAlarmSystem(String alarmSystem) {
+//        this.alarmSystem = alarmSystem;
+//        return this;
+//    }
+//
+//    public String getBluetooth() {
+//        return bluetooth;
+//    }
+//
+//    public CreateOfferBindingModel setBluetooth(String bluetooth) {
+//        this.bluetooth = bluetooth;
+//        return this;
+//    }
+//
+//    public String getCentralLocking() {
+//        return centralLocking;
+//    }
+//
+//    public CreateOfferBindingModel setCentralLocking(String centralLocking) {
+//        this.centralLocking = centralLocking;
+//        return this;
+//    }
+//
+//    public String getElectricitySideMirror() {
+//        return electricitySideMirror;
+//    }
+//
+//    public CreateOfferBindingModel setElectricitySideMirror(String electricitySideMirror) {
+//        this.electricitySideMirror = electricitySideMirror;
+//        return this;
+//    }
+//
+//    public String getElectricityWindows() {
+//        return electricityWindows;
+//    }
+//
+//    public CreateOfferBindingModel setElectricityWindows(String electricityWindows) {
+//        this.electricityWindows = electricityWindows;
+//        return this;
+//    }
+//
+//    public String getImmobilizer() {
+//        return immobilizer;
+//    }
+//
+//    public CreateOfferBindingModel setImmobilizer(String immobilizer) {
+//        this.immobilizer = immobilizer;
+//        return this;
+//    }
+//
+//    public String getKeylessCentralLock() {
+//        return keylessCentralLock;
+//    }
+//
+//    public CreateOfferBindingModel setKeylessCentralLock(String keylessCentralLock) {
+//        this.keylessCentralLock = keylessCentralLock;
+//        return this;
+//    }
+//
+//    public String getFogLamp() {
+//        return fogLamp;
+//    }
+//
+//    public CreateOfferBindingModel setFogLamp(String fogLamp) {
+//        this.fogLamp = fogLamp;
+//        return this;
+//    }
+//
+//    public String getRainSensor() {
+//        return rainSensor;
+//    }
+//
+//    public CreateOfferBindingModel setRainSensor(String rainSensor) {
+//        this.rainSensor = rainSensor;
+//        return this;
+//    }
+//
+//    public String getNavigationSystem() {
+//        return navigationSystem;
+//    }
+//
+//    public CreateOfferBindingModel setNavigationSystem(String navigationSystem) {
+//        this.navigationSystem = navigationSystem;
+//        return this;
+//    }
+//
+//    public String getLightSensor() {
+//        return lightSensor;
+//    }
+//
+//    public CreateOfferBindingModel setLightSensor(String lightSensor) {
+//        this.lightSensor = lightSensor;
+//        return this;
+//    }
+//
+//    public String getLedHeadLights() {
+//        return ledHeadLights;
+//    }
+//
+//    public CreateOfferBindingModel setLedHeadLights(String ledHeadLights) {
+//        this.ledHeadLights = ledHeadLights;
+//        return this;
+//    }
+//
+//    public String getPanoramicRoof() {
+//        return panoramicRoof;
+//    }
+//
+//    public CreateOfferBindingModel setPanoramicRoof(String panoramicRoof) {
+//        this.panoramicRoof = panoramicRoof;
+//        return this;
+//    }
+//
+//    public String getSunRoof() {
+//        return sunRoof;
+//    }
+//
+//    public CreateOfferBindingModel setSunRoof(String sunRoof) {
+//        this.sunRoof = sunRoof;
+//        return this;
+//    }
+//
+//    public String getSpeedLimitControlSystem() {
+//        return speedLimitControlSystem;
+//    }
+//
+//    public CreateOfferBindingModel setSpeedLimitControlSystem(String speedLimitControlSystem) {
+//        this.speedLimitControlSystem = speedLimitControlSystem;
+//        return this;
+//    }
+//
+//    public String getVoiceControl() {
+//        return voiceControl;
+//    }
+//
+//    public CreateOfferBindingModel setVoiceControl(String voiceControl) {
+//        this.voiceControl = voiceControl;
+//        return this;
+//    }
+//
+//    public String getHeadUpDisplay() {
+//        return headUpDisplay;
+//    }
+//
+//    public CreateOfferBindingModel setHeadUpDisplay(String headUpDisplay) {
+//        this.headUpDisplay = headUpDisplay;
+//        return this;
+//    }
+//
+//    public String getSoundSystem() {
+//        return soundSystem;
+//    }
+//
+//    public CreateOfferBindingModel setSoundSystem(String soundSystem) {
+//        this.soundSystem = soundSystem;
+//        return this;
+//    }
+//
+//    public String getSportSeats() {
+//        return sportSeats;
+//    }
+//
+//    public CreateOfferBindingModel setSportSeats(String sportSeats) {
+//        this.sportSeats = sportSeats;
+//        return this;
+//    }
+//
+//    public String getStartStopSystem() {
+//        return startStopSystem;
+//    }
+//
+//    public CreateOfferBindingModel setStartStopSystem(String startStopSystem) {
+//        this.startStopSystem = startStopSystem;
+//        return this;
+//    }
+//
+//    public String getTractionControl() {
+//        return tractionControl;
+//    }
+//
+//    public CreateOfferBindingModel setTractionControl(String tractionControl) {
+//        this.tractionControl = tractionControl;
+//        return this;
+//    }
+//
+//    public String getTunerRadio() {
+//        return tunerRadio;
+//    }
+//
+//    public CreateOfferBindingModel setTunerRadio(String tunerRadio) {
+//        this.tunerRadio = tunerRadio;
+//        return this;
+//    }
+//
+//    public String getUsbPort() {
+//        return usbPort;
+//    }
+//
+//    public CreateOfferBindingModel setUsbPort(String usbPort) {
+//        this.usbPort = usbPort;
+//        return this;
+//    }
+//
+//    public String getAirBag() {
+//        return airBag;
+//    }
+//
+//    public CreateOfferBindingModel setAirBag(String airBag) {
+//        this.airBag = airBag;
+//        return this;
+//    }
+//
+//    public String getBrakeAssist() {
+//        return brakeAssist;
+//    }
+//
+//    public CreateOfferBindingModel setBrakeAssist(String brakeAssist) {
+//        this.brakeAssist = brakeAssist;
+//        return this;
+//    }
+//
+//    public String getAirCondition() {
+//        return airCondition;
+//    }
+//
+//    public CreateOfferBindingModel setAirCondition(String airCondition) {
+//        this.airCondition = airCondition;
+//        return this;
+//    }
+//
+//    public String getSteeringWheelHeating() {
+//        return steeringWheelHeating;
+//    }
+//
+//    public CreateOfferBindingModel setSteeringWheelHeating(String steeringWheelHeating) {
+//        this.steeringWheelHeating = steeringWheelHeating;
+//        return this;
+//    }
 
     public String getBrand() {
         return brand;

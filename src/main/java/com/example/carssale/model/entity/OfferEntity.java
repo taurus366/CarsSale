@@ -29,36 +29,36 @@ public class OfferEntity extends BaseEntity {
 
     private Integer power;
 
-    private String abs;
-    private String esp;
-    private String cruiseControl;
-    private String alarmSystem;
-    private String bluetooth;
-    private String centralLocking;
-    private String electricitySideMirror;
-    private String electricityWindows;
-    private String immobilizer;
-    private String keylessCentralLock;
-    private String fogLamp;
-    private String rainSensor;
-    private String navigationSystem;
-    private String lightSensor;
-    private String ledHeadLights;
-    private String panoramicRoof;
-    private String sunRoof;
-    private String speedLimitControlSystem;
-    private String voiceControl;
-    private String headUpDisplay;
-    private String soundSystem;
-    private String sportSeats;
-    private String startStopSystem;
-    private String tractionControl;
-    private String tunerRadio;
-    private String usbPort;
-    private String airBag;
-    private String brakeAssist;
-    private String airCondition;
-    private String steeringWheelHeating;
+//    private String abs;
+//    private String esp;
+//    private String cruiseControl;
+//    private String alarmSystem;
+//    private String bluetooth;
+//    private String centralLocking;
+//    private String electricitySideMirror;
+//    private String electricityWindows;
+//    private String immobilizer;
+//    private String keylessCentralLock;
+//    private String fogLamp;
+//    private String rainSensor;
+//    private String navigationSystem;
+//    private String lightSensor;
+//    private String ledHeadLights;
+//    private String panoramicRoof;
+//    private String sunRoof;
+//    private String speedLimitControlSystem;
+//    private String voiceControl;
+//    private String headUpDisplay;
+//    private String soundSystem;
+//    private String sportSeats;
+//    private String startStopSystem;
+//    private String tractionControl;
+//    private String tunerRadio;
+//    private String usbPort;
+//    private String airBag;
+//    private String brakeAssist;
+//    private String airCondition;
+//    private String steeringWheelHeating;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -90,6 +90,9 @@ public class OfferEntity extends BaseEntity {
 //    @OneToOne
 //    private OfferDescriptionEntity offerDescription;
 
+    @ManyToMany()
+    private List<FeatureEntity> features = new ArrayList<>();
+
     @Column
     @Enumerated(EnumType.STRING)
     private PriceTypeEnum priceType;
@@ -98,279 +101,298 @@ public class OfferEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TransmisionEnum transmission;
 
+    private Integer views = 0;
 
     public OfferEntity() {
     }
 
-    public String getAbs() {
-        return abs;
+    public Integer getViews() {
+        return views;
     }
 
-    public OfferEntity setAbs(String abs) {
-        this.abs = abs;
+    public OfferEntity setViews(Integer views) {
+        this.views = views;
         return this;
     }
 
-    public String getEsp() {
-        return esp;
+    public List<FeatureEntity> getFeatures() {
+        return features;
     }
 
-    public OfferEntity setEsp(String esp) {
-        this.esp = esp;
+    public OfferEntity setFeatures(List<FeatureEntity> features) {
+        this.features = features;
         return this;
     }
 
-    public String getCruiseControl() {
-        return cruiseControl;
-    }
-
-    public OfferEntity setCruiseControl(String cruiseControl) {
-        this.cruiseControl = cruiseControl;
-        return this;
-    }
-
-    public String getAlarmSystem() {
-        return alarmSystem;
-    }
-
-    public OfferEntity setAlarmSystem(String alarmSystem) {
-        this.alarmSystem = alarmSystem;
-        return this;
-    }
-
-    public String getBluetooth() {
-        return bluetooth;
-    }
-
-    public OfferEntity setBluetooth(String bluetooth) {
-        this.bluetooth = bluetooth;
-        return this;
-    }
-
-    public String getCentralLocking() {
-        return centralLocking;
-    }
-
-    public OfferEntity setCentralLocking(String centralLocking) {
-        this.centralLocking = centralLocking;
-        return this;
-    }
-
-    public String getElectricitySideMirror() {
-        return electricitySideMirror;
-    }
-
-    public OfferEntity setElectricitySideMirror(String electricitySideMirror) {
-        this.electricitySideMirror = electricitySideMirror;
-        return this;
-    }
-
-    public String getElectricityWindows() {
-        return electricityWindows;
-    }
-
-    public OfferEntity setElectricityWindows(String electricityWindows) {
-        this.electricityWindows = electricityWindows;
-        return this;
-    }
-
-    public String getImmobilizer() {
-        return immobilizer;
-    }
-
-    public OfferEntity setImmobilizer(String immobilizer) {
-        this.immobilizer = immobilizer;
-        return this;
-    }
-
-    public String getKeylessCentralLock() {
-        return keylessCentralLock;
-    }
-
-    public OfferEntity setKeylessCentralLock(String keylessCentralLock) {
-        this.keylessCentralLock = keylessCentralLock;
-        return this;
-    }
-
-    public String getFogLamp() {
-        return fogLamp;
-    }
-
-    public OfferEntity setFogLamp(String fogLamp) {
-        this.fogLamp = fogLamp;
-        return this;
-    }
-
-    public String getRainSensor() {
-        return rainSensor;
-    }
-
-    public OfferEntity setRainSensor(String rainSensor) {
-        this.rainSensor = rainSensor;
-        return this;
-    }
-
-    public String getNavigationSystem() {
-        return navigationSystem;
-    }
-
-    public OfferEntity setNavigationSystem(String navigationSystem) {
-        this.navigationSystem = navigationSystem;
-        return this;
-    }
-
-    public String getLightSensor() {
-        return lightSensor;
-    }
-
-    public OfferEntity setLightSensor(String lightSensor) {
-        this.lightSensor = lightSensor;
-        return this;
-    }
-
-    public String getLedHeadLights() {
-        return ledHeadLights;
-    }
-
-    public OfferEntity setLedHeadLights(String ledHeadLights) {
-        this.ledHeadLights = ledHeadLights;
-        return this;
-    }
-
-    public String getPanoramicRoof() {
-        return panoramicRoof;
-    }
-
-    public OfferEntity setPanoramicRoof(String panoramicRoof) {
-        this.panoramicRoof = panoramicRoof;
-        return this;
-    }
-
-    public String getSunRoof() {
-        return sunRoof;
-    }
-
-    public OfferEntity setSunRoof(String sunRoof) {
-        this.sunRoof = sunRoof;
-        return this;
-    }
-
-    public String getSpeedLimitControlSystem() {
-        return speedLimitControlSystem;
-    }
-
-    public OfferEntity setSpeedLimitControlSystem(String speedLimitControlSystem) {
-        this.speedLimitControlSystem = speedLimitControlSystem;
-        return this;
-    }
-
-    public String getVoiceControl() {
-        return voiceControl;
-    }
-
-    public OfferEntity setVoiceControl(String voiceControl) {
-        this.voiceControl = voiceControl;
-        return this;
-    }
-
-    public String getHeadUpDisplay() {
-        return headUpDisplay;
-    }
-
-    public OfferEntity setHeadUpDisplay(String headUpDisplay) {
-        this.headUpDisplay = headUpDisplay;
-        return this;
-    }
-
-    public String getSoundSystem() {
-        return soundSystem;
-    }
-
-    public OfferEntity setSoundSystem(String soundSystem) {
-        this.soundSystem = soundSystem;
-        return this;
-    }
-
-    public String getSportSeats() {
-        return sportSeats;
-    }
-
-    public OfferEntity setSportSeats(String sportSeats) {
-        this.sportSeats = sportSeats;
-        return this;
-    }
-
-    public String getStartStopSystem() {
-        return startStopSystem;
-    }
-
-    public OfferEntity setStartStopSystem(String startStopSystem) {
-        this.startStopSystem = startStopSystem;
-        return this;
-    }
-
-    public String getTractionControl() {
-        return tractionControl;
-    }
-
-    public OfferEntity setTractionControl(String tractionControl) {
-        this.tractionControl = tractionControl;
-        return this;
-    }
-
-    public String getTunerRadio() {
-        return tunerRadio;
-    }
-
-    public OfferEntity setTunerRadio(String tunerRadio) {
-        this.tunerRadio = tunerRadio;
-        return this;
-    }
-
-    public String getUsbPort() {
-        return usbPort;
-    }
-
-    public OfferEntity setUsbPort(String usbPort) {
-        this.usbPort = usbPort;
-        return this;
-    }
-
-    public String getAirBag() {
-        return airBag;
-    }
-
-    public OfferEntity setAirBag(String airBag) {
-        this.airBag = airBag;
-        return this;
-    }
-
-    public String getBrakeAssist() {
-        return brakeAssist;
-    }
-
-    public OfferEntity setBrakeAssist(String brakeAssist) {
-        this.brakeAssist = brakeAssist;
-        return this;
-    }
-
-    public String getAirCondition() {
-        return airCondition;
-    }
-
-    public OfferEntity setAirCondition(String airCondition) {
-        this.airCondition = airCondition;
-        return this;
-    }
-
-    public String getSteeringWheelHeating() {
-        return steeringWheelHeating;
-    }
-
-    public OfferEntity setSteeringWheelHeating(String steeringWheelHeating) {
-        this.steeringWheelHeating = steeringWheelHeating;
-        return this;
-    }
+    //    public String getAbs() {
+//        return abs;
+//    }
+//
+//    public OfferEntity setAbs(String abs) {
+//        this.abs = abs;
+//        return this;
+//    }
+//
+//    public String getEsp() {
+//        return esp;
+//    }
+//
+//    public OfferEntity setEsp(String esp) {
+//        this.esp = esp;
+//        return this;
+//    }
+//
+//    public String getCruiseControl() {
+//        return cruiseControl;
+//    }
+//
+//    public OfferEntity setCruiseControl(String cruiseControl) {
+//        this.cruiseControl = cruiseControl;
+//        return this;
+//    }
+//
+//    public String getAlarmSystem() {
+//        return alarmSystem;
+//    }
+//
+//    public OfferEntity setAlarmSystem(String alarmSystem) {
+//        this.alarmSystem = alarmSystem;
+//        return this;
+//    }
+//
+//    public String getBluetooth() {
+//        return bluetooth;
+//    }
+//
+//    public OfferEntity setBluetooth(String bluetooth) {
+//        this.bluetooth = bluetooth;
+//        return this;
+//    }
+//
+//    public String getCentralLocking() {
+//        return centralLocking;
+//    }
+//
+//    public OfferEntity setCentralLocking(String centralLocking) {
+//        this.centralLocking = centralLocking;
+//        return this;
+//    }
+//
+//    public String getElectricitySideMirror() {
+//        return electricitySideMirror;
+//    }
+//
+//    public OfferEntity setElectricitySideMirror(String electricitySideMirror) {
+//        this.electricitySideMirror = electricitySideMirror;
+//        return this;
+//    }
+//
+//    public String getElectricityWindows() {
+//        return electricityWindows;
+//    }
+//
+//    public OfferEntity setElectricityWindows(String electricityWindows) {
+//        this.electricityWindows = electricityWindows;
+//        return this;
+//    }
+//
+//    public String getImmobilizer() {
+//        return immobilizer;
+//    }
+//
+//    public OfferEntity setImmobilizer(String immobilizer) {
+//        this.immobilizer = immobilizer;
+//        return this;
+//    }
+//
+//    public String getKeylessCentralLock() {
+//        return keylessCentralLock;
+//    }
+//
+//    public OfferEntity setKeylessCentralLock(String keylessCentralLock) {
+//        this.keylessCentralLock = keylessCentralLock;
+//        return this;
+//    }
+//
+//    public String getFogLamp() {
+//        return fogLamp;
+//    }
+//
+//    public OfferEntity setFogLamp(String fogLamp) {
+//        this.fogLamp = fogLamp;
+//        return this;
+//    }
+//
+//    public String getRainSensor() {
+//        return rainSensor;
+//    }
+//
+//    public OfferEntity setRainSensor(String rainSensor) {
+//        this.rainSensor = rainSensor;
+//        return this;
+//    }
+//
+//    public String getNavigationSystem() {
+//        return navigationSystem;
+//    }
+//
+//    public OfferEntity setNavigationSystem(String navigationSystem) {
+//        this.navigationSystem = navigationSystem;
+//        return this;
+//    }
+//
+//    public String getLightSensor() {
+//        return lightSensor;
+//    }
+//
+//    public OfferEntity setLightSensor(String lightSensor) {
+//        this.lightSensor = lightSensor;
+//        return this;
+//    }
+//
+//    public String getLedHeadLights() {
+//        return ledHeadLights;
+//    }
+//
+//    public OfferEntity setLedHeadLights(String ledHeadLights) {
+//        this.ledHeadLights = ledHeadLights;
+//        return this;
+//    }
+//
+//    public String getPanoramicRoof() {
+//        return panoramicRoof;
+//    }
+//
+//    public OfferEntity setPanoramicRoof(String panoramicRoof) {
+//        this.panoramicRoof = panoramicRoof;
+//        return this;
+//    }
+//
+//    public String getSunRoof() {
+//        return sunRoof;
+//    }
+//
+//    public OfferEntity setSunRoof(String sunRoof) {
+//        this.sunRoof = sunRoof;
+//        return this;
+//    }
+//
+//    public String getSpeedLimitControlSystem() {
+//        return speedLimitControlSystem;
+//    }
+//
+//    public OfferEntity setSpeedLimitControlSystem(String speedLimitControlSystem) {
+//        this.speedLimitControlSystem = speedLimitControlSystem;
+//        return this;
+//    }
+//
+//    public String getVoiceControl() {
+//        return voiceControl;
+//    }
+//
+//    public OfferEntity setVoiceControl(String voiceControl) {
+//        this.voiceControl = voiceControl;
+//        return this;
+//    }
+//
+//    public String getHeadUpDisplay() {
+//        return headUpDisplay;
+//    }
+//
+//    public OfferEntity setHeadUpDisplay(String headUpDisplay) {
+//        this.headUpDisplay = headUpDisplay;
+//        return this;
+//    }
+//
+//    public String getSoundSystem() {
+//        return soundSystem;
+//    }
+//
+//    public OfferEntity setSoundSystem(String soundSystem) {
+//        this.soundSystem = soundSystem;
+//        return this;
+//    }
+//
+//    public String getSportSeats() {
+//        return sportSeats;
+//    }
+//
+//    public OfferEntity setSportSeats(String sportSeats) {
+//        this.sportSeats = sportSeats;
+//        return this;
+//    }
+//
+//    public String getStartStopSystem() {
+//        return startStopSystem;
+//    }
+//
+//    public OfferEntity setStartStopSystem(String startStopSystem) {
+//        this.startStopSystem = startStopSystem;
+//        return this;
+//    }
+//
+//    public String getTractionControl() {
+//        return tractionControl;
+//    }
+//
+//    public OfferEntity setTractionControl(String tractionControl) {
+//        this.tractionControl = tractionControl;
+//        return this;
+//    }
+//
+//    public String getTunerRadio() {
+//        return tunerRadio;
+//    }
+//
+//    public OfferEntity setTunerRadio(String tunerRadio) {
+//        this.tunerRadio = tunerRadio;
+//        return this;
+//    }
+//
+//    public String getUsbPort() {
+//        return usbPort;
+//    }
+//
+//    public OfferEntity setUsbPort(String usbPort) {
+//        this.usbPort = usbPort;
+//        return this;
+//    }
+//
+//    public String getAirBag() {
+//        return airBag;
+//    }
+//
+//    public OfferEntity setAirBag(String airBag) {
+//        this.airBag = airBag;
+//        return this;
+//    }
+//
+//    public String getBrakeAssist() {
+//        return brakeAssist;
+//    }
+//
+//    public OfferEntity setBrakeAssist(String brakeAssist) {
+//        this.brakeAssist = brakeAssist;
+//        return this;
+//    }
+//
+//    public String getAirCondition() {
+//        return airCondition;
+//    }
+//
+//    public OfferEntity setAirCondition(String airCondition) {
+//        this.airCondition = airCondition;
+//        return this;
+//    }
+//
+//    public String getSteeringWheelHeating() {
+//        return steeringWheelHeating;
+//    }
+//
+//    public OfferEntity setSteeringWheelHeating(String steeringWheelHeating) {
+//        this.steeringWheelHeating = steeringWheelHeating;
+//        return this;
+//    }
 
     public List<PictureEntity> getPictures() {
         return pictures;

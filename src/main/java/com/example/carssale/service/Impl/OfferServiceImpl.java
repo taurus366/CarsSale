@@ -5,15 +5,18 @@ import com.example.carssale.messages.Messages;
 import com.example.carssale.model.binding.CreateOfferBindingModel;
 import com.example.carssale.model.binding.OfferEditBindingModel;
 import com.example.carssale.model.dto.OfferDTO;
+import com.example.carssale.model.entity.FeatureEntity;
 import com.example.carssale.model.entity.OfferEntity;
 import com.example.carssale.model.entity.PictureEntity;
 import com.example.carssale.model.entity.UserEntity;
 import com.example.carssale.model.service.CreateOfferServiceModel;
 import com.example.carssale.model.service.OfferEditServiceModel;
+import com.example.carssale.repository.FeatureRepository;
 import com.example.carssale.repository.OfferRepository;
 import com.example.carssale.repository.PictureRepository;
 import com.example.carssale.repository.UserRepository;
 import com.example.carssale.service.CloudinaryService;
+import com.example.carssale.service.FeatureService;
 import com.example.carssale.service.OfferService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,9 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.time.Clock;
 import java.time.Instant;
-import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -35,13 +36,15 @@ public class OfferServiceImpl implements OfferService {
     private final CloudinaryService cloudinaryService;
     private final PictureRepository pictureRepository;
     private final UserRepository userRepository;
+    private final FeatureRepository featureRepository;
 
-    public OfferServiceImpl(OfferRepository offerRepository, ModelMapper modelMapper, CloudinaryService cloudinaryService, PictureRepository pictureRepository, UserRepository userRepository) {
+    public OfferServiceImpl(OfferRepository offerRepository, ModelMapper modelMapper, CloudinaryService cloudinaryService, PictureRepository pictureRepository, UserRepository userRepository, FeatureService featureService, FeatureRepository featureRepository) {
         this.offerRepository = offerRepository;
         this.modelMapper = modelMapper;
         this.cloudinaryService = cloudinaryService;
         this.pictureRepository = pictureRepository;
         this.userRepository = userRepository;
+        this.featureRepository = featureRepository;
     }
 
     @Override
@@ -73,6 +76,17 @@ public class OfferServiceImpl implements OfferService {
 
         newOffer
                 .setUser(userEntity);
+
+        createOfferBindingModel
+                .getFeatures()
+                .forEach(feature -> {
+
+                    FeatureEntity byName = featureRepository.findByName(feature);
+
+                    if (byName != null){
+                        newOffer.getFeatures().add(byName);
+                    }
+                });
 
 
         List<PictureEntity> list = new ArrayList<>();
@@ -172,6 +186,15 @@ public class OfferServiceImpl implements OfferService {
         OfferEntity offerEntitySaved = offerRepository.save(offerEntityById);
 
         return modelMapper.map(offerEntitySaved, OfferEditServiceModel.class);
+    }
+
+    @Override
+    public void doUpdateOfOffersViews(Long offerId) {
+        OfferEntity byId = offerRepository.getById(offerId);
+
+        byId.setViews(byId.getViews()+1);
+
+        offerRepository.save(byId);
     }
 
     private PictureEntity createPictureEntity (MultipartFile file) throws IOException {

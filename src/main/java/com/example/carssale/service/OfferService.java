@@ -21,4 +21,6 @@ public interface OfferService {
     void deleteFromOfferPicture(long parseLong, String publicId);
 
     OfferEditServiceModel changeOffer(OfferEditBindingModel offerEditBindingModel, Long offerId);
+
+    void doUpdateOfOffersViews(Long offerId);
 }

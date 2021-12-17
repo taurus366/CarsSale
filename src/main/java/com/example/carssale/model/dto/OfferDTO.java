@@ -1,5 +1,6 @@
 package com.example.carssale.model.dto;
 
+import com.example.carssale.model.entity.FeatureEntity;
 import com.example.carssale.model.entity.PictureEntity;
 import com.example.carssale.model.entity.enums.ExteriorColorEnum;
 import com.example.carssale.model.entity.enums.FuelTypeEnum;
@@ -29,8 +30,28 @@ public class OfferDTO {
     private Integer power;
     private List<PictureEntity> pictures;
     private Boolean canDelete = false;
+    private List<FeatureEntity> features;
+    private Integer views;
 
     public OfferDTO() {
+    }
+
+    public List<FeatureEntity> getFeatures() {
+        return features;
+    }
+
+    public OfferDTO setFeatures(List<FeatureEntity> features) {
+        this.features = features;
+        return this;
+    }
+
+    public Integer getViews() {
+        return views;
+    }
+
+    public OfferDTO setViews(Integer views) {
+        this.views = views;
+        return this;
     }
 
     public List<PictureEntity> getPictures() {

@@ -1,6 +1,8 @@
 package com.example.carssale.web;
 
+import com.example.carssale.event.OfferViewCountEvent;
 import com.example.carssale.exception.OfferNotFoundException;
+import com.example.carssale.messages.Messages;
 import com.example.carssale.model.binding.CreateOfferBindingModel;
 import com.example.carssale.model.binding.OfferEditBindingModel;
 import com.example.carssale.model.dto.OfferDTO;
@@ -9,21 +11,18 @@ import com.example.carssale.model.service.OfferEditServiceModel;
 import com.example.carssale.service.Impl.CarsSaleUser;
 import com.example.carssale.service.OfferService;
 import com.example.carssale.service.UserService;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.context.event.EventListener;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.support.ServletRequestHandledEvent;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,11 +32,12 @@ public class OfferController {
 
     private final OfferService offerService;
     private final UserService userService;
-    private static String OFFER_NOT_FOUND = "Cannot find Car Offer with id ";
+    private final ApplicationEventPublisher applicationEventPublisher;
 
-    public OfferController(OfferService offerService, UserService userService) {
+    public OfferController(OfferService offerService, UserService userService, ApplicationEventPublisher applicationEventPublisher) {
         this.offerService = offerService;
         this.userService = userService;
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -64,9 +64,11 @@ public class OfferController {
                     .addAttribute("offer",offerById);
 //                    .addAttribute("isOwnerTheOffer", isOwnerTheOffer);
         } catch (EntityNotFoundException e) {
-            throw new OfferNotFoundException(Long.parseLong(id),OFFER_NOT_FOUND);
+            throw new OfferNotFoundException(Long.parseLong(id), Messages.OFFER_NOT_FOUND);
         }
 
+        OfferViewCountEvent event = new OfferViewCountEvent(Long.parseLong(id));
+        applicationEventPublisher.publishEvent(event);
 
         return "vehicle-info";
     }
@@ -174,6 +176,7 @@ public class OfferController {
 
 
         System.out.println(principal.getUserIdentifierEmail());
+
 
         CreateOfferServiceModel offer = offerService.createOffer(createOfferBindingModel, principal.getUserIdentifierEmail());
 
