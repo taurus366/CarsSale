@@ -18,13 +18,16 @@ public class ScheduleApplication {
     }
 
 
-    @Scheduled(fixedDelay = 10000, initialDelay = 3600000)
-    @CacheEvict(cacheNames = "offers", allEntries = true)
+    @Scheduled(fixedDelay = 3600000, initialDelay = 3600000)
+    @CacheEvict(cacheNames = "city", allEntries = true)
     public void updateRegionAndCityCache() {
 
         regionService.getAllRegions();
         cityVillageService.getAllCities();
     }
+
+
+
 
 
 
