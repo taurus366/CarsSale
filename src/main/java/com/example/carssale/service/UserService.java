@@ -11,4 +11,6 @@ public interface UserService {
     boolean isAdmin(String email);
 
     UserDTO getUsernameByEmail(String userIdentifierEmail);
+
+    boolean checkPasswordValid(String oldPassword,String email);
 }

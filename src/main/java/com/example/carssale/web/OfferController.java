@@ -53,6 +53,16 @@ public class OfferController {
     }
 
     @PreAuthorize("isAuthenticated()")
+    @GetMapping("/myOffers")
+    public String getAllMyOffers(Model model, @AuthenticationPrincipal CarsSaleUser principal) {
+
+        model
+                .addAttribute("offers",offerService.getAllOwnerOffers(principal.getUserIdentifierEmail()));
+
+        return "vehicles-catalog";
+    }
+
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/{id}")
     public String getOfferByID(@PathVariable String id, Model model, @AuthenticationPrincipal CarsSaleUser principal) {
 

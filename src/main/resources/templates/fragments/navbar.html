@@ -40,9 +40,9 @@
                 <li sec:authorize="isAuthenticated() && hasRole('USER')">
                     <a class="drop-btn user" href="#" ><i class="fas fa-angle-down"></i> <span th:text="#{userText}"></span></a>
                     <ul class="dropdown-menu user" style="display: none;">
-                        <li><a href="#Profile" class="a-btn" th:text="#{profile}">Profile</a></li>
-                        <li> <a href="#Settings" th:text="#{setting}">Settings</a></li>
-                        <li> <a href="#myOffers" th:text="#{myOffersText}">My Offers</a></li>
+                        <li><a th:href="@{/user/profile}" class="a-btn" th:text="#{profile}">Profile</a></li>
+                        <li> <a th:href="@{/user/profile/edit}" th:text="#{setting}">Settings</a></li>
+                        <li> <a th:href="@{/users/offers/myOffers}" th:text="#{myOffersText}">My Offers</a></li>
                         <li>
                             <form class="lang-form" th:method="get" th:action="@{/}">
 <!--                                <label th:text="#{language}" for="lang"></label>-->

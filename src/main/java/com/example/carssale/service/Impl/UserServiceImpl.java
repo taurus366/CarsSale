@@ -118,6 +118,23 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = userRepository.findByEmail(userIdentifierEmail)
                 .get();
 
-        return modelMapper.map(userEntity,UserDTO.class);
+        UserDTO map = modelMapper.map(userEntity, UserDTO.class);
+
+        map
+                .setEmail(userEntity.getEmail())
+                .setPhone(userEntity.getPhone())
+                .setCityVillageName(userEntity.getCityVillage().getCityVillageName())
+                .setRegion(userEntity.getCityVillage().getRegion().getRegionName());
+
+        return map;
+    }
+
+    @Override
+    public boolean checkPasswordValid(String oldPassword,String email) {
+
+        Optional<UserEntity> byEmail = userRepository.findByEmail(email);
+        boolean isValidPassword = passwordEncoder.matches(oldPassword,byEmail.get().getPassword());
+
+        return isValidPassword;
     }
 }

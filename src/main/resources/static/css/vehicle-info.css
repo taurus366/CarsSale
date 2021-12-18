@@ -119,9 +119,10 @@
     /*bottom: -5%;*/
     /*left: 64%;*/
     /*width: 50%;*/
-    position: absolute;
-    bottom: 4%;
-    left: 78%;
+    /*position: absolute;*/
+    /*bottom: 4%;*/
+    /*left: 78%;*/
+    text-align: right;
 }
 
 .views-label {
@@ -140,4 +141,17 @@
 
 .user-self-ad {
     display: flex;
+}
+
+.fa-check-circle {
+    color: green;
+}
+.vehicle-features > p {
+    font-weight: 700;
+}
+
+.vehicle-features-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }

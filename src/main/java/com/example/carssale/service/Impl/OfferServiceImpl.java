@@ -197,6 +197,23 @@ public class OfferServiceImpl implements OfferService {
         offerRepository.save(byId);
     }
 
+    @Override
+    public List<OfferDTO> getAllOwnerOffers(String email) {
+        Optional<UserEntity> byEmail = userRepository.findByEmail(email);
+
+        if (byEmail.isPresent()) {
+            List<OfferEntity> allByUserEmail = offerRepository.findAllByUserEmail(byEmail.get().getEmail());
+
+            return allByUserEmail
+                    .stream()
+                    .map(this::asOfferDTO)
+                    .collect(Collectors.toList());
+        }
+
+        throw new UsernameNotFoundException("We couldn't found the username!");
+
+    }
+
     private PictureEntity createPictureEntity (MultipartFile file) throws IOException {
         CloudinaryImage upload = cloudinaryService.upload(file);
 

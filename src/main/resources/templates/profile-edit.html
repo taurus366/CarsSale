@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/navbar::head"></th:block>
+    <title>Profile edit</title>
+</head>
+<body>
+   <header th:replace="fragments/navbar::header"></header>
+
+
+    <main>
+        <div class="profile-edit-container" th:object="${userInfo}">
+
+            <form class="profile-edit-form"  th:action="@{/user/profile/edit}" th:method="patch"
+            enctype="multipart/form-data">
+
+<!--                <section class="user-img">-->
+<!--                    <article class="user-img-article">-->
+<!--                        <img src="./pictures/profileImg/profile-img.jpg" alt="">-->
+<!--                    </article>-->
+<!--                    <article class="upload-image">-->
+<!--                        <h2>Upload image</h2>-->
+<!--                        <input name="userPicture" type="file">-->
+<!--                    </article>-->
+<!--                </section>-->
+                <section class="user-information-edit-section">
+                    <section class="profile-information-row">
+                        <article class="profile-information-column">
+                            <label for="firstName"><b>First Name</b></label>
+                            <br>
+                            <input type="text" name="firstName" id="firstName" th:field="*{getLastName()}">
+                        </article>
+                        <article class="profile-information-column">
+                            <label for="lastName"><b>Last Name</b></label>
+                            <br>
+                            <input type="text" name="lastName" id="lastName"  th:field="*{getLastName()}">
+                        </article>
+                       </section>
+        
+                       <section class="profile-information-row">
+                        <article class="profile-information-column">
+                            <label for="oldPassword"><b>Old Password</b></label>
+                            <br>
+                            <input type="password" name="oldPassword" id="oldPassword" >
+                        </article>
+
+                           <article class="profile-information-column">
+                               <label for="newPassword"><b>New Password</b></label>
+                               <br>
+                               <input type="password" name="newPassword" id="newPassword" >
+                           </article>
+
+                           <article class="profile-information-column">
+                               <label for="rePassword"><b>Re Password</b></label>
+                               <br>
+                               <input type="password" name="rePassword" id="rePassword" >
+                           </article>
+
+                       </section>
+        
+                       <section class="profile-information-row">
+                        <article class="profile-information-column">
+                            <label for="phone"><b>Phone</b></label>
+                            <br>
+                            <input type="number" name="phone" id="phone"  th:field="*{getPhone()}">
+                        </article>
+                       </section>
+
+                       <section class="submit-btn">
+                        <article class="submit-btn-article">
+                            <input class="btn" type="submit" value="Save">
+                        </article>
+                    </section>
+                </section>
+               
+            </form>
+        </div>
+    </main>
+<script th:replace="fragments/navbar::script-index"></script>
+</body>
+</html>

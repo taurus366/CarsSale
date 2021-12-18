@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/navbar :: head"></th:block>
+    <title>Profile</title>
+</head>
+<body>
+    <header th:replace="fragments/navbar::header"></header>
+    <body>
+        <div th:object="${userInfo}" class="profile-container">
+<!--            <section class="profile-img">-->
+<!--                <article class="profile-img-article">-->
+<!--                    <img src="./pictures/profileImg/profile-img.jpg" alt="">-->
+<!--                </article>-->
+<!--            </section>-->
+            <section class="profile-information">
+               <section class="profile-information-row">
+                <article class="profile-information-column">
+                    <label for="firstName"><b>First Name</b></label>
+                    <br>
+                    <h2 th:text="*{getFirstName()}">Ali</h2>
+                </article>
+                <article class="profile-information-column">
+                    <label for="lastName"><b>Last Name</b></label>
+                    <br>
+                    <h2 th:text="*{getLastName()}">Zinal</h2>
+                </article>
+               </section>
+
+               <section class="profile-information-row">
+                <article class="profile-information-column">
+                    <label for="cityVillageName"><b>City/Village Name</b></label>
+                    <br>
+                    <h2 th:text="*{getCityVillageName()}">Medovets</h2>
+                </article>
+                <article class="profile-information-column">
+                    <label for="region"><b>Region</b></label>
+                    <br>
+                    <h2 th:text="*{getRegion()}">Varna</h2>
+                </article>
+               </section>
+
+               <section class="profile-information-row">
+                <article class="profile-information-column">
+                    <label for="email"><b>Email</b></label>
+                    <br>
+                    <h2 th:text="*{getEmail()}">taurus.ali47@gmail.com</h2>
+                </article>
+                <article class="profile-information-column">
+                    <label for="phone"><b>Phone</b></label>
+                    <br>
+                    <h2 th:text="*{getPhone()}">0894396766</h2>
+                </article>
+               </section>
+            </section>
+        </div>
+    </body>
+
+
+
+<script th:replace="fragments/navbar::script-index"></script>
+</body>
+</html>

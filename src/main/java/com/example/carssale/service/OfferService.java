@@ -23,4 +23,6 @@ public interface OfferService {
     OfferEditServiceModel changeOffer(OfferEditBindingModel offerEditBindingModel, Long offerId);
 
     void doUpdateOfOffersViews(Long offerId);
+
+    List<OfferDTO> getAllOwnerOffers(String email);
 }

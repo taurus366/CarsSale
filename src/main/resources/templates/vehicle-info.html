@@ -116,11 +116,19 @@
             </section>
 
 
+
+           <section class="vehicle-features-section">
+             <article class="vehicle-features" th:each="feature : *{getFeatures()}" >
+               <p><span th:text="${feature.getName().replace('_',' ')}"></span><i class="fas fa-check-circle"></i></p>
+               <!--              <span class="vehicle-info-information-section-article" th:text="*{getPrice() + ' ' + getPriceType()}">test</span>-->
+             </article>
+           </section>
             <section class="views">
               <label class="views-label" for="views-number">Views:</label>
               <span class="views-number" th:text="*{getViews()}"></span>
             </section>
           </article>
+
         </section>
 
       </div>

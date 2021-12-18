@@ -10,8 +10,10 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 
 @Repository
 public interface OfferRepository extends JpaRepository<OfferEntity,Long> {
 
+    List<OfferEntity> findAllByUserEmail(String user_email);
 }
