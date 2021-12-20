@@ -3,7 +3,12 @@ package com.example.carssale.model.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+//@NamedEntityGraph(
+//        name="user-roles",
+//        attributeNodes = {
+//                @NamedAttributeNode("role")
+//        }
+//)
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity{

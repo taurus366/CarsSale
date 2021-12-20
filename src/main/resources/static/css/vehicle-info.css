@@ -39,7 +39,7 @@
 
 .vehicle-img > img {
     width: 750px;
-    height: 500px;
+    height: 750px;
     border-top-right-radius: 10px;
 }
 
@@ -148,10 +148,11 @@
 }
 .vehicle-features > p {
     font-weight: 700;
+    color: orangered;
 }
 
 .vehicle-features-section {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
 }

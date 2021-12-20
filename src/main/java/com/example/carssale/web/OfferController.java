@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,6 +41,7 @@ public class OfferController {
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
+    @Transactional
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/all")
     public String getAllOffer(Model model) {

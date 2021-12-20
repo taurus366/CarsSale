@@ -80,11 +80,11 @@ public class OfferEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private FuelTypeEnum fuelType;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private ModelEntity model;
 
-    @OneToMany(cascade = {CascadeType.ALL})
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
+//    @LazyCollection(LazyCollectionOption.FALSE)
     private List<PictureEntity> pictures = new ArrayList<>();
 
 //    @OneToOne

@@ -90,4 +90,6 @@ public class UserUpdateInfoBindingModel {
         this.phone = phone;
         return this;
     }
+
+
 }
