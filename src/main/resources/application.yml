@@ -1,0 +1,68 @@
+cloudinary:
+    api-key: 224985768936693
+    api-secret: ${CLOUDINARY_API_SECRET}
+    cloud-name: dq1ifn4a3
+info:
+    app:
+        description: This sample application allows to manage articles and users
+        name: Post repository application
+        version: 1.0.0
+logging:
+    level:
+        org:
+            hibernate:
+                SQL: DEBUG
+            type:
+                descriptor:
+                    sql:
+                        BasicBinder: TRACE
+management:
+    endpoint:
+        health:
+            show-details: always
+    endpoints:
+        web:
+            exposure:
+                include: info, health, httptrace, metrics, threaddump, heapdump, shutdown,
+                    beans, mappings
+server:
+    error:
+        include-stacktrace: always
+    port: ${PORT:8080}
+spring:
+    datasource:
+        connectionProperties: useUnicode=true;characterEncoding=utf-8;
+#        driverClassName: com.mysql.cj.jdbc.Driver
+        password: ${JDBC_DATABASE_PASSWORD:}
+        url: ${JDBC_DATABASE_URL:}
+        username: ${JDBC_DATABASE_USERNAME:}
+    jpa:
+#        database: mysql
+        defer-datasource-initialization: true
+        hibernate:
+            ddl-auto: update
+            format_sql: true
+            show_sql: true
+            use_sql_comments: true
+        properties:
+            hibernate:
+                connection:
+                    CharSet: utf-8
+                    characterEncoding: utf-8
+                    useUnicode: 'true '
+#                dialect: org.hibernate.dialect.PostgreSQLDialect
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+    main:
+        allow-circular-references: true
+    mvc:
+        hiddenmethod:
+            filter:
+                enabled: true
+    servlet:
+        multipart:
+            max-file-size: 30MB
+            max-request-size: 30MB
+    sql:
+        init:
+            data-locations: classpath:data.sql,classpath:features.sql
+            mode: never
