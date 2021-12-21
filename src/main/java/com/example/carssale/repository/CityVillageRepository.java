@@ -11,6 +11,7 @@ import java.util.Optional;
 @Repository
 public interface CityVillageRepository extends JpaRepository<CityVillageEntity,Long> {
 
-    @Query(value = "SELECT c FROM CityVillageEntity c WHERE c.region.id = :id")
+//    @Query(value = "SELECT c FROM CityVillageEntity c WHERE c.region.id = :id")
+//    List<CityVillageEntity> getAllCityVillageByRegionId(Long id);
     List<CityVillageEntity> getAllCityVillageByRegionId(Long id);
 }
