@@ -1,5 +1,6 @@
 let localUrl = 'http://localhost:8080';
 let wanUrl = 'http://77.71.76.17:8080';
+let herokuUrl = 'https://stark-atoll-10066.herokuapp.com/'
 
 let image = document.querySelectorAll('#picture')[0];
 
@@ -222,7 +223,7 @@ document.querySelector('.vehicle-type').addEventListener('change', (ev) => {
 });
 
 function doFetchCategory() {
-    fetch('http://localhost:8080/users/category', {method: 'GET'})
+    fetch(herokuUrl+'users/category', {method: 'GET'})
         .then(response => response.json())
         .then(data => {
             Array.from(data)
@@ -238,7 +239,7 @@ function doFetchCategory() {
 function doFetchForModel(id) {
     disableAndEnable.enableModel();
 
-    fetch('http://localhost:8080/users/model/' + id, {method: 'GET'})
+    fetch(herokuUrl+'users/model/' + id, {method: 'GET'})
         .then(response => response.json())
         .then(models => {
             let children = modelSelect.children;
@@ -263,7 +264,7 @@ function doFetchForBrand(id) {
 
     removeChild(childrenOfBrand,brandSelect);
 
-    fetch('http://localhost:8080/users/brand/' + id, {method: 'GET'})
+    fetch(herokuUrl+'users/brand/' + id, {method: 'GET'})
         .then(response => response.json())
         .then(data => {
             Array.from(data)

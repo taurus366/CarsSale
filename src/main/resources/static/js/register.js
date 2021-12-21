@@ -3,6 +3,7 @@ let cityVillage = document.querySelector('#cityVillage');
 
 let ipLocal = 'http://localhost:8080';
 let ipWan = 'http://77.71.76.17:8080';
+let herokuUrl = 'https://stark-atoll-10066.herokuapp.com/'
 
 fetch(ipLocal+'/users/region',{method:'GET'})
     .then(response => response.json())
@@ -29,7 +30,7 @@ region
     })
 
 function fetchForCityVillage(id) {
-    fetch(ipLocal+'/users/cityVillage/'+id,{
+    fetch(herokuUrl+'users/cityVillage/'+id,{
         method:'GET'
     })
         .then(response => response.json())
