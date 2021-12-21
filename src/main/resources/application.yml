@@ -66,4 +66,4 @@ spring:
     sql:
         init:
             data-locations: classpath:data.sql,classpath:features.sql
-            mode: never
+            mode: always
