@@ -5,7 +5,7 @@ let ipLocal = 'http://localhost:8080';
 let ipWan = 'http://77.71.76.17:8080';
 let herokuUrl = 'https://stark-atoll-10066.herokuapp.com/'
 
-fetch(ipLocal+'/users/region',{method:'GET'})
+fetch(herokuUrl+'users/region',{method:'GET'})
     .then(response => response.json())
     .then(data => {
       data
