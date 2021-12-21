@@ -33,6 +33,7 @@ spring:
     datasource:
         connectionProperties: useUnicode=true;characterEncoding=utf-8;
 #        driverClassName: com.mysql.cj.jdbc.Driver
+        driverClassName: org.postgresql.Driver
         password: ${JDBC_DATABASE_PASSWORD:}
         url: ${JDBC_DATABASE_URL:}
         username: ${JDBC_DATABASE_USERNAME:}
