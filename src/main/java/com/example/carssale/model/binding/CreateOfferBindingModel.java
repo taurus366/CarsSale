@@ -72,6 +72,8 @@ public class CreateOfferBindingModel {
     @NotNull
     private String brand;
 
+
+
 //    private String abs;
 //    private String esp;
 //    private String cruiseControl;

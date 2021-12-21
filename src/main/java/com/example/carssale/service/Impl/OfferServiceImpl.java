@@ -106,7 +106,17 @@ public class OfferServiceImpl implements OfferService {
                                             }
                                         });
 
-        newOffer.setPictures(pictureRepository.saveAll(list));
+        if (list.size() == 0){
+            PictureEntity pictureDefault = new PictureEntity();
+            pictureDefault.setCreated(Instant.now())
+                    .setModified(Instant.now());
+            pictureDefault.setUrl("https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg")
+                    .setPublicId("defaultPicture");
+            newOffer.setPictures(pictureRepository.saveAll(List.of(pictureDefault)));
+        }else {
+            newOffer.setPictures(pictureRepository.saveAll(list));
+        }
+
 
 
         OfferEntity offerEntity = offerRepository

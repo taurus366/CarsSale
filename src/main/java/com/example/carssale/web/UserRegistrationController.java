@@ -49,6 +49,11 @@ public class UserRegistrationController {
         boolean isSame = !userModel.getPassword().equals(userModel.getConfirmPassword());
         boolean isEmailExists = userService.isEmailExists(userModel.getEmail());
 
+        if (userModel.getRegion().equals(" ")){
+            bindingResult
+                    .rejectValue("region","region");
+        }
+
         if (bindingResult.hasErrors() || !userModel.getPassword().equals(userModel.getConfirmPassword()) || isEmailExists) {
             redirectAttributes
                     .addFlashAttribute("userModel", userModel)

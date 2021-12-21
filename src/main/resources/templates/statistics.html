@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"   xmlns:th="http://www.thymeleaf.org">
+<head>
+   <th:block th:replace="fragments/navbar::head"></th:block>
+    <title>Statistics</title>
+</head>
+<body>
+<header th:replace="fragments/navbar::header"></header>
+
+  <main>
+      <div class="statistics-container">
+        <section th:object="${stats}">
+            <article class="anonymous-requests">
+                <p>Anonymous Requests: <span th:text="*{getAnonymousRequests()}"></span></p>
+            </article>
+            <article class="registered-requests">
+                <p>Registered Requests: <span th:text="*{getAuthRequests()}"></span></p>
+            </article>
+            <article class="total-requests">
+                <p>Total Requests: <span th:text="*{getTotalRequests()}"></span></p>
+            </article>
+        </section>
+      </div>
+  </main>
+
+
+<script th:replace="fragments/navbar::script-index"></script>
+</body>
+</html>

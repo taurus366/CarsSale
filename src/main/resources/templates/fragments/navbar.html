@@ -31,10 +31,11 @@
                 <li sec:authorize="hasRole('ADMINISTRATOR')">
                     <a class="drop-btn admin" href="#" ><i class="fas fa-angle-down"></i> <span th:text="#{adminText}"></span> </a>
                     <ul class="dropdown-menu admin" style="display: none;">
-                        <li><a href="#home" class="a-btn">Home</a></li>
-                        <li> <a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#allUsers" th:text="#{viewUsersText}">All Users</a></li>
+<!--                        <li><a href="#home" class="a-btn">Home</a></li>-->
+<!--                        <li> <a href="#about">About</a></li>-->
+<!--                        <li><a href="#contact">Contact</a></li>-->
+                        <li><a th:href="@{/admin/view/all}" th:text="#{viewUsersText}">All Users</a></li>
+                        <li><a th:href="@{/admin/statistics}" th:text="#{viewStatisticsText}">Statistics</a></li>
                     </ul>
                 </li>
                 <li sec:authorize="isAuthenticated() && hasRole('USER')">

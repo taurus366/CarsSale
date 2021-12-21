@@ -1,5 +1,6 @@
 package com.example.carssale.service.Impl;
 
+import com.example.carssale.model.binding.UserUpdateInfoBindingModel;
 import com.example.carssale.model.dto.UserDTO;
 import com.example.carssale.model.entity.CityVillageEntity;
 import com.example.carssale.model.entity.RoleEntity;
@@ -16,11 +17,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -133,8 +137,31 @@ public class UserServiceImpl implements UserService {
     public boolean checkPasswordValid(String oldPassword,String email) {
 
         Optional<UserEntity> byEmail = userRepository.findByEmail(email);
-        boolean isValidPassword = passwordEncoder.matches(oldPassword,byEmail.get().getPassword());
 
-        return isValidPassword;
+        return passwordEncoder.matches(oldPassword,byEmail.get().getPassword());
+    }
+
+    @Override
+    public List<UserDTO> getAllUsers() {
+        List<UserDTO> collect = userRepository
+                .findAll()
+                .stream().map(this::asUser)
+                .collect(Collectors.toList());
+
+        return collect;
+    }
+
+    @Override
+    public void patchPassword(UserUpdateInfoBindingModel userUpdateInfoBindingModel, String userEmail) {
+        UserEntity userEntity = userRepository.findByEmail(userEmail).orElseThrow();
+        userEntity
+                .setPassword(passwordEncoder.encode(userUpdateInfoBindingModel.getNewPassword()));
+        userRepository.save(userEntity);
+    }
+
+    private UserDTO asUser(UserEntity userEntity){
+        UserDTO map = modelMapper.map(userEntity, UserDTO.class);
+        map.setRegion(userEntity.getCityVillage().getRegion().getRegionName());
+        return map;
     }
 }

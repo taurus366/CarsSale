@@ -25,7 +25,18 @@ px
 /*    margin-left: 3%;*/
 /*    max-width: 20%;*/
 /*}*/
+.invalid-offer-create {
+    margin: 0;
+}
 
+.create-offer-form-section-article.column.only {
+    display: flex;
+    align-items: stretch;
+}
+
+.create-offer-form-section-article.column.only > article:first-child {
+    margin: 0 5px 0 0;
+}
 
 .ico-img {
     color: black;
@@ -148,4 +159,70 @@ select {
 .fa-clipboard-check {
     color: whitesmoke;
     font-size: 25px;
+}
+
+/* MEDIA QUERIES*/
+
+@media (min-width: 1459px) and (max-width: 1688px) {}
+
+@media (min-width: 1689px) {}
+
+@media (min-width: 980px) and (max-width: 1458px) {
+    .header-nav-ul.index>li {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 979px) {
+    /* .header-nav-ul.index {
+        display: block;
+    } */
+    .header-nav-ul.index>li {
+        font-size: 16px;
+    }
+    #power , #loadFirstInput,#cubature,#emissionClass,#kilometer,#modification,#price,#priceType,#vehicleModel,#picture,#vehicleYear,#model,#brand,#transmission,#carCoupe,#statusUsed,#exteriorColor,#doorCount,#fuelType,#vehicleStatus{
+        max-width: 90px;
+    }
+    span {
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 699px) {
+    /* .header-nav-ul.index {
+        display: block;
+    } */
+    .header-nav-ul.index>li {
+        font-size: 10px;
+        font-weight: 700;
+    }
+    .article-car-image {
+        width: 80px;
+    }
+    #power , #loadFirstInput,#cubature,#emissionClass,#kilometer,#modification,#price,#priceType,#vehicleModel,#picture,#vehicleYear,#model,#brand,#transmission,#carCoupe,#statusUsed,#exteriorColor,#doorCount,#fuelType,#vehicleStatus{
+        max-width: 80px;
+    }
+    span {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 360px) and (max-width: 499px) {
+    /* .header-nav-ul.index {
+        display: block;
+    } */
+    .header-nav-ul.index>li {
+        font-size: 10px;
+        font-weight: 900;
+    }
+    .article-car-image {
+        width: 70px;
+    }
+
+    #power , #loadFirstInput,#cubature,#emissionClass,#kilometer,#modification,#price,#priceType,#vehicleModel,#picture,#vehicleYear,#model,#brand,#transmission,#carCoupe,#statusUsed,#exteriorColor,#doorCount,#fuelType,#vehicleStatus{
+        max-width: 50px;
+    }
+    span {
+        font-size: 10px;
+    }
 }

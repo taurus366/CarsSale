@@ -6,15 +6,15 @@ import javax.validation.constraints.Size;
 
 public class UserUpdateInfoBindingModel {
 
-    @NotNull
-    @NotBlank
-    @Size(min = 3,max = 12)
-    private String firstName;
+//    @NotNull
+//    @NotBlank
+//    @Size(min = 3,max = 12)
+//    private String firstName;
 
-    @NotNull
-    @NotBlank
-    @Size(min = 3,max = 12)
-    private String lastName;
+//    @NotNull
+//    @NotBlank
+//    @Size(min = 3,max = 12)
+//    private String lastName;
 
     @NotNull
     @NotBlank
@@ -31,29 +31,29 @@ public class UserUpdateInfoBindingModel {
     @Size(min = 5,max = 12)
     private String rePassword;
 
-    @NotNull
-    @NotBlank
-    @Size(min = 10)
-    private String phone;
+//    @NotNull
+//    @NotBlank
+//    @Size(min = 10)
+//    private String phone;
 
 
-    public String getFirstName() {
-        return firstName;
-    }
+//    public String getFirstName() {
+//        return firstName;
+//    }
 
-    public UserUpdateInfoBindingModel setFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
+//    public UserUpdateInfoBindingModel setFirstName(String firstName) {
+//        this.firstName = firstName;
+//        return this;
+//    }
 
-    public String getLastName() {
-        return lastName;
-    }
+//    public String getLastName() {
+//        return lastName;
+//    }
 
-    public UserUpdateInfoBindingModel setLastName(String lastName) {
-        this.lastName = lastName;
-        return this;
-    }
+//    public UserUpdateInfoBindingModel setLastName(String lastName) {
+//        this.lastName = lastName;
+//        return this;
+//    }
 
     public String getOldPassword() {
         return oldPassword;
@@ -82,14 +82,14 @@ public class UserUpdateInfoBindingModel {
         return this;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public UserUpdateInfoBindingModel setPhone(String phone) {
-        this.phone = phone;
-        return this;
-    }
+//    public String getPhone() {
+//        return phone;
+//    }
+//
+//    public UserUpdateInfoBindingModel setPhone(String phone) {
+//        this.phone = phone;
+//        return this;
+//    }
 
 
 }

@@ -1,0 +1,64 @@
+.all-users-container {
+    background-color: rgba(98, 98, 98, 0.66);
+    width: 70%;
+    margin: 3% auto auto auto;
+    /*justify-content: space-evenly;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    padding: 20px;
+}
+
+table {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.table-body{
+    color: red;
+    margin-right: 10px;
+    border: solid 5px black;
+}
+
+/* MEDIA QUERIES*/
+
+@media (min-width: 1459px) and (max-width: 1688px) {}
+
+@media (min-width: 1689px) {}
+
+@media (min-width: 980px) and (max-width: 1458px) {
+    .header-nav-ul.index>li {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 979px) {
+    /* .header-nav-ul.index {
+        display: block;
+    } */
+    .header-nav-ul.index>li {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 699px) {
+    /* .header-nav-ul.index {
+        display: block;
+    } */
+    .header-nav-ul.index>li {
+        font-size: 10px;
+        font-weight: 700;
+    }
+    .article-car-image {
+        width: 80px;
+    }
+}
+
+@media (min-width: 360px) and (max-width: 499px) {
+    /* .header-nav-ul.index {
+        display: block;
+    } */
+  td {
+      font-size: 10px;
+  }
+}

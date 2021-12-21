@@ -9,7 +9,7 @@
 
 
     <main>
-        <div class="profile-edit-container" th:object="${userInfo}">
+        <div class="profile-edit-container" th:object="${userUpdateInfoBindingModel}">
 
             <form class="profile-edit-form"  th:action="@{/user/profile/edit}" th:method="patch"
             enctype="multipart/form-data">
@@ -24,47 +24,73 @@
 <!--                    </article>-->
 <!--                </section>-->
                 <section class="user-information-edit-section">
-                    <section class="profile-information-row">
-                        <article class="profile-information-column">
-                            <label for="firstName"><b>First Name</b></label>
-                            <br>
-                            <input type="text" name="firstName" id="firstName" th:field="*{firstName}">
-                        </article>
-                        <article class="profile-information-column">
-                            <label for="lastName"><b>Last Name</b></label>
-                            <br>
-                            <input type="text" name="lastName" id="lastName"  th:field="*{lastName}">
-                        </article>
-                       </section>
+<!--                    <section class="profile-information-row">-->
+<!--                        <article class="profile-information-column">-->
+<!--                            <label for="firstName"><b>First Name</b></label>-->
+<!--                            <br>-->
+<!--                            <input type="text" name="firstName" id="firstName" th:field="*{firstName}">-->
+<!--                            <th:block th:if="${isValidFirstName}">-->
+<!--                                <p class="invalid-feedback hidden invalid-offer-create">3-12 characters</p>-->
+<!--                            </th:block>-->
+<!--                        </article>-->
+<!--                        <article class="profile-information-column">-->
+<!--                            <label for="lastName"><b>Last Name</b></label>-->
+<!--                            <br>-->
+<!--                            <input type="text" name="lastName" id="lastName"  th:field="*{lastName}">-->
+<!--                            <th:block th:if="${isValidLastName}">-->
+<!--                                <p class="invalid-feedback hidden invalid-offer-create">3-12 characters</p>-->
+<!--                            </th:block>-->
+<!--                        </article>-->
+<!--                       </section>-->
         
                        <section class="profile-information-row">
                         <article class="profile-information-column">
                             <label for="oldPassword"><b>Old Password</b></label>
                             <br>
-                            <input type="password" name="oldPassword" id="oldPassword" >
+                            <input type="password" name="oldPassword" id="oldPassword" th:field="*{oldPassword}" th:errorClass="is-invalid">
+                            <p class="invalid-feedback hidden invalid-offer-create">5-12 characters</p>
+                            <th:block th:if="${oldPasswordValid}">
+                                <p class="invalid-offer-create invalid-feedback">
+                                    Password not valid!
+                                </p>
+                            </th:block>
                         </article>
 
                            <article class="profile-information-column">
                                <label for="newPassword"><b>New Password</b></label>
                                <br>
-                               <input type="password" name="newPassword" id="newPassword" >
+                               <input type="password" name="newPassword" id="newPassword" th:field="*{newPassword}" th:errorClass="is-invalid">
+                               <th:block th:if="${isValidPassword}">
+                                   <p class="invalid-feedback  invalid-offer-create">Password not valid 5-12 characters</p>
+                               </th:block>
+                               <th:block th:if="${isSamePasswords}">
+                                   <p class="invalid-feedback invalid-offer-create">Password doesn't match</p>
+                               </th:block>
+
                            </article>
 
                            <article class="profile-information-column">
                                <label for="rePassword"><b>Re Password</b></label>
                                <br>
-                               <input type="password" name="rePassword" id="rePassword" >
+                               <input type="password" name="rePassword" id="rePassword" th:field="*{rePassword}" th:errorClass="is-invalid">
+                              <th:block th:if="${isValidPassword}">
+                                  <p class="invalid-feedback  invalid-offer-create">Password not valid 5-12 characters</p>
+                              </th:block>
+                               <th:block th:if="${isSamePasswords}">
+                                   <p class="invalid-feedback invalid-offer-create">Password doesn't match</p>
+                               </th:block>
+
                            </article>
 
                        </section>
         
-                       <section class="profile-information-row">
-                        <article class="profile-information-column">
-                            <label for="phone"><b>Phone</b></label>
-                            <br>
-                            <input type="number" name="phone" id="phone"  th:field="*{phone}">
-                        </article>
-                       </section>
+<!--                       <section class="profile-information-row">-->
+<!--                        <article class="profile-information-column">-->
+<!--                            <label for="phone"><b>Phone</b></label>-->
+<!--                            <br>-->
+<!--                            <input type="number" name="phone" id="phone"  th:field="*{phone}">-->
+<!--                        </article>-->
+<!--                       </section>-->
 
                        <section class="submit-btn">
                         <article class="submit-btn-article">
@@ -77,5 +103,6 @@
         </div>
     </main>
 <script th:replace="fragments/navbar::script-index"></script>
+<script src="/js/validate.js"></script>
 </body>
 </html>

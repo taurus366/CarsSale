@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,7 +68,7 @@ public class OfferController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/{id}")
     public String getOfferByID(@PathVariable String id, Model model, @AuthenticationPrincipal CarsSaleUser principal) {
-
+        System.out.println(principal.getUserIdentifierEmail());
         try {
             boolean isOwnerTheOffer = offerService.isOwnerTheOffer(Long.parseLong(id), principal.getUserIdentifierEmail());
             OfferDTO offerById = offerService.getOfferById(Long.parseLong(id));
@@ -138,7 +139,7 @@ public class OfferController {
         return "create-offer";
     }
 
-    @ModelAttribute
+    @ModelAttribute("createOfferBindingModel")
     public CreateOfferBindingModel createOfferBindingModel() {
         return new CreateOfferBindingModel();
     }
@@ -147,37 +148,22 @@ public class OfferController {
     @PostMapping("/add")
     public String createOffer(@Valid CreateOfferBindingModel createOfferBindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes, @AuthenticationPrincipal CarsSaleUser principal) {
 
-//        System.out.printf("%s , %s , %s, %s, %s, %s, %s, %s, %s , %s , %s , %s , %s , %s , %s",createOfferBindingModel.getModel().getModelName()
-//                ,createOfferBindingModel.getBrand()
-//                ,createOfferBindingModel.getCarCoupe()
-//                //null - fixed
-//                ,createOfferBindingModel.getDoorCount()
-//                //null
-////                ,createOfferBindingModel.getOfferDescription()
-//                //null - fixed
-//                ,createOfferBindingModel.getEmissionClass()
-//                //null
-//                ,createOfferBindingModel.getExteriorColor()
-//                ,createOfferBindingModel.getFuelType()
-//                ,createOfferBindingModel.getPicture().get(0).isEmpty()
-//                ,createOfferBindingModel.getKilometer()
-//                ,createOfferBindingModel.getPower()
-//                ,createOfferBindingModel.getPrice()
-//                ,createOfferBindingModel.getPriceType()
-//                ,createOfferBindingModel.getStatusUsed()
-//                ,createOfferBindingModel.getVehicleStatus()
-//                ,createOfferBindingModel.getVehicleYear());
-
         List<MultipartFile> pictures =  createOfferBindingModel
                 .getPicture()
                 .stream()
                 .filter(picture -> !picture.isEmpty())
                 .collect(Collectors.toList());
 
+//        if (pictures.size() == 0) {
+//            bindingResult.rejectValue("picture","picture.picture");
+//        }
+      boolean isNull = createOfferBindingModel.getBrand() == null;
 
-        if (pictures.size() == 0) {
-            bindingResult.rejectValue("picture","picture.picture");
-        }
+            if (isNull || createOfferBindingModel.getBrand().equals("choose")){
+                bindingResult.rejectValue("brand","brand.brand");
+            }
+
+
 
         if (bindingResult.hasErrors()) {
             redirectAttributes
@@ -187,7 +173,7 @@ public class OfferController {
         }
 
 
-        System.out.println(principal.getUserIdentifierEmail());
+
 
 
         CreateOfferServiceModel offer = offerService.createOffer(createOfferBindingModel, principal.getUserIdentifierEmail());

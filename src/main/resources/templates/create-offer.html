@@ -13,23 +13,17 @@
 
             <form th:action="@{/users/offers/add}"
             th:method="post"
+                  th:object="${createOfferBindingModel}"
             enctype="multipart/form-data">
 
                 <section class="create-offer-form-section row vehicle-category">
                     <article class="create-offer-form-section-article column">
                         <label for="vehicleCategory"><span th:text="#{mainCategoryText}"></span></label>
                         <br>
-                        <select name="vehicleType" id="vehicleType" class="vehicle-type">
-                        <!-- <option value="Chose type of the vehicle" class="vehicle-type-names">---</option> -->
-                            <option value="choose" class="vehicle-type-names"><span th:text="#{mainCategoryText}"></span></option>
-<!--                        <option value="Bus" class="vehicle-type-names">Bus</option>-->
-<!--                        <option value="Motorcycle" class="vehicle-type-names">Motorcycle</option>-->
-<!--                        <option value="Truck" class="vehicle-type-names">Truck</option>-->
-                        <!-- <option value="Caravan" class="vehicle-type-names">Caravan</option> -->
-<!--                        <option value="Boat" class="vehicle-type-names">Yacht and Boat</option>-->
-                        <!-- <option value="Construction" class="vehicle-type-names">Construction</option>
-                        <option value="Agricultural" class="vehicle-type-names">Agricultural</option> -->
-                    </select>
+                        <select name="vehicleType" id="vehicleType" class="vehicle-type" >
+                            <option value="choose" class="vehicle-type-names" ><span th:text="#{mainCategoryText}"></span></option>
+                        </select>
+                    </article>
                     </article>
                     <article class="vehicle-icon">
                         <i class="fas fa-car-side ico" style="display: none;"></i>
@@ -50,20 +44,26 @@
                         <article class="create-offer-form-section-article column">
                             <label for="brand"><span th:text="#{brandText}"></span></label>
                             <br>
-                            <select name="brand" id="brand" disabled>
+                            <select th:field="*{brand}" id="brand" th:errorclass="is-invalid" disabled>
                                 <option value="choose"><span th:text="#{chooseBrandText}"></span></option>
-                                <option value="">BMW</option>
-                                <option value="">Mercedes-Benz</option>
+<!--                                <option value="">BMW</option>-->
+<!--                                <option value="">Mercedes-Benz</option>-->
                             </select>
+                            <p class="invalid-feedback hidden invalid-offer-create">
+                                Choose Brand
+                            </p>
                         </article>
 
                         <article class="create-offer-form-section-article column">
                             <label for="model"><span th:text="#{modelText}"></span></label>
                             <br>
                             <!-- HERE YOU CAN USE REST API WITH JS -->
-                            <select name="model" id="model" disabled>
+                            <select name="model" id="model" th:errorClass="is-invalid" disabled>
                                 <option value="choose"><span th:text="#{chooseModelText}"></span></option>
                             </select>
+                            <p class="invalid-feedback hidden invalid-offer-create">
+                                Choose Model
+                            </p>
                         </article>
                     </section>
 
@@ -111,7 +111,10 @@
                         <article class="create-offer-form-section-article column">
                             <label for="modification"><span th:text="#{modificationText}"></span></label>
                             <br>
-                            <input type="text" name="modification" id="modification" placeholder="1.6 dCI, 2.2 TDI...">
+                            <input type="text" name="modification" id="modification" placeholder="1.6 dCI, 2.2 TDI..." th:errorClass="is-invalid">
+                            <p class="invalid-feedback hidden invalid-offer-create">
+                                Write Modification
+                            </p>
                         </article>
                     </section>
 
@@ -152,8 +155,11 @@
                         <article class="create-offer-form-section-article column">
                             <label for="power"><span th:text="#{powerText}"></span></label>
                             <br>
-                            <input type="number" name="power" id="power">
+                            <input type="number" th:field="*{power}" id="power" th:errorClass="is-invalid">
                             <!-- <span class="vehicle-span">HP</span> -->
+                            <p class="invalid-feedback hidden invalid-offer-create">
+                                Write Power
+                            </p>
                         </article>
 
 
@@ -174,7 +180,7 @@
                             <label for="vehicleYear"><span th:text="#{yearText}"></span></label>
                             <br>
                             <!-- HERE HAVE TO USE YEAR SELECTION -->
-                            <select name="vehicleYear" id="vehicleYear" disabled>
+                            <select th:field="*{vehicleYear}" id="vehicleYear" disabled>
                                 <option value="">---</option>
                                 <!--                            <option value="">1994</option>-->
                             </select>
@@ -182,7 +188,10 @@
                         <article class="create-offer-form-section-article column">
                             <label for="kilometer"><span th:text="#{kilometerText}"></span></label>
                             <br>
-                            <input type="number" id="kilometer" name="kilometer" size="10">
+                            <input type="number" name="kilometer" id="kilometer" th:field="*{kilometer}" size="10" th:errorClass="is-invalid">
+                            <p class="invalid-feedback hidden invalid-offer-create">
+                                Write Kilometer
+                            </p>
                         </article>
                     </section>
 
@@ -216,16 +225,27 @@
                         </article>
                     </section>
 
-                    <article class="create-offer-form-section-article column">
-                        <label for="price"><span th:text="#{priceText}"></span></label>
-                        <br>
-                        <input type="number" id="price" name="price">
-                        <select name="priceType" id="priceType">
-                            <!-- <option value="">Choose Price Type</option> -->
-                            <option th:each="priceType : ${T(com.example.carssale.model.entity.enums.PriceTypeEnum).values()}" th:text="${priceType}" th:value="${priceType}">BGN</option>
-<!--                            <option value="">EUR</option>-->
-<!--                            <option value="">USD</option>-->
-                        </select>
+                    <article class="create-offer-form-section-article column only">
+                       <article>
+                           <label for="price"><span th:text="#{priceText}"></span></label>
+                           <br>
+                           <input type="number" id="price" name="price" th:errorClass="is-invalid">
+                           <p class="invalid-feedback hidden invalid-offer-create">
+                               Write Price
+                           </p>
+                       </article>
+
+                        <article>
+                            <label for="priceType">Price Type</label>
+                            <br>
+                            <select th:field="*{priceType}" id="priceType">
+                                <!-- <option value="">Choose Price Type</option> -->
+                                <option th:each="priceType : ${T(com.example.carssale.model.entity.enums.PriceTypeEnum).values()}" th:text="${priceType}" th:value="${priceType}">BGN</option>
+                                <!--                            <option value="">EUR</option>-->
+                                <!--                            <option value="">USD</option>-->
+                            </select>
+                        </article>
+
                     </article>
                 </section>
 
@@ -234,13 +254,17 @@
                         <label for="picture"><span th:text="#{uploadPictureText}"></span></label>
                         <br>
                         <input type="button" id="loadFirstInput" value="Cover picture"/>
-                        <input name="picture" id="picture" type="file" style="display: none">
+                        <input th:field="*{picture}" id="picture" th:errorClass="is-invalid" type="file" style="display: none">
+                        <p class="invalid-feedback hidden invalid-offer-create">
+                            Select Image Cover
+                        </p>
 
-                        <input name="picture"  type="file">
+                        <input name="picture" type="file">
                         <br>
                         <input name="picture" type="file">
                         <input name="picture" type="file">
                     </article>
+
                     <!-- <article class="create-offer-form-section-article column"></article> -->
                 </section>
 
@@ -513,6 +537,7 @@
 
     <script th:replace="fragments/navbar::script-index"></script>
     <script src="/js/create-offer.js"></script>
+    <script src="/js/validate.js"></script>
 </body>
 
 </html>
