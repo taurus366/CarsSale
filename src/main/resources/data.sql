@@ -1,20 +1,3 @@
-# drop table if exists cities_villages;
-# drop table if exists regions;
-
-# -- Regions
-# CREATE TABLE regions(
-#     region_id SERIAL PRIMARY KEY,
-#     city_village_name      character varying(255)
-# );
-#
-# -- Cities
-# CREATE TABLE cities_villages (
-#     city_id   SERIAL PRIMARY KEY,
-#     region_id integer,
-#     city_village_name      character varying(255),
-#     CONSTRAINT cities_region_id_fk FOREIGN KEY(region_id) REFERENCES regions(region_id) ON DELETE RESTRICT
-# );
-
 INSERT INTO regions(region_name)
 VALUES ('Благоевград');
 INSERT INTO cities_villages(region_id, city_village_name)
@@ -615,7 +598,6 @@ INSERT INTO cities_villages(region_id, city_village_name)
 VALUES (26, 'Ямбол');
 
 
-# VEHICLE YEARS
 INSERT INTO vehicle_year(vehicle_year)
 VALUES (1988);
 INSERT INTO vehicle_year(vehicle_year)
